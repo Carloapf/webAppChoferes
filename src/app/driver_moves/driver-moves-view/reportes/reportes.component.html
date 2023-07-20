@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>Reportes</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="javascript:window.history.go(-2);">Driver moves</a></li>
+      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver move {{id}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+    </ol>
+  </nav>
+
+  <content>
+    <ul class="list-group list-group-light" style="height:82vh; overflow:auto;">
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-subtitle">Categoría</div>
+          </div>
+          <div class="card-body" style="display: flex;">
+            <ion-select id="categorias" cancel-text="Cancelar" ok-text="Aceptar" [(ngModel)]="categoria"
+              (ngModelChange)="getObjectos()"></ion-select>
+            <ion-select id="objetos" cancel-text="Cancelar" ok-text="Aceptar" [(ngModel)]="camion"
+              (ngModelChange)="reporte.CamionID = camion.id"></ion-select>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-subtitle">Fallo</div>
+          </div>
+          <div class="card-body">
+            <ion-select id="fallos" cancel-text="Cancelar" ok-text="Aceptar" [(ngModel)]="fallo"></ion-select>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-header" style="display: flex;">
+            <div class="card-subtitle" style="margin-right:20px;">Descripción</div> <i class="far fa-file"></i>
+          </div>
+          <div class="card-body">
+            <textarea rows="3" [(ngModel)]="reporte.Descripcion" placeholder="Escriba una breve descripción"></textarea>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-header" style="display: flex;">
+            <div class="card-subtitle" style="margin-right: 20px;">Odometro</div> <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <div class="card-body">
+            <div class="form-outline">
+              <input type="number" id="typeNumber" class="form-control" [(ngModel)]="reporte.Odometro"
+                placeholder="Escriba el número" />
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-subtitle">Tipo</div>
+          </div>
+          <div class="card-body">
+            <ion-select id="tipos" cancel-text="Cancelar" ok-text="Aceptar" [(ngModel)]="tipo"
+              (ngModelChange)="cambiarTipo()"></ion-select>
+          </div>
+        </div>
+      </li>
+      <div *ngIf="reporte.Tipo == 3">
+        <li class="list-group-item">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-subtitle">Tipo de advertencia</div>
+            </div>
+            <div class="card-body">
+              <ion-select id="subtipo" cancel-text="Cancelar" ok-text="Aceptar" [(ngModel)]="subtipo"
+                (ngModelChange)="reporte.Subtipo = subtipo.id"></ion-select>
+            </div>
+          </div>
+        </li>
+      </div>
+      <button type="button" class="btn btn-success" *ngIf="reporte.Tipo && reporte.Odometro && reporte.Descripcion"
+        (click)="enviarReporte()">Success</button>
+    </ul>
+
+  </content>
+</body>
+
+</html>

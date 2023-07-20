@@ -30,9 +30,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/chart.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,12 +98,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e4afd5bc-f10c-4fcc-8553-a5c3ffaf0fb7"
   }
 }

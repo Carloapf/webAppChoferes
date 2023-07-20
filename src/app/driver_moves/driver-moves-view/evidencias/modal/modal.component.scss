@@ -1,0 +1,21 @@
+div.contenedor-fotos
+{
+    width: 95%;
+    margin: 0 auto;
+}
+div.contenedor-fotos > div
+{
+    float: left;
+    width: 32%;
+    margin-right: 2%;
+}
+div.contenedor-fotos > div:nth-child(3n)
+{
+    margin-right: 0;
+}
+div.contenedor-fotos:after
+{
+    display: block;
+    clear: both;
+    content: '';
+}

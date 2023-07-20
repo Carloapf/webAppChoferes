@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global CSS */
+/* Add your custom global styles here */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+body {
+   font-family: 'Roboto', sans-serif;
+   width: auto;
+   background-color: #000000;
+ }
+
+.scroll {
+   /*overflow-x: scroll !important;
+   overflow-y: hidden;*/
+   overflow: auto;
+ }
+ 
+ .table {
+   /*font-family: Arial, Helvetica, sans-serif;*/
+   border-collapse: collapse;
+   width: 100%;
+   font-size: 14px;
+ }
+ 
+ ::-webkit-scrollbar,
+ *::-webkit-scrollbar {
+   display: none;
+ }
+ 
+ .table td,
+ .table th {
+   border: 1px solid #2f4e03;
+   padding: 8px;
+ }
+ 
+ .table tr:nth-child(even) {
+   background-color: #eaf8e4;
+ }
+ 
+ .table th {
+   padding-top: 12px;
+   padding-bottom: 12px;
+   text-align: left;
+   background-color: #2f4e03;
+   color: white;
+ }
+ 
+ .text-right {
+   text-align: right;
+ }
+ 
+ .text-center {
+   text-align: center;
+ }
+ 
+ .ion-color-tertiary {
+   --ion-color-base: #326997 !important;
+ }
+ 
+ div.message {
+   position: relative;
+   min-height: 1em;
+   margin: 10px 0 0 0;
+   background: #f8f8f9;
+   padding: 1em 1.5em;
+   font-size: 12px;
+   line-height: 16px;
+   color: rgba(0, 0, 0, .87);
+   transition: opacity .1s ease, color .1s ease, background .1s ease, box-shadow .1s ease;
+   border-radius: .28571429rem;
+   box-shadow: 0 0 0 1px rgba(34, 36, 38, .22) inset, 0 0 0 0 transparent;
+ }
+ 
+ div.error.message {
+   background-color: #fff6f6;
+   color: #9f3a38;
+   box-shadow: 0 0 0 1px #e0b4b4 inset, 0 0 0 0 transparent;
+ }
+ 
+ div.info.message {
+   background-color: #f8ffff;
+   color: #276f86;
+   box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent;
+ }
+ 
+ /* Add your additional styles here */
+ 
+/* Importing Bootstrap SCSS file. */
+//@import "./node_modules/bootstrap/scss/bootstrap";
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+// Font Awesome
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+
+ 

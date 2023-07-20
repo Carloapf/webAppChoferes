@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>Sellos</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="javascript:window.history.go(-2);">Driver moves</a></li>
+      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver move {{id}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Sellos</li>
+    </ol>
+  </nav>
+  <content>
+
+
+    <div class="card" style="border-radius: 10;">
+      <div class="card-header">
+        <div class="card-subtitle">
+          Alta de sello
+        </div>
+      </div>
+      <div class="card-body">
+        <mdb-form-control >
+          <div style="display: flex;">
+          <input mdbInput type="text" placeholder="Escriba el sello y presione guardar" class="form-control"
+            [(ngModel)]="sello" />
+            <button type="button" class="btn btn-dark btn-rounded" (click)="subirSello()"><i
+              class="fas fa-save" style="border-radius: 10%;"></i></button>
+            </div>
+        </mdb-form-control>
+      </div>
+    </div>
+    <br>
+    <div class="card" style="border-radius: 0;">
+      <div class="card-body" style="padding: 0; margin: 0">
+        <ion-grid class="ion-margin" style="padding: 0; margin: 0">
+          <ion-row>
+            <ion-col class="titulo" style="border-right: 0;">Foto</ion-col>
+            <ion-col class="titulo" style="border-right: 0;">Sello</ion-col>
+            <ion-col class="titulo">Roto</ion-col>
+          </ion-row>
+          <div *ngIf="sellos.length" class="tabla">
+            <ion-row *ngFor="let x of sellos">
+              <ion-col><img style="width: 70px;" src="http://erpcrown.dyndns.org/crownApi{{x.FotoSelloLiga}}"></ion-col>
+              <ion-col>
+                {{ x.sello }}
+                <p style="font-size: 10px;">{{x.fecha | date}}</p>
+              </ion-col>
+              <ion-col>
+                <ion-toggle [(ngModel)]="rotoExt[x.id]" toggle-class="toggle-balanced" id="quitBorder"
+                  (ngModelChange)="romperSelloExt(x)"></ion-toggle>
+              </ion-col>
+            </ion-row>
+          </div>
+          <ion-row *ngIf="!sellos.length">
+            <ion-col style="text-align: center;">No hay registros</ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+    <div class="blockear no" id="block">
+      <div class="popup">
+        <ion-card>
+          <ion-card-header style="text-align: center;">
+            <ion-card-title style="font-size: 18px;">Confirmación</ion-card-title>
+            <ion-card-subtitle style="font-size: 13px;">Antes de guardar el sello puede añadir una
+              nota</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content style="padding: 0;">
+            <textarea [(ngModel)]="comentario" placeholder="Tocar aqui para agregar la nota" style="font-size: 12px;"
+              rows="4"></textarea>
+            <div>
+              <ion-button color="tertiary" style="float: left" (click)="confirmacion(false)">Cancelar</ion-button>
+              <ion-button color="primary" style="float: right" (click)="confirmacion(true)">Aceptar</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </content>
+</body>
+
+</html>
+
+<ion-content>
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Alta de sello</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content style="padding: 0;">
+        <ion-input placeholder="Escriba el sello y presione guardar" [(ngModel)]="sello"></ion-input>
+        <ion-button color="primary" style="font-size: 6px; margin: 0;" (click)="subirSello()">Guardar</ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card style="border-radius: 0;">
+      <ion-card-content style="padding: 0; margin: 0">
+        <ion-grid class="ion-margin" style="padding: 0; margin: 0">
+          <ion-row>
+            <ion-col class="titulo" style="border-right: 0;">Foto</ion-col>
+            <ion-col class="titulo" style="border-right: 0;">Sello</ion-col>
+            <ion-col class="titulo">Roto</ion-col>
+          </ion-row>
+          <div *ngIf="sellos.length" class="tabla">
+            <ion-row *ngFor="let x of sellos">
+              <ion-col><img style="width: 70px;" src="http://erpcrown.dyndns.org/crownApi{{x.FotoSelloLiga}}"></ion-col>
+              <ion-col>
+                {{ x.sello }}
+                <p style="font-size: 10px;">{{x.fecha | date}}</p>
+              </ion-col>
+              <ion-col>
+                <ion-toggle [(ngModel)]="rotoExt[x.id]" toggle-class="toggle-balanced" id="quitBorder"
+                  (ngModelChange)="romperSelloExt(x)"></ion-toggle>
+              </ion-col>
+            </ion-row>
+          </div>
+          <ion-row *ngIf="!sellos.length">
+            <ion-col style="text-align: center;">No hay registros</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <div class="blockear no" id="block">
+    <div class="popup">
+      <ion-card>
+        <ion-card-header style="text-align: center;">
+          <ion-card-title style="font-size: 18px;">Confirmación</ion-card-title>
+          <ion-card-subtitle style="font-size: 13px;">Antes de guardar el sello puede añadir una
+            nota</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content style="padding: 0;">
+          <textarea [(ngModel)]="comentario" placeholder="Tocar aqui para agregar la nota" style="font-size: 12px;"
+            rows="4"></textarea>
+          <div>
+            <ion-button color="tertiary" style="float: left" (click)="confirmacion(false)">Cancelar</ion-button>
+            <ion-button color="primary" style="float: right" (click)="confirmacion(true)">Aceptar</ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

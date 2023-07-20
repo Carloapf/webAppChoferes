@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Manual</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <content>
+        <mdb-tabs [fill]="true">
+            <mdb-tab title="Viajes">
+                <div title="Viajes" *ngIf="principal == 1">
+                    <div class="list-group list-group-light" style="height:90vh; overflow:auto;">
+                        <div class="header">
+                            Viajes
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="accordion accordion-flush" id="accordionFlushExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                aria-expanded="false" aria-controls="flush-collapseOne">
+                                                Driver moves
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body" style="height:750px; overflow:auto;">
+                                                <div class="float-sm-start">
+                                                    En driver moves le saldran los viajes asignados
+                                                    a usted, en amarillo los vistos y en naranja los que no a visto.
+                                                    Para trabajar en ellos presione ver.
+                                                    <br>
+                                                    <img src="assets/img/manual/itinerarios1.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    En caso de no haber visto un viaje presione aceptar.
+                                                    <br>
+                                                    <img src="assets/img/manual/itinerarios2.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Le saldra una notificación de que se acepto el viaje,
+                                                    esto tambien notificará a despacho de que ya sabe que tiene
+                                                    un viaje por realizar.
+                                                    <br>
+                                                    <img src="assets/img/manual/itinerarios3.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Una vez presionado ver en un driver move, le saldrán
+                                                    las opciones de este.
+                                                    <br>
+                                                    <img src="assets/img/manual/itinerarios3.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                aria-expanded="false" aria-controls="flush-collapseTwo">
+                                                Inspección
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="float-sm-start">
+                                                    En inspeccion, seleccionara la parte que tenga un problema,
+                                                    si no presenta ningun problema dejarla marcada.
+                                                    <br>
+                                                    <img src="assets/img/manual/inspeccion.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                aria-expanded="false" aria-controls="flush-collapseThree">
+                                                Evidencias
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="float-sm-start">
+                                                    En evidencias podra tomar fotografia de los documentos
+                                                    del cliente cuando se los proporcionen.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias1.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Para agregar una evidencia se selecciona que evidencia
+                                                    se va a capturar y despues se presiona en el simbolo
+                                                    verde '+'.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias2.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Se tomara una foto por pagina, pudiendo tomar foto a todas
+                                                    las paginas de la evidencia.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias3.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Al terminar de tomar las fotos se precionara
+                                                    en terminar localizado hasta abajo de la ventana.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias4.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Saldrá un mensaje para aceptar y despues se guardara,
+                                                    este proceso puede tardar varios segundos dependiendo del numero de
+                                                    fotos tomadas.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias5.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Una vez tomada, en la lista de abajo saldrán las
+                                                    evidencias que ya se han tomado.
+                                                    <br>
+                                                    <img src="assets/img/manual/evidencias6.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                                aria-expanded="false" aria-controls="flush-collapseFour">
+                                                Sellos
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="float-sm-start">
+                                                    En sellos, se podrán registrar los sellos del contenedor.
+                                                    Para dar de alta un sello, se escribe el número
+                                                    del sello y se le da click en guardar, le pedira una
+                                                    foto del sello, favor de tomar la foto al sello
+                                                    puesto en el contenedor y que se vea su identificador.
+                                                    <br>
+                                                    <img src="assets/img/manual/sellos1.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Despues de tomar la foto podrá escribir un comentario
+                                                    que tenga, si no tiene ninguno dejar en blanco;
+                                                    despues dar click en guardar.
+                                                    <br>
+                                                    <img src="assets/img/manual/sellos2.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Le saldra una lista de los sellos de este driver move,
+                                                    cuando se rompa el sello aqui se marcará cuando se rompa
+                                                    para tener el registro. Para marcar el sello como roto presionar
+                                                    en el boton en la columna de la derecha.
+                                                    <br>
+                                                    <img src="assets/img/manual/sellos3.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Le saldrá una ventana de confimración. Dar click
+                                                    en sí.
+                                                    <br>
+                                                    <img src="assets/img/manual/sellos4.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseFive"
+                                                aria-expanded="false" aria-controls="flush-collapseFive">
+                                                Reportes
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseFive" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="float-sm-start">
+                                                    En reportes, se podra asignar una falla y
+                                                    se levantará un ticket en taller para ser revisado.
+                                                    <br>
+                                                    <img src="assets/img/manual/reporte1.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Seleccionar en donde es el reporte y que parte es.
+                                                    Llenar la demas información como es requerida.
+                                                    <br>
+                                                    <img src="assets/img/manual/reporte2.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Seleccionar el tipo de reporte. Si es
+                                                    advertencia(warning) se requiere informacion adicional.
+                                                    <br>
+                                                    <img src="assets/img/manual/reporte3.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    En caso de ser advetrencia(warning) se seleccionara el
+                                                    tipo de advertencia.
+                                                    <br>
+                                                    <img src="assets/img/manual/reporte4.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Al terminar se da click en guardar y le saldra una ventana
+                                                    de confirmación de que se realizo el reporte.
+                                                    <br>
+                                                    <img src="assets/img/manual/reporte5.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseSix"
+                                                aria-expanded="false" aria-controls="flush-collapseSix">
+                                                Fecha de Llegada
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseSix" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body">
+                                                <div class="float-sm-start">
+                                                    En fecha de llegada, marcará cuando llegué al
+                                                    destino, se pondra la hora actual, dar click en
+                                                    aceptar para que se guarde.
+                                                    <br>
+                                                    <img src="assets/img/manual/llegada.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mdb-tab>
+            <mdb-tab title="Nómina">
+                <div title="Nómina">
+                    <div class="list-group list-group-light" style="height:750px; overflow:auto;">
+                        <div class="header">
+                            Nómina
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="accordion accordion-flush" id="accordionFlushNomina">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOneNomina"
+                                                aria-expanded="false" aria-controls="flush-collapseOneNomina">
+                                                Nómina
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOneNomina" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushNomina">
+                                            <div class="accordion-body" style="height:750px; overflow:auto;">
+                                                <div class="float-sm-start">
+                                                    En nomina, seleccione la semana que desea ver.
+                                                    Le apareceran todos sus viajes, en rojo los que faltan
+                                                    por aprobar y en verde los aprobados, en la parte de
+                                                    abajo saldrá un resúmen de esa semana.
+                                                    <br>
+                                                    <img src="assets/img/manual/nomina.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mdb-tab>
+            <mdb-tab title="CHP">
+                <div title="CHP">
+                    <div class="list-group list-group-light" style="height:750px; overflow:auto;">
+                        <div class="header">
+                            CHP
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="accordion accordion-flush" id="accordionFlushCHP">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOneCHP"
+                                                aria-expanded="false" aria-controls="flush-collapseOneCHP">
+                                                CHP
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOneCHP" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushCHP">
+                                            <div class="accordion-body" style="height:750px; overflow:auto;">
+                                                <div class="float-sm-start">
+                                                    En chp le apareceran todas las warnings que tenga
+                                                    acomodadas de la más vieja a la más nueva. Para cerrarla
+                                                    presione en foto de cierre.
+                                                    <br>
+                                                    <img src="assets/img/manual/chp1.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                    <br>
+                                                    Una vez tomada la foto le saldra una ventana de confirmación
+                                                    y se eliminara de la lista.
+                                                    <br>
+                                                    <img src="assets/img/manual/chp2.PNG"
+                                                        style="max-width: 230px; width: 40%;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mdb-tab>
+        </mdb-tabs>
+
+        
+        <!--
+            <div class="contenedor-botones">
+            <div>
+                <ion-button (click)="principal = 1" expand="full"><ion-icon
+                        name="{{principal == 1 ? 'home' : 'home-outline'}}"></ion-icon></ion-button>
+            </div>
+            <div>
+                <ion-button (click)="principal = 2" expand="full"><ion-icon
+                        name="{{principal == 2 ? 'clipboard' : 'clipboard-outline'}}"></ion-icon></ion-button>
+            </div>
+            <div>
+                <ion-button (click)="principal = 3" expand="full"><ion-icon
+                        name="{{principal == 3 ? 'document-text' : 'document-text-outline'}}"></ion-icon></ion-button>
+            </div>
+        </div>
+        -->
+
+
+    </content>
+</body>
+
+</html>

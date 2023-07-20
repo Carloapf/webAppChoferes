@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>driver-moves-index</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+    <content *ngIf="cargado">
+        <div *ngIf="itinerarios.length" style="height:90vh; overflow:auto;">
+            <div class="itemiti color{{x.Visto}}" *ngFor="let x of itinerarios">
+                <div class="ribbon color{{x.Visto}}">{{x.id}}</div>
+                <div class="itemcont">
+                    <p style="color: grey; margin: 0; margin-left: 5px;">{{x.Carga | date}}</p>
+                    <ion-list>
+                        <ion-item>
+                            <i class="fas fa-tools" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>Work Order</h3>
+                                <p *ngFor="let y of x.contenedores; let i = index">{{i+1}}: {{y.WContenedorID}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <i class="fas fa-user-circle" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>Cliente</h3>
+                                <p *ngFor="let y of x.contenedores; let i = index">{{i+1}}: {{y.cliente}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <i class="fas fa-calendar-day" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>Fecha de entrega</h3>
+                                <p *ngFor="let y of x.contenedores; let i = index">{{i+1}}: {{y.FechaEntrega ?
+                                    (y.FechaEntrega | date) : 'N/A'}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <i class="fas fa-arrows-alt" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>Equipo</h3>
+                                <p *ngFor="let y of x.contenedores; let i = index">{{i+1}}: {{y.Contenedor}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <i class="far fa-map" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>Ruta</h3>
+                                <p>{{x.ruta}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <!-- <ion-item>
+                            <ion-icon name="tablet-landscape-outline"></ion-icon>
+                            <ion-label>
+                                <h3># Chasis</h3>
+                                <p>{{x.chasis}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <ion-label>
+                                <h3># Reservación</h3>
+                                <p>{{x.NumeroReservacion}}</p>
+                            </ion-label>
+                        </ion-item> -->
+                        <!-- <ion-item>
+                            <ion-icon name="grid-outline"></ion-icon>
+                            <ion-label>
+                                <h3>PIN</h3>
+                                <p>{{x.mbl}}</p>
+                            </ion-label>
+                        </ion-item> -->
+                        <!-- <ion-item>
+                            <ion-icon name="move-outline"></ion-icon>
+                            <ion-label>
+                                <h3>Tamaño</h3>
+                                <p>{{x.tamano}}</p>
+                            </ion-label>
+                        </ion-item> -->
+                        <ion-item>
+                            <i class="fas fa-cloud-upload-alt" style="margin-right: 20px;"></i>
+                            <ion-label>
+                                <h3>E/L</h3>
+                                <p>{{x.el}}</p>
+                            </ion-label>
+                        </ion-item>
+                        <button type="button" class="btn btn-success" expand="full" *ngIf="x.Visto == 1"
+                            [routerLink]="['/driver-moves-view', x.id]">Ver</button>
+                        <button type="button" class="btn btn-warnging" expand="full" *ngIf="x.Visto == 0"
+                            (click)="aceptarVer(x)">Aceptar</button>
+                    </ion-list>
+                </div>
+            </div>
+            <br><br>
+        </div>
+        <div *ngIf="!itinerarios.length">
+            <div class="error message" style="width: 90%; margin: 0 auto; margin-top: 10px;">Por el momento no tiene viajes
+                asignados.</div>
+        </div>
+        <div class="blockear" *ngIf="actualizar">
+            <div class="popup">
+                <a target="_blank" href="http://integranet.dyndns.org:81/apps/duran/">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 18px;">Version desactualizada</div>
+                            <div class="card-subtitle" style="font-size: 13px;">Favor de actualizar la aplicacion. <span
+                                style="color: #FF0000;">Presione esta ventana para abrir la pagina de
+                                descarga.</span></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </content>
+</body>
+
+</html>

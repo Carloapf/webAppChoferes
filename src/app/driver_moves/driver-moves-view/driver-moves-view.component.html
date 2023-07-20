@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+  <title>driver-moves-view</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver moves</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Driver move {{id}}</li>
+    </ol>
+  </nav>
+  <div class="card">
+    <div class="card-body">
+      <div class="list-group list-group" style="min-width: 22rem;">
+        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
+          (click)="inspeccion()">
+          Inspección
+        </button>
+        <br>
+        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
+          (click)="evidencias()">
+          Evidencias
+        </button>
+        <br>
+        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
+          (click)="sellos()">
+          Sellos
+        </button>
+        <br>
+        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
+          (click)="reportes()">
+          Reportes
+        </button>
+        <br>
+        <button type="button" class="list-group-item list-group-item-action px-3 border-0" (click)="fechaLlegada()">
+          Fecha de llegada
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Evidencias</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:window.history.go(-2);">Driver moves</a></li>
+            <li class="breadcrumb-item"><a href="javascript:history.back();">Driver move {{id}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Evidencias</li>
+        </ol>
+    </nav>
+    <content *ngIf="cargado">
+        <ul class="list-group list-group-light" style="height:82vh; overflow:auto;">
+            <li class="list-group-item">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-subtitle">
+                            Documentos requeridos
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="evidenciasRequeridas.length">
+                            <div *ngFor="let x of evidenciasRequeridas">
+                                <!-- <div class="item" ng-if="evidenciasRequeridas.length" ng-repeat="x in evidenciasRequeridas" ng-click="verImagen(x.pathfile)"> -->
+                                Nombre de la evidencia: <span *ngIf="x.nombre; else sinNombre">{{x.nombre}}</span>
+                                <ng-template #sinNombre>Sin nombre</ng-template>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div *ngIf="!evidenciasRequeridas.length">
+                            <div class="error message">No hay documentos requeridos</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-subtitle">Agregar documento</div>
+                    </div>
+                    <div class="card-body" style="padding-bottom: 0;">
+                        <ion-select id="tipoEvidencia" cancel-text="Cancelar" ok-text="Aceptar"
+                            [(ngModel)]="seleccionado" (ngModelChange)="getValor()"></ion-select>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-subtitle">Documentos agregados</div>
+                    </div>
+                    <div class="card-body" style="padding: 0" *ngIf="evidenciasAdicionales.length">
+                        <div class="evidenciasExtras" *ngFor="let x of evidenciasAdicionales">
+                            {{x.nombre}}
+                            <span class="validation blue" *ngIf="x.Status == 1 && x.Validado == 0">E</span>
+                            <span class="validation green" *ngIf="x.Status == 1 && x.Validado == 1">A</span>
+                            <span class="validation red" *ngIf="x.Status == 0 && x.Validado == 1">R</span>
+                            <p>{{x.Fecha | date:'MMM d/yy, HH:mm'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-subtitle">Leyenda</div>
+                    </div>
+                    <div class="card-body" style="padding: 0" *ngIf="evidenciasAdicionales.length">
+                        <div class="evidenciasExtras">
+                            <span class="validation blue">E</span> En espera
+                        </div>
+                        <div class="evidenciasExtras">
+                            <span class="validation green">A</span> Aprovado
+                        </div>
+                        <div class="evidenciasExtras">
+                            <span class="validation red">R</span> Rechazado
+                        </div>
+                    </div>
+                    <div class="card-body" *ngIf="!evidenciasAdicionales.length">
+                        <div class="info message">No hay documentos agregados.</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </content>
+</body>
+
+</html>

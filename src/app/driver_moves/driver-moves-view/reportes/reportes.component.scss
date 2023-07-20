@@ -1,0 +1,44 @@
+div.label
+{
+    font-weight: bold;
+    line-height: 48px;
+    text-indent: 16px;
+    background-color: #DBDBDB;
+}
+ion-select
+{
+    width: 100%;
+}
+ion-select::part(placeholder) {
+    color: #20a08a;
+    opacity: 1;
+  }
+  
+  /*
+   * Set the font of the first letter of the placeholder
+   * Shadow parts work with pseudo-elements, too!
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
+   */
+  ion-select::part(placeholder)::first-letter {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  /* Set the text color */
+  ion-select::part(text) {
+    color: #545ca7;
+  }
+  
+  /* Set the icon color and opacity */
+  ion-select::part(icon) {
+    color: var(--ion-color-tertiary);
+    opacity: 1;
+  }
+textarea
+{
+  resize: none;
+  width: 100%;
+  border: 0;
+  background-color: #fff3f3;
+  color: black;
+}

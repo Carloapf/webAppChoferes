@@ -1,0 +1,62 @@
+ion-card-header
+{
+    background-color: #F0F0F0;
+    border-radius: 5px;
+}
+ion-select::part(placeholder) {
+    color: #20a08a;
+    opacity: 1;
+}
+
+/*
+* Set the font of the first letter of the placeholder
+* Shadow parts work with pseudo-elements, too!
+* https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
+*/
+ion-select::part(placeholder)::first-letter {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+/* Set the text color */
+ion-select::part(text) {
+    color: #545ca7;
+}
+
+/* Set the icon color and opacity */
+ion-select::part(icon) {
+    color: var(--ion-color-tertiary);
+    opacity: 1;
+}
+.evidenciasExtras
+{
+    border-bottom: 2px solid #F0F0F0;
+    padding: 13px;
+}
+.evidenciasExtras:last-child
+{
+    border-bottom: none;
+}
+.validation
+{
+    border-radius: 50%;
+    // border: 2px solid #FF0000;
+    font-size: 20px;
+    line-height: 20px;
+    width: 20px;
+    display: block;
+    float: left;
+    text-align: center;
+}
+.validation.red
+{
+    color: #FF0000;
+}
+.validation.blue
+{
+    color: #6CF0FD;
+}
+.validation.green
+{
+    color: #00FF00;
+}
