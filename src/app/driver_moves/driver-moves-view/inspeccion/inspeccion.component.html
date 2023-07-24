@@ -12,13 +12,15 @@
 
 <body>
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="javascript:window.history.go(-2);">Driver moves</a></li>
-      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver move {{id}}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Inspección</li>
-    </ol>
+  <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+    <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;"><i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i></a>
+    <span class="navbar-brand mb-0 h1">Inspección</span>
+    <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
   </nav>
+  
+  
+
+
   <content>
     <ion-list style="height:85vh; overflow:auto;">
       <ion-item *ngFor="let x of inspecciones">

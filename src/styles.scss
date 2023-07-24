@@ -1,5 +1,9 @@
 /* Global CSS */
 /* Add your custom global styles here */
+
+ion-modal.modal-default {
+  z-index: 200 !important;
+}
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
@@ -82,6 +86,9 @@ body {
    color: #276f86;
    box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent;
  }
+
+
+
  
  /* Add your additional styles here */
  

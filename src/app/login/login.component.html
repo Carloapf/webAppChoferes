@@ -3,67 +3,47 @@
 
 <head>
     <style media="screen">
-        *,
-        *:before,
-        *:after {
+        *, *:before, *:after {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
 
         body {
-            background-color: #080710;
+            background: rgb(255,2,11);
+            background: linear-gradient(180deg, rgba(255,2,11,0.8492647058823529) 0%, rgba(40,36,36,1) 67%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        .background {
-            width: 430px;
-            height: 520px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .square {
-            width: 1000px;
-            height: 1000px;
-            background-color: black;
-            position: absolute;
-            z-index: -1;
-        }
-
-        .background .shape {
-            height: 200px;
-            width: 200px;
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .shape:first-child {
-            background: linear-gradient(#1845ad, #23a2f6);
-            left: -80px;
-            top: -20px;
-        }
-
-        .shape:last-child {
-            background: linear-gradient(to right, #ff512f, #f09819);
-            right: -30px;
-            bottom: -80px;
+        .image2 {
+            /* Ajusta el tamaño máximo de la imagen según tus necesidades */
+            max-height: 200px;
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            border-radius: 10%;
         }
 
         form {
             max-width: 400px;
             width: 100%;
             background-color: rgba(255, 255, 255, 0.13);
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
             border-radius: 10px;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
             padding: 50px 35px;
+            /* Agregar fondo oscuro con degradado */
+            background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
         }
 
         form * {
@@ -121,11 +101,8 @@
 </head>
 
 <body>
-    <div >
-        <div class="background">
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
+    <div class="container">
+        <img src="assets/img/logo.png" class="image2">
         <form [formGroup]="formgroup" (submit)="login(formgroup.value)">
             <h3>Inicio de Sesión</h3>
 

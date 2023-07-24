@@ -12,42 +12,63 @@
 
 <body>
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver moves</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Driver move {{id}}</li>
-    </ol>
+  <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+    <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;"><i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i></a>
+    <span class="navbar-brand mb-0 h1">Driver move {{id}}</span>
+    <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
   </nav>
+
   <div class="card">
     <div class="card-body">
-      <div class="list-group list-group" style="min-width: 22rem;">
-        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
-          (click)="inspeccion()">
-          Inspección
-        </button>
-        <br>
-        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
-          (click)="evidencias()">
-          Evidencias
-        </button>
-        <br>
-        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
-          (click)="sellos()">
-          Sellos
-        </button>
-        <br>
-        <button type="button" mdbRipple rippleColor="red" class="list-group-item list-group-item-action px-3 border-0"
-          (click)="reportes()">
-          Reportes
-        </button>
-        <br>
-        <button type="button" class="list-group-item list-group-item-action px-3 border-0" (click)="fechaLlegada()">
-          Fecha de llegada
-        </button>
-      </div>
+      <ul class="list-group list-group" style="min-width: 22rem;">
+
+        <li class="list-group-item d-grid gap-2 border-0">
+          <button type="button" class="btn btn-outline-dark btn-action px-3" (click)="inspeccion()">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span> <i class="fas fa-eye" style="margin-right: 20px;"></i>Inspección</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </button>
+        </li>
+        
+        <li class="list-group-item d-grid gap-2 border-0">
+          <button type="button" class="btn btn-outline-dark btn-action px-3" (click)="evidencias()">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span> <i class="fas fa-file-alt" style="margin-right: 20px;"></i>Evidencias</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </button>
+        </li>
+        
+        <li class="list-group-item d-grid gap-2 border-0">
+          <button type="button" class="btn btn-outline-dark btn-action px-3" (click)="sellos()">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span> <i class="fas fa-certificate" style="margin-right: 20px;"></i>Sellos</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </button>
+        </li>
+
+        <li class="list-group-item d-grid gap-2 border-0">
+          <button type="button" class="btn btn-outline-dark btn-action px-3" (click)="reportes()">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span> <i class="fas fa-list-alt" style="margin-right: 20px;"></i> Reportes</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </button>
+        </li>
+
+        <li class="list-group-item d-grid gap-2 border-0">
+          <button type="button" class="btn btn-outline-dark btn-action px-3" (click)="fechaLlegada()">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span> <i class="fas fa-calendar-day" style="margin-right: 20px;"></i>Fecha de llegada</span>
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </button>
+        </li>
+
+      </ul>
     </div>
   </div>
-
 </body>
-
 </html>

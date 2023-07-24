@@ -13,6 +13,10 @@ import { EnvService } from './services/env.service';
 import OneSignal from 'onesignal-cordova-plugin';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 
 interface User {
@@ -37,12 +41,13 @@ export class AppComponent implements OnInit {
         private env: EnvService,
         private storage: Storage,
         protected auth: AuthenticationService,
-        private router: Router
+        private router: Router,
     ) 
     {
         this.version = this.env.Version;
         this.initializeApp();
     }
+    
     ngOnInit(): void 
     {
         this.breakpointObserver.observe([Breakpoints.Small]).subscribe(result => {
@@ -89,15 +94,19 @@ export class AppComponent implements OnInit {
             {
                 title: 'Driver Moves',
                 url: 'driver-moves-index',
-                icon: 'home'
+                icon: 'fas fa-truck'
             },{
                 title: 'Nomina',
                 url: 'nomina',
-                icon: 'clipboard'
+                icon: 'far fa-clipboard'
             },{
                 title: 'Manual',
                 url: 'manual',
-                icon: 'information-circle'
+                icon: 'fas fa-book-open'
+            },{
+                title: 'Vencimientos',
+                url: 'vencimientos',
+                icon: 'far fa-calendar'
             }
         ];
     }
@@ -121,4 +130,6 @@ export class AppComponent implements OnInit {
             console.log("User accepted notifications: " + accepted);
         });
     }
+    
 }
+defineCustomElements(window);

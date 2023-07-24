@@ -14,6 +14,42 @@
 
 <body>
     <content *ngIf="cargado">
+        <div class="padre" *ngIf="alertas.warning[0]">
+            <div class="mantenimiento">
+                <div>
+                    Revisión 90 días ({{90 - alertas.mantenimiento.dias}})
+                </div>
+                <div style="width: 98%; margin: 5px auto;">
+                    <div style="background-color: rgba(0,0,0,0.3); border-radius: 5px;">
+                        <div class="progeso"
+                        [ngStyle]="{ 'width': alertas.mantenimiento.porcentaje + '%', 'background-color': alertas.mantenimiento.color }">
+                            {{alertas.mantenimiento.porcentaje}}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="warning {{alertas.warning[0].color}}">
+                    <div>CHP</div>
+                    <div>{{30 - alertas.warning[0].diferencia}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="padre" *ngIf="!alertas.warning[0]">
+            <div class="mantenimiento" style="width: 100% !important;">
+                <div>
+                    Revisión 90 días ({{90 - alertas.mantenimiento.dias}})
+                </div>
+                <div style="width: 98%; margin: 5px auto;">
+                    <div style="background-color: rgba(0,0,0,0.3); border-radius: 5px;">
+                        <div class="progeso"
+                        [ngStyle]="{ 'width': alertas.mantenimiento.porcentaje + '%', 'background-color': alertas.mantenimiento.color }">
+                            {{alertas.mantenimiento.porcentaje}}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div *ngIf="itinerarios.length" style="height:90vh; overflow:auto;">
             <div class="itemiti color{{x.Visto}}" *ngFor="let x of itinerarios">
                 <div class="ribbon color{{x.Visto}}">{{x.id}}</div>
@@ -91,9 +127,10 @@
                                 <p>{{x.el}}</p>
                             </ion-label>
                         </ion-item>
-                        <button type="button" class="btn btn-success" expand="full" *ngIf="x.Visto == 1"
+                        
+                        <button type="button" style="margin-top: 5px;" class="btn btn-success" expand="full" *ngIf="x.Visto == 1"
                             [routerLink]="['/driver-moves-view', x.id]">Ver</button>
-                        <button type="button" class="btn btn-warnging" expand="full" *ngIf="x.Visto == 0"
+                        <button type="button" style="margin-top: 5px;" class="btn btn-warnging" expand="full" *ngIf="x.Visto == 0"
                             (click)="aceptarVer(x)">Aceptar</button>
                     </ion-list>
                 </div>
@@ -101,7 +138,8 @@
             <br><br>
         </div>
         <div *ngIf="!itinerarios.length">
-            <div class="error message" style="width: 90%; margin: 0 auto; margin-top: 10px;">Por el momento no tiene viajes
+            <div class="error message" style="width: 90%; margin: 0 auto; margin-top: 10px;">Por el momento no tiene
+                viajes
                 asignados.</div>
         </div>
         <div class="blockear" *ngIf="actualizar">
@@ -111,8 +149,8 @@
                         <div class="card-header">
                             <div class="card-title" style="font-size: 18px;">Version desactualizada</div>
                             <div class="card-subtitle" style="font-size: 13px;">Favor de actualizar la aplicacion. <span
-                                style="color: #FF0000;">Presione esta ventana para abrir la pagina de
-                                descarga.</span></div>
+                                    style="color: #FF0000;">Presione esta ventana para abrir la pagina de
+                                    descarga.</span></div>
                         </div>
                     </div>
                 </a>

@@ -22,6 +22,7 @@ export class DriverMovesIndexPage implements OnInit
     alertas: any = [];
     cargado: any = false;
     actualizar: boolean = false;
+    vencimientos: any;
     constructor
     (
         private env: EnvService,
@@ -77,6 +78,15 @@ export class DriverMovesIndexPage implements OnInit
                 .subscribe(r => 
                 {
                 this.alertas = r.data;
+                /*this.api.getVencimientos(this.usuario.id)
+                    .pipe(finalize(async () => 
+                    {
+                        await this.loader.dismiss();
+                    }))
+                    .subscribe(r =>{
+                        this.vencimientos =r.data;
+                        this.cargado = true;
+                    })*/
                 this.cargado = true;
                 console.log(this.alertas);
                 })

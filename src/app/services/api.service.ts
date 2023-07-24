@@ -92,7 +92,9 @@ export class ApiService {
         return this.http.get<any>(this.env.API_URL + 'getNominaChofer', {params: {...reporte}});
     }
 
-
+    getVencimientos(id: any){
+        return this.http.get<any>(this.env.API_URL + 'getVencimientos');
+    }
 
 
 

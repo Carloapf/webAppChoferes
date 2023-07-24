@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomina</title>
+
+
+</head>
+
+<body>
+  
+<p>Holaaaaa</p>
+<content *ngIf="cargado">
+    <div *ngIf="vencimientos.length">
+        <div class="itemiti {{x.vencido > 0 ? 'green' : 'red'}}" *ngFor="let x of vencimientos">
+            <div class="ribbon {{x.vencido > 0 ? 'green' : 'red'}}">{{x.vencido}}</div>
+            <div class="itemcont">
+                <p style="color: grey; margin: 0; margin-left: 5px;">{{x.Carga | date}}</p>
+                <ion-list>
+                    <ion-item>
+                        <ion-icon name="construct-outline"></ion-icon>
+                        <ion-label>
+                            <h3>Documento</h3>
+                            <p>{{x.vencimiento}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <ion-label>
+                            <h3>Fecha de vencimiento</h3>
+                            <p>{{x.Fecha | date}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!vencimientos.length">
+        <div class="error message" style="width: 90%; margin: 0 auto; margin-top: 10px;">Por el momento no tiene documentos.</div>
+    </div>
+</content>
+<ion-content *ngIf="cargado">
+    <div *ngIf="vencimientos.length">
+        <div class="itemiti {{x.vencido > 0 ? 'green' : 'red'}}" *ngFor="let x of vencimientos">
+            <div class="ribbon {{x.vencido > 0 ? 'green' : 'red'}}">{{x.vencido}}</div>
+            <div class="itemcont">
+                <p style="color: grey; margin: 0; margin-left: 5px;">{{x.Carga | date}}</p>
+                <ion-list>
+                    <ion-item>
+                        <ion-icon name="construct-outline"></ion-icon>
+                        <ion-label>
+                            <h3>Documento</h3>
+                            <p>{{x.vencimiento}}</p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <ion-label>
+                            <h3>Fecha de vencimiento</h3>
+                            <p>{{x.Fecha | date}}</p>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!vencimientos.length">
+        <div class="error message" style="width: 90%; margin: 0 auto; margin-top: 10px;">Por el momento no tiene documentos.</div>
+    </div>
+</ion-content>
+</body>
+</html>

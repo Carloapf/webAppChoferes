@@ -1,0 +1,150 @@
+.red
+ {
+    background-color: rgba(255,0,0,0.5);
+}
+.orange
+{
+    background-color: rgba(255,135,0,0.5);
+}
+.green
+{
+    background-color: rgba(0,255,13,0.5);
+}
+div.padre a.item 
+{
+    color: #FFFFFF;
+    white-space: unset;
+    text-align: justify;
+    font-size: 11px;
+    line-height: 20px;
+}
+.form-group
+{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 95%;
+}
+button.button.back-button.buttons.button-clear.header-item 
+{
+    display: none;
+}
+.form-group input
+{
+    width: calc(100% - 77px);
+    float: left;
+    margin-right: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+}
+.btn-success
+{
+    width: 67px;
+}
+.itemiti.green
+{
+    border: 5px solid #00C800;
+    color: #FFFFFF;
+}
+.itemiti.orange
+{
+    border: 5px solid orange;
+    color: #FFFFFF;
+}
+.itemiti.red
+{
+    border: 5px solid #C80000;
+    color: #FFFFFF;
+}
+.button.orange
+{
+    background-color: orange;
+    color: #FFFFFF;
+}
+.button.red
+{
+    background-color: #C80000;
+    color: #FFFFFF;
+}
+.button.green
+{
+    background-color: #00C800;
+    color: #FFFFFF;
+}
+.ribbon.orange
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, orange 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,orange 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,orange 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='orange',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: #FFFFFF;
+}
+.ribbon.red
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, #C80000 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,#C80000 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,#C80000 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#C80000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: #FFFFFF;
+}
+.ribbon.green
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, #00C800 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,#00C800 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,#00C800 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#00C800',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.ion-close-circled.red
+{
+    color: #FF0000 !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+#itemirez
+{
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.padre:after
+{
+    display: block;
+    content: '';
+    clear: both;
+}
+.ribbon {
+    margin-top: -3px;
+    margin-right: -3px;
+    padding-right: 5px;
+    font-size: 12px;
+    padding-top: 5px;
+    width: 60px;
+    height: 60px;
+    right: 0px;
+    background-color: red;
+    position: absolute;
+    color: white;
+    text-align: right;
+    background: linear-gradient(to top right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 46%, rgba(0,0,0,.6) 48%, #55c5d0 51%, #6cf0fd 100%);
+    z-index: 90;
+}
+.itemiti {
+    position: relative;
+    background: rgb(255,255,255);
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 15px;
+    box-shadow: 3px 3px 4px -1px #c4c4c4;
+}
+.itemcont {
+    padding-top: 10px;
+    padding-left: 5px !important;
+    padding-bottom: 5px !important;
+    padding-right: 5px !important;
+}

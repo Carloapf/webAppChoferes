@@ -8,7 +8,13 @@ import { finalize } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-const { Camera } = Plugins;
+
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Camera } from '@capacitor/camera';
+
+const {  } = Plugins;
 const TOKEN_KEY = 'auth-token';
 @Component({
   selector: 'app-sellos',
@@ -93,9 +99,9 @@ export class SellosPage implements OnInit {
       })
     }
   }
-  async tomarFoto()
+  /*async tomarFoto()
   {
-    this.image = await Camera['getPhoto']({
+    this.image = await Camera.getPhoto()({
       quality: 75,
       correctOrientation: true,
       width: 576,
@@ -109,7 +115,22 @@ export class SellosPage implements OnInit {
       element.classList.toggle("no");
     }
     //element.classList.toggle("no");
-  }
+  }*/
+tomarFoto = async () => {
+    this.image = await Camera.getPhoto({
+      quality: 75,
+      width: 576,
+      height: 1024,
+      allowEditing: false,
+      correctOrientation: true,
+      resultType: CameraResultType.DataUrl
+    });
+    var element = document.getElementById("block");
+    if (element !== null) {
+      element.classList.toggle("no");
+    }
+    // image.webPath will contain a path that can be set as an image src.
+  };
   async confirmacion(flag: any)
   {
     if(flag)
@@ -123,6 +144,7 @@ export class SellosPage implements OnInit {
       //element.classList.toggle("no");
       console.log(this.foto);
       await this.presentLoading();
+
       this.api.insertItinerarioExt(this.foto)
       .pipe(finalize(async () => 
       {
@@ -245,4 +267,6 @@ export class SellosPage implements OnInit {
     });
     await alert.present();
   }
+  
 }
+defineCustomElements(window);

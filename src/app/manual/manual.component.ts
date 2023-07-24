@@ -11,6 +11,7 @@ export class ManualComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.funcionDeReemplazo();
   }
   verSeccion(seccion: any)
   {
@@ -20,5 +21,9 @@ export class ManualComponent implements OnInit {
     else
       this.activo = seccion;
     console.log(this.activo);
+  };
+
+  funcionDeReemplazo(){
+    console.log("No hay imagen");
   };
 }

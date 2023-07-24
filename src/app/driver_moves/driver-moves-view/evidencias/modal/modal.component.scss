@@ -1,21 +1,11 @@
-div.contenedor-fotos
-{
-    width: 95%;
-    margin: 0 auto;
+.md.modal-default.my-custom-class .modal-wrapper {
+  background: #222;
 }
-div.contenedor-fotos > div
-{
-    float: left;
-    width: 32%;
-    margin-right: 2%;
-}
-div.contenedor-fotos > div:nth-child(3n)
-{
-    margin-right: 0;
-}
-div.contenedor-fotos:after
-{
-    display: block;
-    clear: both;
-    content: '';
-}
+
+  pwa-camera-modal-instance{
+    z-index: 20010;
+  }
+  ion-modal {
+    z-index: 200 !important;
+  }
+  

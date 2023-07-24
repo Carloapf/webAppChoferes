@@ -4,7 +4,10 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { Plugins } from '@capacitor/core';
 import { CameraResultType } from '@capacitor/camera';
 import { ApiService } from 'src/app/services/api.service';
-const { Camera } = Plugins;
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+import { Camera } from '@capacitor/camera';
+const {  } = Plugins;
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -27,6 +30,7 @@ export class ModalComponent implements OnInit
   ) 
   { 
   }
+  
   
   ngOnInit()
   {
@@ -57,12 +61,12 @@ export class ModalComponent implements OnInit
   }
   async tomarFoto()
   {
-    const image = await Camera['getPhoto']({
+    const image = await Camera.getPhoto({
       quality: 10,
       correctOrientation: true,
       //width: 576,
       //height: 1024,
-      preserveAspectRatio: true,
+      //preserveAspectRatio: true,
       allowEditing: false,
       resultType: CameraResultType.DataUrl
     });
@@ -117,4 +121,7 @@ export class ModalComponent implements OnInit
     });
     await this.loader.present();
   }
+  
 }
+
+defineCustomElements(window);

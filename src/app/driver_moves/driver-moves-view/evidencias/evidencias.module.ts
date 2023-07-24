@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EvidenciasPageRoutingModule } from './evidencias-routing.module';
 
 import { EvidenciasPage } from './evidencias.component';
-//import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from './modal/modal.component';
 import { ModalPageModule } from "./modal/modal.module";
 
 @NgModule({
@@ -16,7 +16,8 @@ import { ModalPageModule } from "./modal/modal.module";
     FormsModule,
     IonicModule,
     EvidenciasPageRoutingModule,
-    ModalPageModule
+    ModalPageModule,
+    
   ],
   declarations: [EvidenciasPage,]
 })

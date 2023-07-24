@@ -12,12 +12,10 @@
 
 <body>
 
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="javascript:window.history.go(-2);">Driver moves</a></li>
-      <li class="breadcrumb-item"><a href="javascript:history.back();">Driver move {{id}}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Sellos</li>
-    </ol>
+  <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+    <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;"><i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i></a>
+    <span class="navbar-brand mb-0 h1">Sellos</span>
+    <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
   </nav>
   <content>
 
@@ -79,8 +77,8 @@
             <textarea [(ngModel)]="comentario" placeholder="Tocar aqui para agregar la nota" style="font-size: 12px;"
               rows="4"></textarea>
             <div>
-              <ion-button color="tertiary" style="float: left" (click)="confirmacion(false)">Cancelar</ion-button>
-              <ion-button color="primary" style="float: right" (click)="confirmacion(true)">Aceptar</ion-button>
+              <button type="button" class="btn btn-danger" style="float: left" (click)="confirmacion(false)">Cancelar</button>
+              <button type="button" class="btn btn-success" style="float: right" (click)="confirmacion(true)">Aceptar</button>
             </div>
           </ion-card-content>
         </ion-card>

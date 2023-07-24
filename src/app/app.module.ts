@@ -32,7 +32,9 @@ import { DriverMovesViewPageModule } from "./driver_moves/driver-moves-view/driv
 import { SellosPageModule } from "./driver_moves/driver-moves-view/sellos/sellos.module";
 import { ReportesPageModule } from "./driver_moves/driver-moves-view/reportes/reportes.module";
 import { InspeccionPageModule } from "./driver_moves/driver-moves-view/inspeccion/inspeccion.module";
+import { VencimientosPageModule } from "./vencimientos/vencimientos.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
@@ -48,6 +50,7 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+
 //import { MDBBootstrapModule } from 'angular-bootstrap-md';
 //import { EvidenciasPageModule } from "./driver_moves/driver-moves-view/evidencias/evidencias.module";
 //import { ModalPageModule } from "./driver_moves/driver-moves-view/evidencias/modal/modal.module";

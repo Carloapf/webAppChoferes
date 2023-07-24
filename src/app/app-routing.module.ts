@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'nomina',
     loadChildren: () => import('./nomina/nomina.module').then(m => m.NominaPageModule)
   },
+  {
+    path: 'vencimientos',
+    loadChildren: () => import('./vencimientos/vencimientos.module').then(m => m.VencimientosPageModule)
+  }
 
 ];
 

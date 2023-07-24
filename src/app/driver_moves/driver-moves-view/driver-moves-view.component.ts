@@ -39,6 +39,7 @@ export class DriverMovesViewPage implements OnInit {
   async getViaje()
   {
     await this.presentLoading();
+    console.log(this.id);
     this.api.getItinerario(this.id)
     .pipe(finalize(async () => {
       await this.loader.dismiss();
@@ -46,6 +47,7 @@ export class DriverMovesViewPage implements OnInit {
     .subscribe(r => 
     {
       this.itinerario = r.data;
+      console.log("aaaaaa");
       console.log(this.itinerario);
     })
   };
@@ -105,7 +107,7 @@ export class DriverMovesViewPage implements OnInit {
     await this.presentLoading();
     var data = 
     {
-      ItinerarioID: this.itinerario.id,
+      ItinerarioID: this.id,
       WcontFK: this.itinerario.WcontFK,
       FechaLlegada: this.fecha
     };
