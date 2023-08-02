@@ -83,6 +83,7 @@ export class NominaComponent implements OnInit {
     {
         console.log(this.seleccionado)
         this.reporte.SemanaID = this.seleccionado;
+        console.log("Aquiiiiiiiiiiiiiiiiiiiiiiii: ",this.reporte);
         this.api.getNominaChofer(this.reporte)
         .pipe(finalize(async () => 
         {

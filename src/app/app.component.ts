@@ -107,6 +107,10 @@ export class AppComponent implements OnInit {
                 title: 'Vencimientos',
                 url: 'vencimientos',
                 icon: 'far fa-calendar'
+            },{
+                title:'Diesel',
+                url: 'diesel',
+                icon: 'fas fa-gas-pump'
             }
         ];
     }

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>diesel-form</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .contenedor_fotos>div {
+            float: left;
+            width: 32%;
+            /*padding-bottom: 100%;*/
+            margin-right: 2%;
+        }
+
+        .contenedor_fotos>div:nth-child(3n) {
+            margin-right: 0 !important;
+        }
+
+        .contenedor_fotos:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .card .item,
+        .list-inset .item,
+        .padding>.list .item,
+        .padding-horizontal>.list .item {
+            padding: 5px;
+        }
+
+        .card .item>div {
+            line-height: 12px;
+            font-size: 12px;
+        }
+
+        .item-text-wrap:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        div.img-holder img {
+            width: 33%;
+            margin-bottom: 10px;
+            margin-right: 0.5%;
+        }
+
+        div.img-holder img:nth-child(3n) {
+            margin-right: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;">
+            <i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i>
+        </a>
+        <span class="navbar-brand mb-0 h1">Agregar diesel
+            Camion #{{camionSeleccionado?.NoEconomico}}
+        </span>
+        <div></div>
+    </nav>
+
+    <content>
+        <div style="height:90vh">
+            <ul class="list-group">
+                <div style="height:85vh; overflow:auto;">
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label">Proveedor</label>
+                            <select class="form-control" id="proveedor" name="proveedor" [(ngModel)]="carga.ProveedorID">
+                                <!-- Usando ngFor para generar las opciones del select con los proveedores cargados -->
+                                <option *ngFor="let proveedor of proveedoresList" [value]="proveedor.id">{{
+                                    proveedor.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                    </li>
+                    <!--
+            <div class="field">
+                <label>Proveedor</label>
+                <select class="form-control" id="proveedoresList" name="proveedoresList"
+                    [(ngModel)]="carga.ProveedorID">
+                    <!-- Usando ngFor para generar las opciones del select con los proveedores cargados cierra
+                    <option *ngFor="let proveedor of proveedoresList" [value]="proveedor.id">{{ proveedor?.nombre }}
+                    </option>
+                </select> 
+
+        </div>-->
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label for="precioTotal" class="form-label">Precio total</label> <br>
+                            <input class="form-control" type="number" step="0.000001" [(ngModel)]="carga.PrecioTotal">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Moneda del precio</label>
+                            <select class="form-control" id="moneda" name="moneda" [(ngModel)]="carga.MonedaCarga">
+                                <!-- Usando ngFor para generar las opciones del select con las monedas cargadas -->
+                                <option *ngFor="let moneda of monedas" [value]="moneda.id">{{ moneda.nombre }}</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Galones</label> <br>
+                            <input class="form-control" type="number" step="0.0001" [(ngModel)]="carga.Litros">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label (click)="tomarFoto('FotoTanque1')">Foto del tanque 1 <i class="fas fa-camera"
+                                    style="font-size: 17px;"></i></label> <br>
+                            <!-- Esto mostrará la imagen que se haya tomado con la función tomarFoto() -->
+                            <img [src]="carga.FotoTanque1" style="max-width: 230px; width: 40%;"
+                                *ngIf="carga.FotoTanque1">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label (click)="tomarFoto('FotoTanque2')">Foto del tanque 2 <i class="fas fa-camera"
+                                    style="font-size: 17px;"></i></label><br>
+                            <!-- Esto mostrará la imagen que se haya tomado con la función tomarFoto() -->
+                            <img [src]="carga.FotoTanque2" style="max-width: 230px; width: 40%;"
+                                *ngIf="carga.FotoTanque2">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Fecha</label>
+                            <!--<input type="date" ng-model="carga.Fecha" readonly> -->
+                            <!--<div>{{carga.Fecha + ' 00:00:00' | luDate: 'large'}}</div> -->
+                            <div>{{carga.Fecha}}</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Hora</label>
+                            <!--<input type="time" ng-model="carga.Hora" readonly> -->
+                            <!--<div>{{'2020-01-01 ' + carga.Hora | luDate: 'time'}}</div> -->
+                            <div>{{carga.Hora}}</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Folios de los tickets</label><br>
+                            <input class="form-control" type="text" [(ngModel)]="carga.Folio">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+
+                            <label (click)="tomarFotoTicket()">Fotos de los tickets <i class="fas fa-camera"
+                                    style="font-size: 17px;"></i></label><br>
+                            <div class="img-holder">
+                                <img [src]="y" style="max-width: 230px; width: 40%;" *ngFor="let y of carga.tickets">
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Nota</label><br>
+                            <textarea class="form-control" rows="2" [(ngModel)]="carga.Nota"></textarea>
+                        </div>
+                    </li>
+                    <!--            <div class="field">
+                <label>Metodo de pago</label>
+                <select class="form-control" id="metodosPago" name="metodosPago" 
+                    ng-options="x.id as x.nombre for x in metodosPago" 
+                    ng-model="carga.MetodoPago">
+                </select>
+            </div> -->
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Serie de la bomba</label><br>
+                            <input class="form-control" type="text" [(ngModel)]="carga.SerieBomba">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Odómetro</label><br>
+                            <input class="form-control" type="text" [(ngModel)]="carga.OdometroCarga">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label (click)="tomarFoto('FotoOdometro')">Foto del odometro <i class="fas fa-camera"
+                                    style="font-size: 17px;"></i></label><br>
+                            <!-- Esto mostrará la imagen que se haya tomado con la función tomarFoto() -->
+                            <img [src]="carga.FotoOdometro" style="max-width: 230px; width: 40%;"
+                                *ngIf="carga.FotoOdometro">
+
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Rendimiento esperado</label>
+                            <div>{{((rutasMillas) / carga.Litros) | number:'4.0-0'}} millas * galon</div>
+                        </div>
+                    </li>
+
+                    <!--            <div class="field">
+                <label>Odómetro ECM</label>
+                <input type="number" ng-model="carga.OdometroECM" step="0.0001">
+            </div> -->
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Recorrido ECM</label><br>
+                            <input class="form-control" type="number" [(ngModel)]="carga.RecorridoECM" step="0.0001"
+                                ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Galones ECM</label><br>
+                            <input class="form-control" type="number" [(ngModel)]="carga.LitrosECM" step="0.0001"
+                                ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Rendimiento ECM</label>
+                            <div>{{+carga.RendimientoECM | number:'4.0-0'}} millas * galon</div>
+                            <!--<input type="number" ng-model="carga.RendimientoECM" step="0.0001"> -->
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3" ng-if="carga.OdometroCarga">
+                            <label>Rendimiento de carga</label>
+                            <div>{{((carga.OdometroCarga - odometroAnterior) / carga.Litros) | number:'2.0-0'}} millas *
+                                galon
+                                ({{(carga.LitrosECM - carga.Litros) | number:'2.0-0'}})</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label>Sellos</label><br>
+                            <input class="form-control" type="text" [(ngModel)]="carga.Sellos">
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label (click)="tomarFoto('FotoSello')">Foto del sello <i class="fas fa-camera"
+                                    style="font-size: 17px;"></i></label><br>
+                            <!-- Esto mostrará la imagen que se haya tomado con la función tomarFoto() -->
+                            <img [src]="carga.FotoSello" style="max-width: 230px; width: 40%;" *ngIf="carga.FotoSello">
+
+                        </div>
+                    </li>
+                    <!--<button class="aceptar ui blue fluid button" ng-click="generarItinerarios()" style="margin-bottom: 5px;">Generar itinerarios</button> -->
+                    <div *ngIf="ultimoHistorial" style="display: flex; justify-content: center;">
+                        <div class="card" style="max-height: 200px; overflow-y: auto; width: 95%;">
+                            <div class="card-body">
+                                <ul class="list-group list-group" style="min-width: 22rem;">
+                                    <li class="list-group-item d-grid gap-1 border-1" *ngFor="let x of ultimoHistorial">
+                                        <div style="float: left; width: 90%">
+                                            <div>Chofer: <b>{{x.chofer }}</b></div>
+                                            <div>Ruta: <b>{{x.ruta }}</b></div>
+                                            <div>Recorrido <b>{{x.km | number:'2.0-0'}} millas</b></div>
+                                            <div>Carga: <b>{{x.estadocarga}}</b></div>
+                                        </div>
+                                        <div style="position: absolute; top: 5px; right: 5px;">
+                                            {{x.ItinerarioID}}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" (click)="agregarFirma()">Terminar</button>
+                </div>
+            </ul>
+        </div>
+    </content>
+</body>
+
+</html>
+<!--
+<ion-view view-title="Agregar diesel">
+    <style>
+        .contenedor_fotos>div {
+            float: left;
+            width: 32%;
+            /*padding-bottom: 100%;*/
+            margin-right: 2%;
+        }
+
+        .contenedor_fotos>div:nth-child(3n) {
+            margin-right: 0 !important;
+        }
+
+        .contenedor_fotos:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .card .item,
+        .list-inset .item,
+        .padding>.list .item,
+        .padding-horizontal>.list .item {
+            padding: 5px;
+        }
+
+        .card .item>div {
+            line-height: 12px;
+            font-size: 12px;
+        }
+
+        .item-text-wrap:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        div.img-holder img {
+            width: 33%;
+            margin-bottom: 10px;
+            margin-right: 0.5%;
+        }
+
+        div.img-holder img:nth-child(3n) {
+            margin-right: 0;
+        }
+    </style>
+    <ion-header-bar align-title="center" class="bar-ramirez">
+        <button class="button button-icon icon ion-ios-arrow-left" style="color: white;"
+            ng-click="go('diesel_view', {id: CamionID})"></button>
+        <h1 class="title">Agregar diesel</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="ui form">
+            <h4 class="ui dividing header" style="text-align: center">
+                Camion #{{camion.NoEconomico}}
+            </h4>
+            <div class="field">
+                <label>Proveedor</label>
+                <select class="form-control" id="proveedores" name="proveedores"
+                    ng-options="x.id as x.nombre for x in proveedores" ng-model="carga.ProveedorID">
+                </select>
+            </div>
+            <div class="field">
+                <label>Precio total</label>
+                <input type="number" step="0.000001" ng-model="carga.PrecioTotal">
+            </div>
+            <div class="field">
+                <label>Moneda del precio</label>
+                <select class="form-control" id="moneda" name="moneda" ng-options="x.id as x.nombre for x in monedas"
+                    ng-model="carga.MonedaCarga">
+                </select>
+            </div>
+            <div class="field">
+                <label>Galones</label>
+                <input type="number" step="0.0001" ng-model="carga.Litros">
+            </div>
+            <div class="field">
+                <label ng-click="tomarFoto('FotoTanque1')">Foto del tanque 1 <i class="icon ion-camera blue"
+                        style="font-size: 17px;"></i></label>
+                <img ng-src="{{carga.FotoTanque1}}" style="width: 100%;">
+            </div>
+            <div class="field">
+                <label ng-click="tomarFoto('FotoTanque2')">Foto del tanque 2 <i class="icon ion-camera blue"
+                        style="font-size: 17px;"></i></label>
+                <img ng-src="{{carga.FotoTanque2}}" style="width: 100%;">
+            </div>
+            <div class="field">
+                <label>Fecha</label>
+                <!--<input type="date" ng-model="carga.Fecha" readonly> cierra comentario
+                <div>{{carga.Fecha + ' 00:00:00' | luDate: 'large'}}</div>
+            </div>
+            <div class="field">
+                <label>Hora</label>
+                <!--<input type="time" ng-model="carga.Hora" readonly> cierrta comentario
+                <div>{{'2020-01-01 ' + carga.Hora | luDate: 'time'}}</div>
+            </div>
+            <div class="field">
+                <label>Folios de los tickets</label>
+                <input type="text" ng-model="carga.Folio">
+            </div>
+            <div class="field">
+                <label ng-click="tomarFotoTicket()">Fotos de los tickets <i class="icon ion-camera blue"
+                        style="font-size: 17px;"></i></label>
+                <div class="img-holder">
+                    <img ng-src="{{y}}" ng-repeat="y in carga.tickets">
+                </div>
+            </div>
+            <div class="field">
+                <label>Nota</label>
+                <textarea rows="2" ng-model="carga.Nota"></textarea>
+            </div>
+            <!--            <div class="field">
+                <label>Metodo de pago</label>
+                <select class="form-control" id="metodosPago" name="metodosPago" 
+                    ng-options="x.id as x.nombre for x in metodosPago" 
+                    ng-model="carga.MetodoPago">
+                </select>
+            </div> cierra comentario
+            <div class="field">
+                <label>Serie de la bomba</label>
+                <input type="text" ng-model="carga.SerieBomba">
+            </div>
+            <div class="field">
+                <label>Odómetro</label>
+                <input type="text" ng-model="carga.OdometroCarga">
+            </div>
+            <div class="field">
+                <label ng-click="tomarFoto('FotoOdometro')">Foto del odometro <i class="icon ion-camera blue"
+                        style="font-size: 17px;"></i></label>
+                <img ng-src="{{carga.FotoOdometro}}" style="width: 100%;">
+            </div>
+            <div class="field">
+                <label>Rendimiento esperado</label>
+                <div>{{((rutasMillas) / carga.Litros) | number:4}} millas * galon</div>
+            </div>
+            <!--            <div class="field">
+                <label>Odómetro ECM</label>
+                <input type="number" ng-model="carga.OdometroECM" step="0.0001">
+            </div> cierra comentario
+            <div class="field">
+                <label>Recorrido ECM</label>
+                <input type="number" ng-model="carga.RecorridoECM" step="0.0001"
+                    ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+            </div>
+            <div class="field">
+                <label>Galones ECM</label>
+                <input type="number" ng-model="carga.LitrosECM" step="0.0001"
+                    ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+            </div>
+            <div class="field">
+                <label>Rendimiento ECM</label>
+                <div>{{carga.RendimientoECM | number:4}} millas * galon</div>
+                <!--<input type="number" ng-model="carga.RendimientoECM" step="0.0001"> cierra comentario
+            </div>
+            <div class="field" ng-if="carga.OdometroCarga">
+                <label>Rendimiento de carga</label>
+                <div>{{((carga.OdometroCarga - odometroAnterior) / carga.Litros) | number:2}} millas * galon
+                    ({{(carga.LitrosECM - carga.Litros) | number:2}})</div>
+            </div>
+            <div class="field">
+                <label>Sellos</label>
+                <input type="text" ng-model="carga.Sellos">
+            </div>
+            <div class="field">
+                <label ng-click="tomarFoto('FotoSello')">Foto del sello <i class="icon ion-camera blue"
+                        style="font-size: 17px;"></i></label>
+                <img ng-src="{{carga.FotoSello}}" style="width: 100%;">
+            </div>
+            <!--<button class="aceptar ui blue fluid button" ng-click="generarItinerarios()" style="margin-bottom: 5px;">Generar itinerarios</button> cierra comentario
+            <div ng-if="ultimoHistorial.length" style="max-height: 200px; overflow-y: auto">
+                <div class="list card">
+                    <div class="item item-text-wrap" ng-repeat="x in ultimoHistorial">
+                        <div style="float: left; width: 90%">
+                            <div>Chofer: <b>{{x.chofer | camelCase}}</b></div>
+                            <div>Ruta: <b>{{x.ruta | camelCase}}</b></div>
+                            <div>Recorrido <b>{{x.km | number:2}} millas</b></div>
+                            <div>Carga: <b>{{x.estadocarga}}</b></div>
+                        </div>
+                        <div style="float: left; width: 10%; text-align: right;">
+                            {{x.ItinerarioID}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="aceptar ui green fluid button" ng-click="agregarFirma()"
+                style="margin-top: 5px;">Terminar</button>
+        </div>
+    </ion-content>
+</ion-view>
+-->

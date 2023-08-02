@@ -153,4 +153,30 @@ export class ApiService {
     getReporteRecepcionSorteo(data: any) {
         return this.http.get<any>(this.env.API_URL + 'getReporteRecepcionSorteo', {params: {...data}});
     }
+
+    //diesel
+    getCamionesTabla(){
+        return this.http.get<any>(this.env.API_URL_DIESEL + 'getCamionesTabla');
+    }
+
+    getCamion(id: number) {
+        return this.http.get<any>(`${this.env.API_URL_DIESEL}getCamion/${id}`);
+    }
+
+    saveCarga( fotoDataUrl: string, tipoFoto: string ){
+
+        const data = {
+            [tipoFoto]: fotoDataUrl
+          };
+
+        return this.http.post<any>(this.env.API_URL_DIESEL + 'saveCarga', data);
+    }
+
+    getHistorialAnterior(data: any){
+        return this.http.get<any>(this.env.API_URL_DIESEL + 'getHistorialAnterior', {params: {...data}});
+    }
+
+    getProveedores(){
+        return this.http.get<any>(this.env.API_URL_DIESEL + 'getProveedores');
+    }
 }

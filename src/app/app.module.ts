@@ -33,6 +33,9 @@ import { SellosPageModule } from "./driver_moves/driver-moves-view/sellos/sellos
 import { ReportesPageModule } from "./driver_moves/driver-moves-view/reportes/reportes.module";
 import { InspeccionPageModule } from "./driver_moves/driver-moves-view/inspeccion/inspeccion.module";
 import { VencimientosPageModule } from "./vencimientos/vencimientos.module";
+import { DieselIndexPageModule } from "./diesel/diesel-index/diesel-index.module";
+import { DieselViewPageModule } from "./diesel/diesel-view/diesel-view.module";
+import { DieselFormPageModule } from './diesel/diesel-form/diesel-form.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
@@ -55,9 +58,14 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 //import { EvidenciasPageModule } from "./driver_moves/driver-moves-view/evidencias/evidencias.module";
 //import { ModalPageModule } from "./driver_moves/driver-moves-view/evidencias/modal/modal.module";
 
+import { FilterPipe } from './pipes/filter.pipe';
+import { LuDatePipe } from './pipes/luDate.pipe';
+//import { LuDatePipe } from "./pipes/luDate.pipe";
+
+
 
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent, FilterPipe, LuDatePipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -74,6 +82,10 @@ import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
     SellosPageModule,
     ReportesPageModule,
     InspeccionPageModule,
+    VencimientosPageModule,
+    DieselIndexPageModule,
+    DieselViewPageModule,
+    DieselFormPageModule,
     //EvidenciasPageModule,
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,

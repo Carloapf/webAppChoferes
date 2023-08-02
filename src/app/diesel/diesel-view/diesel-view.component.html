@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Ver Camion</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .card .item,
+        .list-inset .item,
+        .padding>.list .item,
+        .padding-horizontal>.list .item {
+            padding: 5px;
+        }
+
+        .list .item>div {
+            line-height: 12px;
+            font-size: 12px;
+        }
+
+        .item-text-wrap:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .list {
+            padding: 10px;
+            padding-bottom: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;">
+            <i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i>
+        </a>
+        <span class="navbar-brand mb-0 h1">Ver camion {{camionSeleccionado?.NoEconomico}}</span>
+        <a class="btn text-white" style="background-color: #333333; margin-right: 10px;" (click)="form()" role="button"
+            mdbRipple>
+            <i class="fas fa-plus"></i>
+        </a>
+    </nav>
+
+
+    <div class="list" *ngIf="historial">
+        <div *ngFor="let x of historial">
+
+
+            <div class="item item-text-wrap">
+                <div style="float: left; width: 90%">
+                    <div>Fecha: <b>{{x.Fecha | luDate: 'full'}}</b></div>
+                    <div *ngIf="x.proveedor">Proveedor: <b>{{x.proveedor }}</b></div>
+                    <div>Galones: <b>{{x.Litros}}</b></div>
+                    <div>Rendimiento ECM: <b>{{x.RendimientoECM}} m/g</b></div>
+                    <div>Rendimiento carga: <b>{{x.RendimientoCarga}} m/g</b></div>
+                    <div>Rendimiento esperado: <b>{{x.RendimientoRutas}} m/g</b></div>
+                    <div>Nota: <b>{{x.Nota}}</b></div>
+                </div>
+            </div>
+            <div class="item item-divider">
+                Sello
+            </div>
+            <div class="item item-thumbnail-left">
+                <!--Pedir funcion verFoto-->
+                <!--<img [src]="'http://' + dominio + x.FotoSello" (click)="verFoto('http://' + dominio + x.FotoSello)"> -->
+                <h2>Sello de la carga</h2>
+                <p>{{x.Sellos}}</p>
+            </div>
+            <div style="float: left; width: 10%; text-align: right;">
+                {{x.ItinerarioID}}
+            </div>
+        </div>
+    </div>
+    <div class="ui info message" ng-if="!historial" style="width: 95%; margin: 0 auto; margin-top: 10px;">
+        <!--<i class="close ion-close-circled red"></i>-->
+        <div class="center aligned header">
+            No se encontro historial de esta unidad.
+        </div>
+
+        <!--<div class="content"></div>-->
+    </div>
+    <br>
+</body>
+
+</html>

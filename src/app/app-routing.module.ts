@@ -51,6 +51,18 @@ const routes: Routes = [
   {
     path: 'vencimientos',
     loadChildren: () => import('./vencimientos/vencimientos.module').then(m => m.VencimientosPageModule)
+  },
+  {
+    path: 'diesel',
+    loadChildren: () => import('./diesel/diesel-index/diesel-index.module').then(m => m.DieselIndexPageModule)
+  },
+  {
+    path: 'diesel-view/:id',
+    loadChildren: () => import('./diesel/diesel-view/diesel-view.module').then(m => m.DieselViewPageModule)
+  },
+  {
+    path: 'diesel-view/:id/diesel-form',
+    loadChildren: () => import('./diesel/diesel-form/diesel-form.module').then(m => m.DieselFormPageModule)
   }
 
 ];

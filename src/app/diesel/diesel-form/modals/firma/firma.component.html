@@ -1,0 +1,31 @@
+<!-- firma-modal.component.html -->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Firma del chofer</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="modalController.dismiss()">Cancel</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="ui form">
+        <div class="field">
+            <label>Seleccione el chofer</label>
+            <!--
+            <select class="form-control" id="choferes" name="choferes" 
+                [(ngModel)]="carga.ChoferID">
+                <option *ngFor="let chofer of choferes" [value]="chofer.id">{{ chofer.nombre }}</option>
+            </select> -->
+        </div>
+        <div>
+            <div style="justify-content: center;">
+                Firme dentro del recuadro rojo. Puede borrar dando click en limpiar, para confirmar, precione "Guardar".
+                <canvas #signatureCanvas class="signature-pad"></canvas>
+            </div>
+            <div class="buttons-wrapper">
+                <div class="btn btn-warning" (click)="clearCanvas()">Limpiar</div>
+                <div class="btn btn-success" (click)="saveCanvas()" style="float:right">Guardar</div>
+            </div>
+        </div>
+    </div>
+</ion-content>

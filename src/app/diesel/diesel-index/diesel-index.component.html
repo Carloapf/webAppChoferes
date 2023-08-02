@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Diesel-index</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        div.green {
+            color: green;
+        }
+
+        div.red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <content>  
+        <div ng-if="camiones">
+            <div class="list card" style="height:90vh; overflow:auto;">
+                                <div class="item item-divider">
+                    <div class="ui fluid left icon input"  ng-if="camiones.length">
+                        <i class="icon ion-search"></i>
+                        <input type="text" ng-model="search.NoEconomico" placeholder="Buscar...">
+                    </div>
+                </div>
+                <table class="ui small unstackable table striped">
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <div class="ui fluid left icon input" ng-if="camiones && camiones.length">
+                                    <i class="icon ion-search"></i>
+                                    <input type="text" [(ngModel)]="search.NoEconomico" placeholder="Buscar...">
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="collapsing">#</th>
+                            <th>Diesel</th>
+                            <th class="collapsing">Rendimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of camiones" [routerLink]="['/diesel-view', x.id]">
+                        
+                            <td>{{ x.NoEconomico }}</td>
+                            <td>
+                                <div class="progress" role="progressbar" aria-label="Basic example"
+                                    [attr.aria-valuenow]="x.TanqueActual" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar" [style.width.%]="x.TanqueActual"></div>
+                                </div>
+
+
+                                
+                                <!-- {{ x.TanqueActual }}/{{ x.tanque_capacidad }} -->
+                            </td>
+                            <td>
+                                <div ng-if="x.rendimiento"
+                                    [ngClass]="{'green': x.rendimiento >= x.rendimiento_camion, 'red': x.rendimiento < x.rendimiento_camion}">
+                                    {{ x.rendimiento }} m/g
+                                </div>
+                                <div ng-if="!x.rendimiento">-</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--                <div class="item item-text-wrap" ng-repeat="x in camiones | filter:search" ng-click="go('diesel_view', {id: x.id})">
+                    <div>No. economico: <b>#{{x.NoEconomico}}</b></div>
+                    <div>Diesel:  <b>{{x.TanqueActual}}/{{x.tanque_capacidad}}</b></div>
+                    <div ng-if="x.rendimiento">Ultimo rendimiento: <b>{{x.rendimiento}} m/g</b></div>
+                </div>-->
+            </div>
+        </div>
+    </content>
+
+</body>
+
+</html>
+
+
+<!--
+<ion-content style='background-image: url(img/stripe.png);'>
+    <!--        <div class="form-group">
+            <input type="text" ng-model="contenedor" placeholder="Camiones">
+            <div class="btn btn-success" ng-click="getContenedor(contenedor)">Buscar</div>
+        </div> comentario cierra
+    <div *ngif="camiones">
+        <div class="list card">
+            <!--                <div class="item item-divider">
+                    <div class="ui fluid left icon input"  ng-if="camiones.length">
+                        <i class="icon ion-search"></i>
+                        <input type="text" ng-model="search.NoEconomico" placeholder="Buscar...">
+                    </div>
+                </div> comentario cieera
+            <table class="ui small unstackable table striped">
+                <thead>
+                    <tr>
+                        <th colspan="3">
+                            <div class="ui fluid left icon input" ng-if="camiones.length">
+                                <i class="icon ion-search"></i>
+                                <input type="text" ng-model="search.NoEconomico" placeholder="Buscar...">
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="collapsing">#</th>
+                        <th>Diesel</th>
+                        <th class="collapsing">Rendimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in camiones | filter:search" ng-click="go('diesel_view', {id: x.id})">
+                        <td>{{x.NoEconomico}}</td>
+                        <td>
+                            <div class="ui indicating progress" data-value="{{x.TanqueActual}}"
+                                data-total="{{x.tanque_capacidad}}" style="margin: 3px">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                            </div>
+                            <!--{{x.TanqueActual}}/{{x.tanque_capacidad}} comentario cierra
+                        </td>
+                        <td>
+                            <div ng-if="x.rendimiento"
+                                class="{{x.rendimiento >= x.rendimiento_camion ? 'green' : 'red'}}">{{x.rendimiento}}
+                                m/g</div>
+                            <div ng-if="!x.rendimiento">-</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--                <div class="item item-text-wrap" ng-repeat="x in camiones | filter:search" ng-click="go('diesel_view', {id: x.id})">
+                    <div>No. economico: <b>#{{x.NoEconomico}}</b></div>
+                    <div>Diesel:  <b>{{x.TanqueActual}}/{{x.tanque_capacidad}}</b></div>
+                    <div ng-if="x.rendimiento">Ultimo rendimiento: <b>{{x.rendimiento}} m/g</b></div>
+                </div> comentario cierra
+        </div>
+    </div>
+    <!--        <div class="ui info message" ng-if="!x.Contenedor && flag" style="width: 95%; margin: 0 auto">
+            <i class="close ion-close-circled red"></i>
+            <div class="center aligned header">
+                No se encontro el contenedor
+            </div>
+            <div class="content">
+                Ese contenedor no se encuentra en este patio o no tiene entrada registrada.
+            </div>
+        </div> comentrio cierra
+</ion-content>
+-->
