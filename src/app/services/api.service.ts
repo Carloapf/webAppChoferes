@@ -163,13 +163,16 @@ export class ApiService {
         return this.http.get<any>(`${this.env.API_URL_DIESEL}getCamion/${id}`);
     }
 
-    saveCarga( fotoDataUrl: string, tipoFoto: string ){
+    /*saveCarga( fotoDataUrl: string, tipoFoto: string ){
 
         const data = {
             [tipoFoto]: fotoDataUrl
           };
 
         return this.http.post<any>(this.env.API_URL_DIESEL + 'saveCarga', data);
+    }*/
+    saveCarga(data: any){
+        return this.http.post<any>(this.env.API_URL_DIESEL + 'saveCarga', {... data})
     }
 
     getHistorialAnterior(data: any){

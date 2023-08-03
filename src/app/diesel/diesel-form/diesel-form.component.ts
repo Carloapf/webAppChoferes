@@ -21,6 +21,8 @@ interface Moneda {
   styleUrls: ['./diesel-form.component.scss']
 })
 export class DieselFormComponent implements OnInit {
+  ChoferID:any;
+  mostrar=false;
   loader: any;
   camiones: any = [];
   search?: any = '';
@@ -53,6 +55,8 @@ export class DieselFormComponent implements OnInit {
     LitrosECM: null,
     Sellos: null,
     FotoSello: null,
+    Firma: null,
+    ChoferID: null
 
   };
   monedas: Moneda[] = [
@@ -151,7 +155,9 @@ export class DieselFormComponent implements OnInit {
           //this.camionSeleccionado = data.camion;
           console.log(this.getHistorial);
           this.getHistorial = data.data.historial;
+          this.ChoferID = data.data.choferes;
 
+          console.log("choferes ", this.ChoferID);
           console.log("pruebaaaaa: ", this.getHistorial);
           this.loader.dismiss();
         },
@@ -215,18 +221,28 @@ export class DieselFormComponent implements OnInit {
       componentProps: 
       {
         //id: this.seleccionado.id,
-        carga: this.carga
+        carga: this.carga,
+        ChoferID: this.ChoferID
         
       }
     });
     modal.onDidDismiss()
     .then((data) => 
     {
+      this.showAlert();
       /*console.log(data.data.data);
       if(data.data.data)
         this.evidenciasAdicionales.push(data.data.data);*/
     });
     return await modal.present();
+  }
+
+  
+  showAlert() {
+    this.mostrar=true;
+    setTimeout(() => {
+      this.mostrar=false;
+    }, 2000);
   }
 
   tomarFoto(campo: string) {

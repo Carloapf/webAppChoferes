@@ -1,31 +1,60 @@
 <!-- firma-modal.component.html -->
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Firma del chofer</ion-title>
-        <ion-buttons slot="end">
-            <ion-button (click)="modalController.dismiss()">Cancel</ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
-<ion-content>
-    <div class="ui form">
-        <div class="field">
-            <label>Seleccione el chofer</label>
-            <!--
-            <select class="form-control" id="choferes" name="choferes" 
-                [(ngModel)]="carga.ChoferID">
-                <option *ngFor="let chofer of choferes" [value]="chofer.id">{{ chofer.nombre }}</option>
-            </select> -->
-        </div>
-        <div>
-            <div style="justify-content: center;">
-                Firme dentro del recuadro rojo. Puede borrar dando click en limpiar, para confirmar, precione "Guardar".
-                <canvas #signatureCanvas class="signature-pad"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Evidencias</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    
+    <content>
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="flex-grow-1">Firma del chofer</h4>
+                <a style="color: #cd0000;" (click)="modalController.dismiss()" role="button" class="ml-auto">
+                    <i class="fas fa-times fa-2x"></i>
+                </a>
             </div>
-            <div class="buttons-wrapper">
-                <div class="btn btn-warning" (click)="clearCanvas()">Limpiar</div>
-                <div class="btn btn-success" (click)="saveCanvas()" style="float:right">Guardar</div>
+            
+            <div class="card-body">
+                <label>Seleccione el chofer</label>
+                
+                <select class="form-control" id="choferes" name="choferes" 
+                    [(ngModel)]="carga.ChoferID">
+                    <option *ngFor="let chofer of ChoferID" [value]="chofer.id">{{ chofer.nombre }}</option>
+                </select>
+            </div>
+            <div class="buttons-wrapper"
+                style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <div style="justify-content: center;">
+                    <p>Firme dentro del recuadro rojo. Puede borrar dando click en limpiar, para confirmar, presione
+                        "Guardar".</p>
+                    <br>
+                    <div style="display: flex; justify-content: center;">
+                        <canvas #signatureCanvas class="signature-pad" style="border: 1px solid red"></canvas>
+                        <br>
+                    </div>
+                </div>
+                <div class="buttons-container" style="display: flex; justify-content: space-between; width: 100%;">
+                    <div class="btn btn-warning" (click)="clearCanvas()">Limpiar</div>
+                    <div class="btn btn-success" (click)="saveCanvas()">Guardar</div>
+                </div>
             </div>
         </div>
-    </div>
-</ion-content>
+    </content>
+
+</body>
+
+</html>
+
+

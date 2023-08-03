@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import SignaturePad from 'signature_pad';
 
+
 import { Camera } from '@capacitor/camera';
 const {  } = Plugins;
 @Component({
@@ -20,8 +21,11 @@ export class FirmaComponent implements OnInit
   signatureCanvas!: ElementRef;
   signaturePad!: SignaturePad;
   @Input() carga: any;
+  @Input() ChoferID: any ;
+  loader: any;
+  mostrar= false;
   
-  choferes =[];
+ 
   //toastController: any;
   //carga: any;
   constructor
@@ -39,6 +43,7 @@ export class FirmaComponent implements OnInit
   ngOnInit()
   {
     console.log(this.carga);
+    console.log(this.ChoferID);
     this.initializeSignaturePad();
     /*this.fotos = 
     {
@@ -77,12 +82,46 @@ export class FirmaComponent implements OnInit
     } else {
       const firma = this.signaturePad.toDataURL().replace(/(\r\n|\n|\r)/gm, '');
       // Aquí puedes hacer lo que necesites con la firma, por ejemplo, enviarla al servidor
-      console.log('Firma guardada:', firma);
-
+      this.carga.Firma = firma;
+      console.log('Firma guardada:', this.carga.Firma);
+      this.guardarCarga();
+      console.log("Datos guardados: ", this.carga);
+      
       // Cerrar el modal y enviar la firma como resultado
       this.modalController.dismiss({ firma });
     }
   }
+
+  async guardarCarga() {
+    try {
+      await this.presentLoading();
+      console.log("carga antes de ser enviada: ", this.carga);
+      this.api.saveCarga(this.carga)
+        .pipe(finalize(async () => {
+          await this.loader.dismiss();
+        }))
+        .subscribe(
+          r => {
+            console.log("Se guardo la cargaaaaa");
+            this.showAlert();
+            /*
+            setTimeout(() => {
+              this.sendReport();
+            }, 0);
+            */
+          },
+          error => {
+            console.error("Error al guardar la carga:", error);
+            // Aquí puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error.
+          }
+        );
+    } catch (error) {
+      console.error("Error al guardar la carga:", error);
+      // Aquí también puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error.
+    }
+  }
+  
+  
 
   dismiss() {
     // using the injected ModalController this page
@@ -92,6 +131,16 @@ export class FirmaComponent implements OnInit
       //data: data
     });
   }
+
+  showAlert() {
+    this.mostrar=true;
+  }
+  async presentLoading() {
+    this.loader = await this.loading.create({
+    message: 'Cargando...',
+    });
+    await this.loader.present();
+}
   
   
 }

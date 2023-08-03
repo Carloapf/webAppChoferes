@@ -13,7 +13,8 @@ export class DieselIndexComponent implements OnInit {
   loader: any;
   camiones: any;
   search?: any =''; // Puedes cambiar 'any' a un tipo más específico si conoces el tipo exacto de la propiedad 'search'
-  
+  searchTerm: string = '';
+
   id: any;
   constructor(
     private api: ApiService,

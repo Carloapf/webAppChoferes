@@ -8,6 +8,8 @@ import { DieselIndexPageRoutingModule } from './diesel-index-routing.module';
 
 import { DieselIndexComponent } from './diesel-index.component';
 
+import { SearchPipe } from '../pipes/search.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { DieselIndexComponent } from './diesel-index.component';
     IonicModule,
     DieselIndexPageRoutingModule
   ],
-  declarations: [DieselIndexComponent,]
+  declarations: [DieselIndexComponent, SearchPipe]
 })
 export class DieselIndexPageModule {}

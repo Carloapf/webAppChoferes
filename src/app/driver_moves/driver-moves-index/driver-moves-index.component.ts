@@ -60,7 +60,7 @@ export class DriverMovesIndexPage implements OnInit
         {
             this.usuario = r;
             this.auth.user = r;
-            console.log(this.usuario);
+            console.log("Este es el id: ",this.usuario);
             this.api.getViajesChofer(this.usuario.id)
             .pipe(finalize(async () => 
             {

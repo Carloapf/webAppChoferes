@@ -291,6 +291,9 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="mostrar" class="alert alert-success" role="alert">
+                        Esta es una alerta de éxito. ¡Todo ha salido bien!
+                    </div>
                     <button type="button" class="btn btn-success" (click)="agregarFirma()">Terminar</button>
                 </div>
             </ul>
