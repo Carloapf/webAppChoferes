@@ -59,8 +59,9 @@ export class DriverMovesIndexPage implements OnInit
         this.storage.get(TOKEN_KEY).then((r) => 
         {
             this.usuario = r;
+            this.usuario.ChoferID = r.id;
             this.auth.user = r;
-            console.log("Este es el id: ",this.usuario);
+            //console.log("Este es el id: ",this.usuario);
             this.api.getViajesChofer(this.usuario.id)
             .pipe(finalize(async () => 
             {
@@ -69,7 +70,7 @@ export class DriverMovesIndexPage implements OnInit
             .subscribe(r => 
             {
                 this.itinerarios = r.data;
-                console.log(this.itinerarios);
+                //console.log(this.itinerarios);
                 this.api.checkAlertas(this.usuario.id)
                 .pipe(finalize(async () => 
                 {
@@ -78,7 +79,8 @@ export class DriverMovesIndexPage implements OnInit
                 .subscribe(r => 
                 {
                 this.alertas = r.data;
-                /*this.api.getVencimientos(this.usuario.id)
+                //console.log(this.usuario);
+                this.api.getVencimientos(this.usuario)
                     .pipe(finalize(async () => 
                     {
                         await this.loader.dismiss();
@@ -86,9 +88,9 @@ export class DriverMovesIndexPage implements OnInit
                     .subscribe(r =>{
                         this.vencimientos =r.data;
                         this.cargado = true;
-                    })*/
+                    })
                 this.cargado = true;
-                console.log(this.alertas);
+                //console.log(this.alertas);
                 })
                 
             });
@@ -102,7 +104,7 @@ export class DriverMovesIndexPage implements OnInit
     }
     goDetails(x: any) 
     {
-        console.log(x);
+        //console.log(x);
         this.router.navigate(['/driver-moves-view/?id='+x.id])
     }
     aceptarVer(x: { id: any; })

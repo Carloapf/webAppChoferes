@@ -47,7 +47,7 @@ export class InspeccionPage implements OnInit {
         else
           e.Bien = false;
       });
-      console.log(this.inspecciones);
+      //console.log(this.inspecciones);
     })
   }
   async presentLoading() {
@@ -68,7 +68,7 @@ export class InspeccionPage implements OnInit {
     }))
     .subscribe(r => 
     {
-      console.log(r);
+      //console.log(r);
     })
   }
 }

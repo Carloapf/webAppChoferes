@@ -21,29 +21,30 @@ interface Moneda {
   styleUrls: ['./diesel-form.component.scss']
 })
 export class DieselFormComponent implements OnInit {
-  ChoferID:any;
-  mostrar=false;
+  ChoferID: any;
+  mostrar = false;
+  
   loader: any;
   camiones: any = [];
   search?: any = '';
   camion: any;
   titulo: any;
   camionSeleccionado: any;
-  historial:  any = {};
-  getHistorial: any =[];
+  historial: any = {};
+  getHistorial: any = [];
   id: any;
   photo?: any;
   rutasMillas: number = 0;
   odometroAnterior: any;
   ultimoHistorial: any;
-  proveedoresList: any[] =[];
+  proveedoresList: any[] = [];
   carga: any = {
     ProveedorID: null, // Inicializa ProveedorID con un valor predeterminado, en este caso, null.
     PrecioTotal: null,
     MonedaCarga: null,
     Litros: null,
-    FotoTanque1:null,
-    FotoTanque2:null,
+    FotoTanque1: null,
+    FotoTanque2: null,
     Folio: null,
     tickets: [],
     Nota: null,
@@ -129,22 +130,22 @@ export class DieselFormComponent implements OnInit {
           this.Activatedroute.paramMap.subscribe(params => {
             this.id = Number(params.get('id'));
             this.camionSeleccionado = this.camiones.find((camion: { id: number }) => camion.id === this.id);
-            console.log(this.camionSeleccionado);
-            console.log(this.id);
 
             this.getCamionById();
             this.getUltimoHistorial();
           });
         },
         (error) => {
-          console.error('Error al obtener los datos de la API:', error);
+          //console.error('Error al obtener los datos de la API:', error);
         }
       );
   }
 
   async getCamionById() {
     //await this.proveedoresGet();
-    this.api.getCamion(this.id)
+    //console.log(this.id);
+    this.carga.UnidadID=this.id
+    this.api.getCamion(this.camionSeleccionado)
       .pipe(
         finalize(async () => {
           await this.loader.dismiss();
@@ -153,16 +154,13 @@ export class DieselFormComponent implements OnInit {
       .subscribe(
         (data: any) => {
           //this.camionSeleccionado = data.camion;
-          console.log(this.getHistorial);
+          //console.log(this.getHistorial);
           this.getHistorial = data.data.historial;
           this.ChoferID = data.data.choferes;
-
-          console.log("choferes ", this.ChoferID);
-          console.log("pruebaaaaa: ", this.getHistorial);
           this.loader.dismiss();
         },
         (error) => {
-          console.error('Error al obtener datos del camión:', error);
+          //console.error('Error al obtener datos del camión:', error);
           this.loader.dismiss();
         }
       );
@@ -171,22 +169,12 @@ export class DieselFormComponent implements OnInit {
   getUltimoHistorial() {
     //await this.presentLoading();
     const fechaHoraActual = new Date();
-    console.log("Despues de la fecha de new Date");
+    //console.log("Despues de la fecha de new Date");
     const fechaHoraFormateada = fechaHoraActual.toISOString(); // Formato ISO 8601
-    console.log("Despues del fechaHoraActual.toISOString");
+    //console.log("Despues del fechaHoraActual.toISOString");
 
     this.historial.CamionID = this.id;
     this.historial.FechaActual = fechaHoraFormateada;
-
-    // Construir los parámetros de la URL
-    /*let data = new HttpParams();
-    data = data.append('CamionID', Number(this.id));
-    data = data.append('FechaActual', fechaHoraFormateada);*/
-    
-    console.log("id del camion antes de hacer la llamada api getULtimoHsitorial: ", this.id);
-    console.log(fechaHoraFormateada);
-    console.log(this.historial);
-
 
     this.api.getHistorialAnterior(this.historial)
       .pipe(
@@ -195,13 +183,15 @@ export class DieselFormComponent implements OnInit {
       .subscribe(
         (data: any) => {
           //this.loader.dismiss();
-          console.log('Fecha, hora y camión enviados con éxito al backend:', data);
+          //console.log('Fecha, hora y camión enviados con éxito al backend:', data);
           this.ultimoHistorial = data.data.itinerarios; // Asigna el valor recibido a la variable ultimoHistorial
-          console.log("este es el array: ", this.ultimoHistorial);
+          this.rutasMillas = data.data.km;
+          this.odometroAnterior = data.data.odometro;
+          //console.log("este es el array: ", this.ultimoHistorial);
         },
         (error) => {
           this.loader.dismiss();
-          console.error('Error al enviar la fecha, hora y camión al backend:', error);
+          //console.error('Error al enviar la fecha, hora y camión al backend:', error);
         }
       );
   }
@@ -213,36 +203,51 @@ export class DieselFormComponent implements OnInit {
     await this.loader.present();
   }
 
-  async agregarFirma(){
-    console.log('Valor de Sellos:', this.carga.Sellos);
+  async agregarFirma() {
+    this.carga.RecorridoCarga = this.carga.OdometroCarga - this.odometroAnterior;
+    //console.log(this.rutasMillas, ", ", this.carga.Litros);
+    this.carga.RendimientoRutas = ((this.rutasMillas) / this.carga.Litros);
+    //console.log(this.carga.OdometroCarga, ", ", this.odometroAnterior)
+    this.carga.RendimientoCarga = ((+this.carga.OdometroCarga - this.odometroAnterior) / this.carga.Litros);
+
     const modal = await this.modalController.create({
       component: FirmaComponent,
       cssClass: 'my-custom-class',
-      componentProps: 
+      componentProps:
       {
         //id: this.seleccionado.id,
         carga: this.carga,
-        ChoferID: this.ChoferID
+        ChoferID: this.ChoferID,
         
+
       }
     });
     modal.onDidDismiss()
-    .then((data) => 
-    {
-      this.showAlert();
-      /*console.log(data.data.data);
-      if(data.data.data)
-        this.evidenciasAdicionales.push(data.data.data);*/
-    });
+      .then((data) => {
+
+        if (data.data.guardar !== false) {
+          const guardar = data.data.guardar;
+          // Aquí puedes usar la variable "guardar" como desees
+          //console.log('Valor de la variable "guardar":', guardar);
+          this.showAlert();
+        }
+
+        /*console.log(data.data.data);
+        if(data.data.data)
+          this.evidenciasAdicionales.push(data.data.data);*/
+      });
     return await modal.present();
   }
 
-  
+
   showAlert() {
-    this.mostrar=true;
-    setTimeout(() => {
-      this.mostrar=false;
-    }, 2000);
+    //if (this.guardar !== false) {
+      this.mostrar = true;
+      setTimeout(() => {
+        this.mostrar = false;
+      }, 2000);
+    //}
+
   }
 
   tomarFoto(campo: string) {
@@ -258,13 +263,13 @@ export class DieselFormComponent implements OnInit {
 
     Camera.getPhoto(options)
       .then(imageData => {
-        console.log("tomar foto");
+        //console.log("tomar foto");
         const image = imageData.dataUrl;
         this.carga[campo] = image;
-        console.log(this.carga);
+        //console.log(this.carga);
       })
       .catch(error => {
-        console.error('Error al tomar la foto:', error);
+        //console.error('Error al tomar la foto:', error);
       });
   }
 
@@ -281,15 +286,17 @@ export class DieselFormComponent implements OnInit {
 
     Camera.getPhoto(options)
       .then(imageData => {
-        console.log("tomar foto");
+        //console.log("tomar foto");
         const image = imageData.dataUrl;
-        console.log(image);
+        //console.log(image);
         this.carga.tickets.push(image);
-        console.log(this.carga);
+        //console.log(this.carga);
       })
       .catch(error => {
-        console.error('Error al tomar la foto:', error);
+        //console.error('Error al tomar la foto:', error);
       });
   }
 }
+
+
 

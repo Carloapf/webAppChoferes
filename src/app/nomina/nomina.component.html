@@ -18,7 +18,7 @@
           <h5 class="card-title">Seleccionar semana de nomina</h5>
           <content style="padding-bottom: 0;">
             <select class="form-select" aria-label="Default select example" id="semanas" [(ngModel)]="seleccionado"
-              (change)="getValor()">
+              (change)="getSemana()">
               <option *ngFor="let semana of semanas" [value]="semana.SemanaID">{{ semana.semanaanio }}</option>
             </select>
             <!--
@@ -37,11 +37,11 @@
                   <tbody>
                     <tr>
                       <td class="collapsing">De</td>
-                      <td>{{info.semana.Fechaini | date}}</td>
+                      <td>{{info.semana.Fechaini | luDate:"large"}}</td>
                     </tr>
                     <tr>
                       <td class="collapsing">A</td>
-                      <td>{{info.semana.Fechafin | date}}</td>
+                      <td>{{info.semana.Fechafin | luDate:"large"}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -50,11 +50,13 @@
 
           </content>
         </div>
-        <div *ngIf="buscado && info.viajes.length" style="margin-bottom: 70px;"> 
-          <div class="itemiti color{{x.Status}}" *ngFor="let x of info.viajes">
-              <div class="ribbon color{{x.Status}}">{{x.ItinerarioID}}</div>
-              <div class="itemcont">
-                  <p style="color: grey; margin-bottom: 0; text-indent: 10px;">{{x.Carga | date}}</p>
+        <div *ngIf="buscado && info.viajes.length" > 
+          <div class="itemiti color{{x.Status}}" *ngFor="let x of info.viajes" style="margin-bottom: 15px;">
+              <div class="ribbon color{{x.Status}}">
+                {{x.ItinerarioID}}
+              </div>
+              <div class="itemcont" style="padding-bottom: 20px;">
+                  <p style="color: grey; margin-bottom: 0; text-indent: 10px;">{{x.Carga | luDate:"large"}}</p>
                   <ion-list>
                       <ion-item>
                         <i class="fas fa-clipboard-list" style="margin-right: 20px;"></i>
@@ -99,19 +101,19 @@
               <tbody>
                 <tr>
                   <td class="collapsing">Pendiente</td>
-                  <td class="rigth">{{info.pendientes | currency}}</td>
+                  <td>{{info.pendientes | currency}}</td>
                 </tr>
                 <tr>
                   <td class="collapsing">Autorizado</td>
-                  <td class="rigth">{{info.autorizados | currency}}</td>
+                  <td>{{info.autorizados | currency}}</td>
                 </tr>
                 <tr>
                   <td class="collapsing">Descuentos</td>
-                  <td class="rigth">{{info.descuento | currency}}</td>
+                  <td>{{info.descuento | currency}}</td>
                 </tr>
                 <tr>
                   <td class="collapsing">Total</td>
-                  <td class="rigth">{{info.total | currency}}</td>
+                  <td>{{info.total | currency}}</td>
                 </tr>
               </tbody>
             </table>

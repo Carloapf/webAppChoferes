@@ -95,7 +95,7 @@ export class EvidenciasPage implements OnInit {
     modal.onDidDismiss()
     .then((data) => 
     {
-      console.log(data.data.data);
+      //console.log(data.data.data);
       if(data.data.data)
         this.evidenciasAdicionales.push(data.data.data);
     });

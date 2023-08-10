@@ -41,6 +41,10 @@ const routes: Routes = [
     loadChildren: () => import('./driver_moves/driver-moves-view/reportes/reportes.module').then(m => m.ReportesPageModule)
   },
   {
+    path: 'driver-moves-view/:id/revision-mecanica',
+    loadChildren: () => import('./driver_moves/driver-moves-view/revision-mecanica/revision-mecanica.module').then(m => m.RevisionMecanicaPageModule)
+  },
+  {
     path: 'manual',
     loadChildren: () => import('./manual/manual.module').then(m => m.ManualPageModule)
   },
@@ -52,6 +56,7 @@ const routes: Routes = [
     path: 'vencimientos',
     loadChildren: () => import('./vencimientos/vencimientos.module').then(m => m.VencimientosPageModule)
   },
+  /* Diesel oculto
   {
     path: 'diesel',
     loadChildren: () => import('./diesel/diesel-index/diesel-index.module').then(m => m.DieselIndexPageModule)
@@ -63,7 +68,7 @@ const routes: Routes = [
   {
     path: 'diesel-view/:id/diesel-form',
     loadChildren: () => import('./diesel/diesel-form/diesel-form.module').then(m => m.DieselFormPageModule)
-  }
+  }*/
 
 ];
 

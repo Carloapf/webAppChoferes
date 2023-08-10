@@ -150,7 +150,7 @@ export class ReportesPage implements OnInit
     {
         this.reporte.ItinerarioID = this.id;
         this.reporte.CategoriaID = this.categoria.id;
-        console.log(this.reporte);
+        //console.log(this.reporte);
         this.api.getCategoriasObjetos(this.reporte)
         .pipe(finalize(async () => 
         {

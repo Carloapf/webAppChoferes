@@ -33,13 +33,13 @@ export class DriverMovesViewPage implements OnInit {
 
   ngOnInit() 
   {
-    this.getViaje();
+    //this.getViaje();
   }
 
   async getViaje()
   {
     await this.presentLoading();
-    console.log(this.id);
+    //console.log(this.id);
     this.api.getItinerario(this.id)
     .pipe(finalize(async () => {
       await this.loader.dismiss();
@@ -47,8 +47,8 @@ export class DriverMovesViewPage implements OnInit {
     .subscribe(r => 
     {
       this.itinerario = r.data;
-      console.log("aaaaaa");
-      console.log(this.itinerario);
+      //console.log("aaaaaa");
+      //console.log(this.itinerario);
     })
   };
   async presentLoading() {
@@ -73,10 +73,14 @@ export class DriverMovesViewPage implements OnInit {
   {
     this.router.navigate(['driver-moves-view/'+this.id+'/reportes']);
   }
+  revision()
+  {
+    this.router.navigate(['driver-moves-view/'+this.id+'/revision-mecanica']);
+  }
   async fechaLlegada()
   {
     this.fecha = this.datepipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
-    console.log(this.fecha);
+    //console.log(this.fecha);
     const alert =  await this.alertController.create(
     {
       cssClass: 'my-custom-class',
@@ -111,7 +115,7 @@ export class DriverMovesViewPage implements OnInit {
       WcontFK: this.itinerario.WcontFK,
       FechaLlegada: this.fecha
     };
-    console.log(data);
+    //console.log(data);
     this.api.terminarViaje(data)
     .pipe(finalize(async () => {
       await this.loader.dismiss();

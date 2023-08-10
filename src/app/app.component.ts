@@ -107,11 +107,11 @@ export class AppComponent implements OnInit {
                 title: 'Vencimientos',
                 url: 'vencimientos',
                 icon: 'far fa-calendar'
-            },{
+            },/*{
                 title:'Diesel',
                 url: 'diesel',
                 icon: 'fas fa-gas-pump'
-            }
+            }*/
         ];
     }
     logout() 
@@ -126,12 +126,12 @@ export class AppComponent implements OnInit {
         // NOTE: Update the setAppId value below with your OneSignal AppId.
         OneSignal.setAppId("564462a6-1fee-4ef8-9c28-c188870e1e60");
         OneSignal.setNotificationOpenedHandler(function(jsonData) {
-            console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
         });
         // Prompts the user for notification permissions.
         //    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
         OneSignal.promptForPushNotificationsWithUserResponse(function(accepted) {
-            console.log("User accepted notifications: " + accepted);
+           // console.log("User accepted notifications: " + accepted);
         });
     }
     

@@ -226,7 +226,7 @@
                         <div class="mb-3">
                             <label>Recorrido ECM</label><br>
                             <input class="form-control" type="number" [(ngModel)]="carga.RecorridoECM" step="0.0001"
-                                ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+                            (change)="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
                         </div>
                     </li>
 
@@ -234,7 +234,7 @@
                         <div class="mb-3">
                             <label>Galones ECM</label><br>
                             <input class="form-control" type="number" [(ngModel)]="carga.LitrosECM" step="0.0001"
-                                ng-change="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
+                                (change)="carga.RendimientoECM = (+carga.RecorridoECM / +carga.LitrosECM)">
                         </div>
                     </li>
 
@@ -242,7 +242,7 @@
                         <div class="mb-3">
                             <label>Rendimiento ECM</label>
                             <div>{{+carga.RendimientoECM | number:'4.0-0'}} millas * galon</div>
-                            <!--<input type="number" ng-model="carga.RendimientoECM" step="0.0001"> -->
+                            <!--<input type="number" [(ngModel)]="carga.RendimientoECM" step="0.0001"> -->
                         </div>
                     </li>
 
@@ -292,7 +292,7 @@
                         </div>
                     </div>
                     <div *ngIf="mostrar" class="alert alert-success" role="alert">
-                        Esta es una alerta de éxito. ¡Todo ha salido bien!
+                        Se ha guardado correctamente.
                     </div>
                     <button type="button" class="btn btn-success" (click)="agregarFirma()">Terminar</button>
                 </div>

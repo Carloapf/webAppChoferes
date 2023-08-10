@@ -15,15 +15,15 @@ export class ManualComponent implements OnInit {
   }
   verSeccion(seccion: any)
   {
-    console.log('entra');
+    //console.log('entra');
     if(this.activo == seccion)
       this.activo = 0;
     else
       this.activo = seccion;
-    console.log(this.activo);
+    //console.log(this.activo);
   };
 
   funcionDeReemplazo(){
-    console.log("No hay imagen");
+    //console.log("No hay imagen");
   };
 }

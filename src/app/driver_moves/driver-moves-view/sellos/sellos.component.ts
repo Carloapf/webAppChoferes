@@ -48,8 +48,40 @@ export class SellosPage implements OnInit {
 
   ngOnInit() 
   {
-    this.getImagesExt()
+    //this.getImagesExt()
+    this.getItinerarioExt()
   }
+
+  async getItinerarioExt()
+  {
+    
+    this.storage.get(TOKEN_KEY).then((r) => 
+    {
+      this.data = 
+      {
+        tipo: 1,
+        itinerario: this.id,
+        chofer:  r.id
+      }
+      //console.log(this.data);
+      this.api.getItinerarioExt(this.data)
+      .pipe(finalize(async () => 
+      {
+        //await this.loader.dismiss();
+      }))
+      .subscribe(r => 
+      {
+        this.sellos = r.data;
+        this.sellos.forEach((e: { id: string | number; roto: any; }) => {
+          this.rotoExt[e.id] = e.roto;
+        });
+        //console.log(this.sellos);
+      })
+    })
+  }
+
+ 
+
   async getImagesExt()
   {
     await this.presentLoading();
@@ -61,7 +93,7 @@ export class SellosPage implements OnInit {
         itinerario: this.id,
         chofer:  r.id
       }
-      console.log(this.data);
+      //console.log(this.data);
       this.api.getImagenesExt(this.data)
       .pipe(finalize(async () => 
       {
@@ -73,7 +105,7 @@ export class SellosPage implements OnInit {
         this.sellos.forEach((e: { id: string | number; roto: any; }) => {
           this.rotoExt[e.id] = e.roto;
         });
-        console.log(this.sellos);
+        //console.log(this.sellos);
       })
     })
   }
@@ -142,7 +174,7 @@ tomarFoto = async () => {
         element.classList.toggle("no");
       }
       //element.classList.toggle("no");
-      console.log(this.foto);
+      //console.log(this.foto);
       await this.presentLoading();
 
       this.api.insertItinerarioExt(this.foto)
@@ -173,18 +205,18 @@ tomarFoto = async () => {
     this.data.roto = true;
     if(this.rotoExt[x.id])
     {
-      console.log('se rompio', this.data);
+      //console.log('se rompio', this.data);
       this.confirmarRomperSello(x);
     }
     else
     {
-      console.log('ya esta roto', this.data);
+      //console.log('ya esta roto', this.data);
       this.meensajeSelloRoto(x);
     }
-    console.log(this.rotoExt[x.id]);
+    //console.log(this.rotoExt[x.id]);
   }
   async confirmarRomperSello(x: { id: any; roto: any; }) {
-    console.log(this.rotoExt);
+    //console.log(this.rotoExt);
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirmación',
@@ -213,7 +245,7 @@ tomarFoto = async () => {
     await alert.present();
   }
   async meensajeSelloRoto(x: { id: any; roto?: any; }) {
-    console.log(this.rotoExt);
+    //console.log(this.rotoExt);
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: '',

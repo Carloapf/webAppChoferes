@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }*/
     login(frm: any) 
     {
-        console.log(frm);
+        //console.log(frm);
         this.auth.login(frm);
         this.formgroup.reset();
     }

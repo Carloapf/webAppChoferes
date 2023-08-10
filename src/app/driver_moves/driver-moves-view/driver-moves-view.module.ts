@@ -8,6 +8,7 @@ import { DriverMovesViewPageRoutingModule } from './driver-moves-view-routing.mo
 
 import { DriverMovesViewPage } from './driver-moves-view.component';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+//import { RevisionMecanicaComponent } from './revision-mecanica/revision-mecanica.component';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
     DriverMovesViewPageRoutingModule,
     MdbRippleModule,
   ],
-  declarations: [DriverMovesViewPage,]
+  declarations: [DriverMovesViewPage, ]
 })
 export class DriverMovesViewPageModule {}

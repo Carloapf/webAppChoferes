@@ -20,6 +20,7 @@ export class DieselViewComponent implements OnInit {
   historial: any[] =[];
   id: any;
 
+
   constructor(
     private api: ApiService,
     private loading: LoadingController,
@@ -29,7 +30,9 @@ export class DieselViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.getCamionesTabla();
+    //console.log(this.historial);
   }
 
   async getCamionesTabla() {
@@ -48,28 +51,31 @@ export class DieselViewComponent implements OnInit {
           this.Activatedroute.paramMap.subscribe(params => {
             this.id = Number(params.get('id'));
             this.camionSeleccionado = this.camiones.find((camion: { id: number }) => camion.id === this.id);
-            console.log(this.camionSeleccionado);
-            console.log(this.id);
+            //console.log(this.camionSeleccionado);
+            //console.log(this.id);
             
-            this.getCamionById(this.id);
+            this.getCamionById();
           });
         },
         (error) => {
-          console.error('Error al obtener los datos de la API:', error);
+          //console.error('Error al obtener los datos de la API:', error);
         }
       );
   }
 
-  async getCamionById(id: number) {
+  async getCamionById() {
     //console.log("hola");
-    this.api.getCamion(id).subscribe(
+    //console.log(this.camionSeleccionado);
+    this.api.getCamion(this.camionSeleccionado).subscribe(
       (data: any) => {
         //this.camionSeleccionado = data.camion;
-        this.historial = data.historial;
+        //console.log(data);
+        this.historial = data.data.historial;
+        //console.log(this.historial);
         this.loader.dismiss();
       },
       (error) => {
-        console.error('Error al obtener datos del camión:', error);
+        //console.error('Error al obtener datos del camión:', error);
         this.loader.dismiss();
       }
     );
@@ -80,6 +86,10 @@ export class DieselViewComponent implements OnInit {
       message: 'Cargando...',
     });
     await this.loader.present();
+  }
+
+  mostrarMensaje() {
+    
   }
 
   form()

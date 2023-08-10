@@ -34,7 +34,8 @@ export class VencimientosPage implements OnInit
         this.storage.get(TOKEN_KEY).then((r) => 
         {
             this.usuario = r;
-            console.log(this.usuario);
+            this.usuario.ChoferID = r.id;
+            console.log("Este es el usuario: ", this.usuario);
             this.getVencimientos();
             
         })
@@ -44,13 +45,15 @@ export class VencimientosPage implements OnInit
         this.presentLoading()
         .then()
         {
-            this.api.getVencimientos(this.usuario.id)
+            console.log("Es id de choferes: ", this.usuario);
+            this.api.getVencimientos(this.usuario)
             .pipe(finalize(async () => 
             {
                 await this.loader.dismiss();
             }))
             .subscribe(r => 
             {
+                console.log("despuesd del getVencimientos");
                 this.info = 
                 {
                     bien: r.data.bien,

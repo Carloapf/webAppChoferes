@@ -65,7 +65,7 @@ import { LuDatePipe } from './pipes/luDate.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe, LuDatePipe],
+  declarations: [AppComponent, FilterPipe,],
   imports: [
     BrowserModule,
     AppRoutingModule,

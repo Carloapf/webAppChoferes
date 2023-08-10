@@ -1,0 +1,37 @@
+div.instructions
+{
+    width: 95%;
+    margin: 0 auto;
+    color: #C5C5C5;
+    padding-top: 10px;
+    text-align: center;
+}
+div.label
+{
+    font-weight: bold;
+    line-height: 48px;
+    text-indent: 16px;
+    background-color: #DBDBDB;
+}
+textarea
+{
+    resize: none;
+    width: 100%;
+    border: 0;
+}
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h
+{
+    text-overflow: unset;
+    white-space: unset;
+}
+.pad-container
+{
+    width: 95%;
+    margin: 0 auto;
+}
+#pad, #pad2
+{
+    border: 5px solid #FF0000;
+    width: 100%;
+    margin-top: 10px;
+}

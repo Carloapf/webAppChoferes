@@ -42,7 +42,7 @@ export class ModalComponent implements OnInit
       fotos: [],
       index: 0
     }
-    console.log(this.fotos);
+    //console.log(this.fotos);
     // this.options = {
     //   quality: 75,
     //   destinationType: this.camera.DestinationType.FILE_URI,
@@ -70,7 +70,7 @@ export class ModalComponent implements OnInit
       allowEditing: false,
       resultType: CameraResultType.DataUrl
     });
-    console.log(image);
+    //console.log(image);
   
     // image.webPath will contain a path that can be set as an image src.
     // You can access the original file using image.path, which can be
@@ -79,7 +79,7 @@ export class ModalComponent implements OnInit
   
     // Can be set to the src of an image now
     this.fotos.fotos.push(image.dataUrl);
-    console.log(this.fotos);
+    //console.log(this.fotos);
   }
   async terminarFotos()
   {

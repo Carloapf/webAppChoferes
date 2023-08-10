@@ -39,6 +39,7 @@ export class NominaComponent implements OnInit {
         this.storage.get(TOKEN_KEY).then((r) => 
         {
             this.reporte.ChoferID = r?.id;
+            //console.log("ChoferID: " ,this.reporte.ChoferID);
             this.getSemanasNomina();
         })
     }
@@ -67,7 +68,7 @@ export class NominaComponent implements OnInit {
         });
     }
     onSeleccionarSemana() {
-        console.log(this.seleccionado); // Aquí puedes ver el valor seleccionado en la consola
+        //console.log(this.seleccionado); // Aquí puedes ver el valor seleccionado en la consola
       }
       
 
@@ -79,11 +80,11 @@ export class NominaComponent implements OnInit {
         });
         await this.loader.present();
     }
-    async getValor()
+    async getSemana()
     {
-        console.log(this.seleccionado)
+        //console.log(this.seleccionado)
         this.reporte.SemanaID = this.seleccionado;
-        console.log("Aquiiiiiiiiiiiiiiiiiiiiiiii: ",this.reporte);
+        //console.log("Aquiiiiiiiiiiiiiiiiiiiiiiii: ",this.reporte);
         this.api.getNominaChofer(this.reporte)
         .pipe(finalize(async () => 
         {
@@ -93,7 +94,7 @@ export class NominaComponent implements OnInit {
         {
             this.buscado = true;
             this.info = r.data;
-            console.log(this.info);
+            //console.log(this.info);
         });
     }
 }

@@ -357,7 +357,7 @@ export class LuDatePipe implements PipeTransform {
                         break;
                 }
                 break;
-                console.log("");
+//console.log("");
                 
                 this.dia = parseInt(date.substr(8, 2));
                 this.anio = parseInt(date.substr(0, 4));

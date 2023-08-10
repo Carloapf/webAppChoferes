@@ -9,41 +9,37 @@ import SignaturePad from 'signature_pad';
 
 
 import { Camera } from '@capacitor/camera';
-const {  } = Plugins;
+const { } = Plugins;
 @Component({
   selector: 'app-firma',
   templateUrl: './firma.component.html',
   styleUrls: ['./firma.component.scss'],
 })
-export class FirmaComponent implements OnInit 
-{
+export class FirmaComponent implements OnInit {
   @ViewChild('signatureCanvas', { static: true })
   signatureCanvas!: ElementRef;
   signaturePad!: SignaturePad;
   @Input() carga: any;
-  @Input() ChoferID: any ;
+  @Input() ChoferID: any;
   loader: any;
-  mostrar= false;
-  
- 
+  mostrar = false;
+  guardar = false;
+
+
   //toastController: any;
   //carga: any;
   constructor
-  (
-    private api: ApiService,
-    public modalController: ModalController,
-    public alertController: AlertController,
-    private loading: LoadingController,
-    private toastController: ToastController
-  ) 
-  { 
+    (
+      private api: ApiService,
+      public modalController: ModalController,
+      public alertController: AlertController,
+      private loading: LoadingController,
+      private toastController: ToastController
+    ) {
   }
-  
-  
-  ngOnInit()
-  {
-    console.log(this.carga);
-    console.log(this.ChoferID);
+
+
+  ngOnInit() {
     this.initializeSignaturePad();
     /*this.fotos = 
     {
@@ -80,29 +76,42 @@ export class FirmaComponent implements OnInit
       });
       toast.present();
     } else {
-      const firma = this.signaturePad.toDataURL().replace(/(\r\n|\n|\r)/gm, '');
-      // Aquí puedes hacer lo que necesites con la firma, por ejemplo, enviarla al servidor
-      this.carga.Firma = firma;
-      console.log('Firma guardada:', this.carga.Firma);
-      this.guardarCarga();
-      console.log("Datos guardados: ", this.carga);
-      
-      // Cerrar el modal y enviar la firma como resultado
-      this.modalController.dismiss({ firma });
+      if (this.carga.ChoferID == null) {
+        const toast = await this.toastController.create({
+          message: 'Nombre requerido',
+          duration: 2000,
+          position: 'bottom',
+          color: 'danger',
+        });
+        toast.present();
+      } else {
+        const firma = this.signaturePad.toDataURL().replace(/(\r\n|\n|\r)/gm, '');
+    
+        this.carga.Firma = firma;
+        //console.log('Firma guardada:', this.carga.Firma);
+        this.guardarCarga();
+        //console.log("Datos guardados: ", this.carga);
+        const guardar= true;
+       
+
+        // Cerrar el modal y enviar la firma como resultado
+        this.modalController.dismiss({ firma, guardar });
+      }
+
     }
   }
 
   async guardarCarga() {
     try {
       await this.presentLoading();
-      console.log("carga antes de ser enviada: ", this.carga);
+      //console.log("carga antes de ser enviada: ", this.carga);
       this.api.saveCarga(this.carga)
         .pipe(finalize(async () => {
           await this.loader.dismiss();
         }))
         .subscribe(
           r => {
-            console.log("Se guardo la cargaaaaa");
+            //console.log("Se guardo la cargaaaaa");
             this.showAlert();
             /*
             setTimeout(() => {
@@ -111,17 +120,17 @@ export class FirmaComponent implements OnInit
             */
           },
           error => {
-            console.error("Error al guardar la carga:", error);
+            //console.error("Error al guardar la carga:", error);
             // Aquí puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error.
           }
         );
     } catch (error) {
-      console.error("Error al guardar la carga:", error);
+      //console.error("Error al guardar la carga:", error);
       // Aquí también puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error.
     }
   }
-  
-  
+
+
 
   dismiss() {
     // using the injected ModalController this page
@@ -133,16 +142,16 @@ export class FirmaComponent implements OnInit
   }
 
   showAlert() {
-    this.mostrar=true;
+    this.mostrar = true;
   }
   async presentLoading() {
     this.loader = await this.loading.create({
-    message: 'Cargando...',
+      message: 'Cargando...',
     });
     await this.loader.present();
-}
-  
-  
+  }
+
+
 }
 
 defineCustomElements(window);

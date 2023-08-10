@@ -51,6 +51,12 @@ export class ApiService {
     {
         return this.http.get<any>(this.env.API_URL + 'getImagesExt', {params: {...data}});
     }
+
+    getItinerarioExt(data: HttpParams | { [param: string]: string | number | boolean | readonly (string | number | boolean)[]; } | any)
+    {
+        return this.http.get<any>(this.env.API_URL + 'getItinerarioExt', {params: {...data}});
+    }
+
     createPdf(fotos: any)
     {
         return this.http.post<any>(this.env.API_URL + 'createPdf', {...fotos});
@@ -92,11 +98,9 @@ export class ApiService {
         return this.http.get<any>(this.env.API_URL + 'getNominaChofer', {params: {...reporte}});
     }
 
-    getVencimientos(id: any){
-        return this.http.get<any>(this.env.API_URL + 'getVencimientos');
+    getVencimientos(ChoferID: any){
+        return this.http.get<any>(this.env.API_URL + 'getVencimientos', {params: {...ChoferID}});
     }
-
-
 
     getProductosNormales(): Observable<any> {
         return this.http.get<any>(this.env.API_URL + 'getProductosNormales');
@@ -154,23 +158,23 @@ export class ApiService {
         return this.http.get<any>(this.env.API_URL + 'getReporteRecepcionSorteo', {params: {...data}});
     }
 
+    saveRevisionMecanica(data: any){
+        return this.http.post<any>(this.env.API_URL + 'saveRevisionMecanica', {... data});
+    }
+    
+    getPuntosRevisionMecanica(){
+        return this.http.get<any>(this.env.API_URL + 'getPuntosRevisionMecanica');
+    }
+
     //diesel
     getCamionesTabla(){
         return this.http.get<any>(this.env.API_URL_DIESEL + 'getCamionesTabla');
     }
 
-    getCamion(id: number) {
-        return this.http.get<any>(`${this.env.API_URL_DIESEL}getCamion/${id}`);
+    getCamion(data: any) {
+        return this.http.get<any>(this.env.API_URL_DIESEL + 'getCamion', {params: {... data}});
     }
 
-    /*saveCarga( fotoDataUrl: string, tipoFoto: string ){
-
-        const data = {
-            [tipoFoto]: fotoDataUrl
-          };
-
-        return this.http.post<any>(this.env.API_URL_DIESEL + 'saveCarga', data);
-    }*/
     saveCarga(data: any){
         return this.http.post<any>(this.env.API_URL_DIESEL + 'saveCarga', {... data})
     }
@@ -182,4 +186,7 @@ export class ApiService {
     getProveedores(){
         return this.http.get<any>(this.env.API_URL_DIESEL + 'getProveedores');
     }
+
+    
+
 }

@@ -48,44 +48,50 @@
         </a>
     </nav>
 
-
-    <div class="list" *ngIf="historial">
-        <div *ngFor="let x of historial">
-
-
-            <div class="item item-text-wrap">
-                <div style="float: left; width: 90%">
-                    <div>Fecha: <b>{{x.Fecha | luDate: 'full'}}</b></div>
-                    <div *ngIf="x.proveedor">Proveedor: <b>{{x.proveedor }}</b></div>
-                    <div>Galones: <b>{{x.Litros}}</b></div>
-                    <div>Rendimiento ECM: <b>{{x.RendimientoECM}} m/g</b></div>
-                    <div>Rendimiento carga: <b>{{x.RendimientoCarga}} m/g</b></div>
-                    <div>Rendimiento esperado: <b>{{x.RendimientoRutas}} m/g</b></div>
-                    <div>Nota: <b>{{x.Nota}}</b></div>
-                </div>
-            </div>
-            <div class="item item-divider">
-                Sello
-            </div>
-            <div class="item item-thumbnail-left">
-                <!--Pedir funcion verFoto-->
-                <!--<img [src]="'http://' + dominio + x.FotoSello" (click)="verFoto('http://' + dominio + x.FotoSello)"> -->
-                <h2>Sello de la carga</h2>
-                <p>{{x.Sellos}}</p>
-            </div>
-            <div style="float: left; width: 10%; text-align: right;">
-                {{x.ItinerarioID}}
-            </div>
-        </div>
-    </div>
-    <div class="ui info message" ng-if="!historial" style="width: 95%; margin: 0 auto; margin-top: 10px;">
+    <div class="ui info message" *ngIf="!historial || historial.length == 0" style="width: 95%; margin: 0 auto; margin-top: 10px;">
         <!--<i class="close ion-close-circled red"></i>-->
         <div class="center aligned header">
             No se encontro historial de esta unidad.
         </div>
-
         <!--<div class="content"></div>-->
     </div>
+
+    <div class="list" *ngIf="historial" style="height:85vh; overflow:auto;">
+        <div *ngFor="let x of historial; let i = index">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div style="float: left; width: 90%">
+                                <div>Fecha: <b>{{x.Fecha | luDate: 'large'}}</b></div>
+                                <div *ngIf="x.proveedor">Proveedor: <b>{{x.proveedor |titlecase }}</b></div>
+                                <div>Galones: <b>{{x.Litros}}</b></div>
+                                <div>Rendimiento ECM: <b>{{x.RendimientoECM}} m/g</b></div>
+                                <div>Rendimiento carga: <b>{{x.RendimientoCarga}} m/g</b></div>
+                                <div>Rendimiento esperado: <b>{{x.RendimientoRutas}} m/g</b></div>
+                                <div>Nota: <b>{{x.Nota}}</b></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Sello</h4>
+                            <br>
+                            <img *ngIf="x.FotoSello" src="http://localhost:80/{{x.FotoSello}}" style="width: 70px;">
+                            <span *ngIf="!x.FotoSello">No hay imagen o no se encontró la imagen. </span>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>Sello de la carga</h4>
+                            <p>{{x.Sellos}}</p>
+                        </li>
+                        <div style="float: left; width: 10%; text-align: right;">
+                            {{x.ItinerarioID}}
+                        </div>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <br>
 </body>
 

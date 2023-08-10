@@ -45,6 +45,7 @@
                         <tr *ngFor="let x of camiones | search: searchTerm" [routerLink]="['/diesel-view', x.id]">
                             <td>{{ x.NoEconomico }}</td>
                             <td>
+                                <p>{{x.TanqueActual}}</p>
                                 <div class="progress" role="progressbar" aria-label="Basic example"
                                     [attr.aria-valuenow]="x.TanqueActual" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar" [style.width.%]="x.TanqueActual"></div>

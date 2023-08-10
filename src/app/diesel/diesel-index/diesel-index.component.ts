@@ -43,7 +43,7 @@ export class DieselIndexComponent implements OnInit {
       .subscribe((response: any) => {
         // Asignar los datos recibidos a la variable camiones
         this.camiones = response.data;
-        console.log(this.camiones);
+        //console.log(this.camiones);
 
         // Realizar el filtrado según el valor de búsqueda
         if (this.search) {
@@ -54,7 +54,7 @@ export class DieselIndexComponent implements OnInit {
         }
       },
         (error) => {
-          console.error('Error al obtener los datos de la API:', error);
+          //console.error('Error al obtener los datos de la API:', error);
           // Agregar cualquier lógica de manejo de errores necesaria
         }
       );

@@ -31,7 +31,7 @@ export class AuthenticationService {
             OneSignal.getDeviceState(function(state: { userId: string; })
             {
                 DID = state.userId;
-                console.log(DID)
+                //console.log(DID)
             });
         });
     }
@@ -72,7 +72,7 @@ export class AuthenticationService {
         )
         .subscribe(r => 
         {
-            console.log(r);
+            //console.log(r);
             if (r._estatus === 20) {
                 this.storage.set(TOKEN_KEY, r.data).then(() => {
                     this.authenticationState.next(true);
@@ -90,7 +90,7 @@ export class AuthenticationService {
         }, 
         (e) => 
         {
-            console.log(e);
+            //console.log(e);
         });
     }
 

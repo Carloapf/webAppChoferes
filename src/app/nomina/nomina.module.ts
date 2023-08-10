@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NominaPageRoutingModule } from './nomina-routing.module';
 
 import { NominaComponent } from './nomina.component';
+import { LuDatePipe } from '../pipes/luDate.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { NominaComponent } from './nomina.component';
     IonicModule,
     NominaPageRoutingModule
   ],
-  declarations: [NominaComponent]
+  declarations: [NominaComponent, LuDatePipe]
 })
 export class NominaPageModule {}
