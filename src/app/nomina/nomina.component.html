@@ -5,12 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nomina</title>
-
-
 </head>
-
 <body>
-
   <content>
     <div style="height:90vh; overflow:auto;">
       <div class="card">
@@ -21,12 +17,6 @@
               (change)="getSemana()">
               <option *ngFor="let semana of semanas" [value]="semana.SemanaID">{{ semana.semanaanio }}</option>
             </select>
-            <!--
-            <select class="form-select" aria-label="Default select example" id="semanas" [(ngModel)]="seleccionado" (change)="getValor()">
-            <option *ngFor="let semana of semanas" [value]="semana.SemanaID">{{ semana.semanaanio }}</option>
-          </select>
-          -->
-
           </content>
         </div>
         <div class="card" *ngIf="buscado">

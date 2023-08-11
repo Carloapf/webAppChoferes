@@ -1,47 +1,4 @@
-.bar .button.back-button, .bar button.back-button
-{
-        display: none !important;
-}
-.tabs
-{
-    height: 70px;
-}
-.tab-nav.tabs 
-{
-        /*bottom: 0;*/
-        top: initial;
-}
-.objecto
-{
-        height: 0;
-        overflow: hidden;
-        transition: 0.3s all;
-}
-.objecto.activo 
-{
-        height: calc(100% - 105px);
-        overflow-y: scroll;
-        color: #000000;
-}
-.contenedor-botones
-{
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-        background-color: #FFFFFF;
-        margin-bottom: 0 !important;
-        border-top: 3px solid #F0F0F0;
-}
-.contenedor-botones > div
-{
-        float: left;
-        width: 33%;
-        margin-right: 0.5%;
-}
-.contenedor-botones > div:last-child
-{
-        margin-right: 0;
-}
+
 div.header
 {
         text-align: center;
@@ -53,4 +10,3 @@ ion-content > div
 {
         margin-bottom: 50px;
 }
-@import '~bootstrap/dist/css/bootstrap.css';

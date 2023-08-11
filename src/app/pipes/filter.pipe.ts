@@ -9,8 +9,6 @@ import { Pipe, PipeTransform } from '@angular/core';
       }
       searchText = searchText.toLowerCase();
       return value.filter(item => {
-        // Implementa la lógica de filtrado según tus necesidades.
-        // En este ejemplo, se filtra por la propiedad 'NoEconomico'.
         return item.NoEconomico.toString().toLowerCase().includes(searchText);
       });
     }

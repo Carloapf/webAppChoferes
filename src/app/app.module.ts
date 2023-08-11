@@ -8,19 +8,7 @@ import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicRouteStrategy } from '@ionic/angular';
-//import { NominaComponent } from './nomina/nomina.component';
-//import { ManualComponent } from './manual/manual.component';
 import { IonicModule } from '@ionic/angular';
-//import { MaterialModule } from './material.module';
-
-//import { DriverMovesIndexComponent } from './driver_moves/driver-moves-index/driver-moves-index.component';
-//import { DriverMovesViewComponent } from './driver_moves/driver-moves-view/driver-moves-view.component';
-//import { LoginComponent } from './login/login.component';
-/*import { IonicIconsModule } from 'ionicons';
-import { IoniconsModule } from 'ionicons';*/
-
-//import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-//import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {IonicStorageModule} from '@ionic/storage-angular';
 import {RouterModule} from '@angular/router';
@@ -54,15 +42,7 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 
-//import { MDBBootstrapModule } from 'angular-bootstrap-md';
-//import { EvidenciasPageModule } from "./driver_moves/driver-moves-view/evidencias/evidencias.module";
-//import { ModalPageModule } from "./driver_moves/driver-moves-view/evidencias/modal/modal.module";
-
 import { FilterPipe } from './pipes/filter.pipe';
-import { LuDatePipe } from './pipes/luDate.pipe';
-//import { LuDatePipe } from "./pipes/luDate.pipe";
-
-
 
 @NgModule({
   declarations: [AppComponent, FilterPipe,],
@@ -86,7 +66,6 @@ import { LuDatePipe } from './pipes/luDate.pipe';
     DieselIndexPageModule,
     DieselViewPageModule,
     DieselFormPageModule,
-    //EvidenciasPageModule,
     IonicStorageModule.forRoot(),
     BrowserAnimationsModule,
     MdbAccordionModule,

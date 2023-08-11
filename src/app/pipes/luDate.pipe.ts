@@ -381,10 +381,7 @@ export class LuDatePipe implements PipeTransform {
   }
 
   private convertDate(date: Date, format: string): string {
-    // Implementa la lógica para convertir un objeto Date a un string con el formato deseado (format)
-    // Puedes utilizar librerías como 'date-fns', 'moment.js' o implementar tu propia lógica aquí.
-    // Por ejemplo:
-    // return formatDate(date, format); // Suponiendo que tienes una función llamada formatDate para el formateo de fechas.
-    return ""; // Reemplaza esto con la lógica real de formateo.
+    
+    return "";
   }
 }

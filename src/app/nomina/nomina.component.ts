@@ -39,7 +39,6 @@ export class NominaComponent implements OnInit {
         this.storage.get(TOKEN_KEY).then((r) => 
         {
             this.reporte.ChoferID = r?.id;
-            //console.log("ChoferID: " ,this.reporte.ChoferID);
             this.getSemanasNomina();
         })
     }
@@ -57,7 +56,6 @@ export class NominaComponent implements OnInit {
             setTimeout(() =>
             {
                 var objectSelectElement = document.getElementById('semanas');
-                //objectSelectElement.compareWith = compareWithFn;
                 this.semanas.forEach(function (e: any) {
                 var selectOption = document.createElement('ion-select-option');
                 selectOption.value = e;
@@ -67,11 +65,6 @@ export class NominaComponent implements OnInit {
             }, 0);
         });
     }
-    onSeleccionarSemana() {
-        //console.log(this.seleccionado); // Aquí puedes ver el valor seleccionado en la consola
-      }
-      
-
     async presentLoading() 
     {
         this.loader = await this.loading.create(
@@ -82,9 +75,7 @@ export class NominaComponent implements OnInit {
     }
     async getSemana()
     {
-        //console.log(this.seleccionado)
         this.reporte.SemanaID = this.seleccionado;
-        //console.log("Aquiiiiiiiiiiiiiiiiiiiiiiii: ",this.reporte);
         this.api.getNominaChofer(this.reporte)
         .pipe(finalize(async () => 
         {
@@ -94,7 +85,6 @@ export class NominaComponent implements OnInit {
         {
             this.buscado = true;
             this.info = r.data;
-            //console.log(this.info);
         });
     }
 }
