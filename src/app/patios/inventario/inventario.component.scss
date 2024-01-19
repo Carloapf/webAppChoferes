@@ -1,0 +1,70 @@
+.principal
+    {
+        width: 95%;
+        margin: 10px auto;
+        overflow: auto;
+    }
+    .button.blue
+    {
+        background-color: #80A6CD;
+        color: #FFFFFF;
+    }
+    .ui.inverted.segment .item 
+    {
+        background-color: transparent;
+        border: none;
+        color: #FFFFFF;
+    }
+    div.ui.inverted.segment div.item div.description
+    {
+        color: #FFFFFF !important;
+    }
+    .ui.divided.list .list>.item:first-child, .ui.divided.list>.item:first-child
+    {
+        border: 0 !important;
+    }
+    a.button.blue
+    {
+        background-color: #021B91;
+        color: #FFFFFF;
+    }
+    a.button.black
+    {
+        background-color: #000000;
+        color: #FFFFFF;
+    }
+    a.button.white
+    {
+        background-color: #FFFFFF;
+        color: #000000;
+        font-size: 14px;
+    }
+/* CSS para el div con la barra de desplazamiento */
+.scrollable {
+    /* Establece una altura máxima y ancho máximo para el elemento */
+    height: 708px; /* Cambia esto según tus preferencias */
+    //max-width: 100%; /* Cambia esto según tus preferencias */
+  
+    /* Agrega desbordamiento y la barra de desplazamiento solo cuando sea necesario */
+    overflow: auto;
+  
+    /* Opcionalmente, puedes personalizar el estilo de la barra de desplazamiento */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f0f0f0;
+  
+    /* Puedes personalizar más estilos aquí */
+  }
+  
+  /* Estilo para la barra de desplazamiento en navegadores basados en WebKit (por ejemplo, Chrome) */
+  .scrollable::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  .scrollable::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del pulgar de la barra de desplazamiento */
+  }
+  
+  .scrollable::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Color del riel de la barra de desplazamiento */
+  }
+  

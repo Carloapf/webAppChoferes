@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Itinerario-view</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary d-flex align-items-center justify-content-center" style="margin-top: 10px;">
+        <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;">
+            <i class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i>
+        </a>
+        <span class="navbar-brand mb-0 h1 mx-auto" style="line-height: 50px;">Itinerario-view</span>
+    </nav>
+    <content>
+        <div  style="margin: 10px auto; height:85vh; overflow:auto;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <label><i class="fas fa-th"></i>Contenedor</label>
+                <div>{{contenedor.Contenedor}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-user-circle"></i>Cliente</label>
+                <div>{{contenedor.cliente}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-map-marker-alt"></i>Destino</label>
+                    <div>{{contenedor.destino}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-people-carry"></i>Proveedor de equipo</label>
+                    <select class="form-select" aria-label="EquipmentProvider" [(ngModel)]="contenedor.EquipmentProvider">
+                        <option selected disabled>Select EquipmentProvider</option>
+                        <option *ngFor="let x of equipmentProvider" [value]="x.id" >{{ x.nombre }}</option>
+                    </select>
+                    <span>{{contenedor.EquipmentProvider}}</span>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-flag"></i>País de las placas del camión</label>
+                <div>{{contenedor.pais}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-id-card"></i>Estado de las placas del camión</label>
+                    <div>MEX: {{contenedor.EstadoPlacasMex}} | USA: {{contenedor.EstadoPlacasUsa}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-truck"></i>Placas del camión</label>
+                    <div>{{contenedor.placasunidad}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-stamp"></i>Sello</label>
+                <div>{{contenedor.Sello}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-male"></i>Nombre del chofer</label>
+                <input type="text" [(ngModel)]="contenedor.NombreChofer" *ngIf="nuevo">
+                <div *ngIf="!nuevo">{{contenedor.NombreChofer}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-tachometer-alt"></i>Camión </label>
+                    <input type="text" [(ngModel)]="contenedor.camion" style="margin-left: 8px;">
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-adjust"></i>Carrier </label>
+                <input type="text" [(ngModel)]="contenedor.Carrier" style="margin-left: 8px;">
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-calendar-day"></i>Fecha de salida</label>
+                    <div>{{contenedor.FechaEvento | luDate: 'full'}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-cube"></i>Estado de carga</label>
+                    <select class="form-select" aria-label="estadosContenedor"  [(ngModel)]="contenedor.EstadoCarga">
+                        <option selected disabled>Select estadosContenedor</option>
+                        <option *ngFor="let x of estadosContenedor" [value]="x.id" >{{ x.nombre }}</option>
+                    </select>
+                <!--<select class="form-control" id="estadosContenedor" name="estadosContenedor" 
+                    ng-options="x.id as x.nombre for x in estadosContenedor" 
+                    ng-model="contenedor.EstadoCarga" ng-if="nuevo">
+                </select>-->
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-expand"></i>Size</label>
+                    <div>{{contenedor.Tamano}}</div>
+                </li>
+                <li class="list-group-item">
+                    <label><i class="fas fa-pen"></i>Remark</label><br>
+                <textarea [(ngModel)]="contenedor.Nota" rows="3"></textarea>
+                </li>
+            </ul>
+                <button type="button" class="btn btn-blue" (click)="revision()">Revisión</button>
+                <button type="button" class="btn btn-orange" (click)="firma()">Firma K9</button>
+                <button type="button" class="btn btn-green" (click)="salidaContenedor()" *ngIf="puntos">Salida</button>
+                <br><br><br>
+        </div>
+
+        <div class="ui small modal placas" style="height: 400px; min-height: 400px;">
+            <i class="close ion-close-circled red"></i>
+            <!--<div class="header">
+                {{itinerario.PlacasChasis == '' ? 'Agregar' : 'Actualizar'}} placas del chasís
+            </div>-->
+            <div class="content">
+                <div class="ui form">
+                    <div class="field">
+                        <label>Placas del chasís</label>
+                        <input type="text" ng-model="placas.PlacasChasis">
+                    </div>
+                    <div class="field">
+                        <label>País</label>
+                        <!--<input-dropdown datax="paises" namex="paises" ng-model="placas.PaisID" ng-change="getEstados()"></input-dropdown> -->
+                    </div>
+                    <div class="field">
+                        <label>Estado</label>
+                        <!--<input-dropdown datax="estados" namex="estados" ng-model="placas.EstadoID"></input-dropdown>-->
+                    </div>
+                    <div class="ui green fluid button" ng-click="guardarPlacas()" ng-if="placas.EstadoID">Aceptar</div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="ui small modal fecha1" style="min-height: 300px;">
+            <i class="close ion-close-circled red"></i>
+            <div class="header">
+                Agregar fecha de salida
+            </div>
+            <div class="content">
+                <div class="ui form">
+                    <div class="field">
+                        <!--
+                        <label>Fecha</label>
+                        <div>{{fechas.fecha | luDate: 'full'}}</div> -->
+                    </div>
+                    <div class="ui green fluid button" ng-click="guardarFecha()">Aceptar</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui small modal fecha2" style="min-height: 300px;">
+            <i class="close ion-close-circled red"></i>
+            <div class="header">
+                Agregar fecha de llegada
+            </div>
+            <div class="content">
+                <div class="ui form">
+                    <div class="field">
+                        <!--
+                        <label>Fecha</label>
+                        <div>{{fechas.fecha | luDate: 'full'}}</div> -->
+                    </div>
+                    <div class="field">
+                        <label>Estado del contenedor</label>
+                        <!--<input-dropdown datax="estadosContenedor" namex="estadosContenedor" ng-model="fechas.Estado"></input-dropdown>-->
+                    </div>
+                    <div class="ui green fluid button" ng-click="guardarFecha()">Aceptar</div>
+                </div>
+            </div>
+        </div>  
+    </content>
+</body>
+</html>

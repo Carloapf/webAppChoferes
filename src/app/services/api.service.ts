@@ -187,6 +187,139 @@ export class ApiService {
         return this.http.get<any>(this.env.API_URL_DIESEL + 'getProveedores');
     }
 
-    
+    //visitantes
+    getRegistrosPendientes(fechas: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getRegistrosPendientes', { params: {...fechas} });
+    }
 
+    completeRegistro(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'completeRegistro', {params: {...data}});
+    }
+
+    getRegistrosHistorial(fechas: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getRegistrosHistorial', { params: {...fechas} });
+    }
+    getTipoVisitantes2(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getTipoVisitantes2');
+    }
+    getTipoVisitantes(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getTipoVisitantes');
+    }
+    getEmpresas(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getEmpresas');
+    }
+    getEmpleados(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getEmpleados');
+    }
+    getCamiones(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getCamiones');
+    }
+    getChoferes(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getChoferes');
+    }
+    getColaborador(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getColaborador', {params: data});
+    }
+
+    registarEntradaSalida(data: any): Observable<any>
+    {
+        return this.http.post<any>(this.env.API_URL_VISTANTES + 'registarEntradaSalida', {params: {...data}});
+    }
+
+    registarLlave(data: any): Observable<any>
+    {
+        return this.http.post<any>(this.env.API_URL_VISTANTES + 'registarLlave', {params: {...data}});
+    }
+
+    getInfoCamion(id: any) {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getInfoCamion', { params: {id: id} });
+    }
+    getLlavesDia(): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getLlavesDia');
+    }
+    createEmpresa(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'createEmpresa', {params: {...data}});
+    }
+    saveVisitante(data: any): Observable<any>
+    {
+        return this.http.post<any>(this.env.API_URL_VISTANTES + 'saveVisitante', {params: {...data}});
+    }
+    getBusquedaVisitantes(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getBusquedaVisitantes', {params: {...data}});
+    }
+    getGafetesDisponibles(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getGafetesDisponibles', {params: {...data}});
+    }
+    getMisVehiculos(data: any): Observable<any>
+    {
+        return this.http.get<any>(this.env.API_URL_VISTANTES + 'getMisVehiculos', {params: {...data}});
+    }
+    saveVisita(data: any): Observable<any>
+    {
+        return this.http.post<any>(this.env.API_URL_VISTANTES + 'saveVisita', {...data});
+    }
+
+    //Patio
+    loginPatios(login: any, pass: any): Observable<any> {
+        return this.http.get(this.env.API_URL_PATIO + 'login', {params: { login: login, pass: pass}});
+    }
+    getContenedoresPatio(data:any){
+        const patioParams = { PatioID: data.PatioID };
+        return this.http.get(this.env.API_URL_PATIO + 'getContenedoresPatio', { params: patioParams });
+    }
+    getContenedorPatio(data: any){
+        return this.http.get(this.env.API_URL_PATIO + 'getContenedorPatio', {params:{...data}});
+    }
+
+    getClientes(){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getClientes');
+    }
+    getChoferesPatios(){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getChoferes');
+    }
+
+    getPuntosCTPADSalida(data: any){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getPuntosCTPADSalida', {params: {id: data}});
+    }
+
+    getRutasCliente(data:any){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getRutasCliente', {params: {ClienteID: data}});
+    }
+
+    saveSalidaContenedor(ctpad:any, contenedor:any){
+        return this.http.post<any>(this.env.API_URL_PATIO + 'saveSalidaContenedor', {params:{puntos: ctpad, contenedor: contenedor }});
+    }
+    getContenedorEntrada(data:any){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getContenedorEntrada', {params:{...data}});
+    }
+    getSizes(){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getSizes');
+    }
+    getCamionesPatios(){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getCamiones');
+    }
+
+    getPuntosCTPAD(data:any){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getPuntosCTPAD', {params:{id:data}});
+    }
+    getEstados(data: any){
+        return this.http.get<any>(this.env.API_URL_PATIO + 'getEstados', {params:{id_paises: data}})
+    }
+    saveContenedorEntrada(data:any){
+        return this.http.post<any>(this.env.API_URL_PATIO + 'saveContenedorEntrada',{...data});
+    }
 }

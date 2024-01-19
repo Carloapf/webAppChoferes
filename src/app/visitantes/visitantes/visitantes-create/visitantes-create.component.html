@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>vistantes-create</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;"><i
+                class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i></a>
+        <span class="navbar-brand mb-0 h1">Agregar Visita</span>
+        <a class="btn btn-dark me-2" type="button"
+            *ngIf="empleadoSeleccionado && visitantesSeleccionado.length > 0 && vehiculoFlag == true " (click)="guardarVisita()"><i
+                class="fas fa-save" style="margin-left: 10px; margin-right: 10px;"></i></a>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+    <br>
+    <content>
+        <div *ngIf="buscado">
+            <mdb-tabs [fill]="true">
+                <mdb-tab title="Agregar Visitante">
+                    <div class="card">
+                        <div class="card-header">Persona con la que se dirige</div>
+                        <div class="card-body">
+                            <ion-select placeholder="Seleccionar empleado" [interfaceOptions]="empleadosOptions"
+                                id="empleados" cancel-text="Cancelar" ok-text="Aceptar"
+                                [(ngModel)]="empleadoSeleccionado" (ngModelChange)="verEmpleado()">
+                                <ion-select-option *ngFor="let empleado of empleados" [value]="empleado">{{
+                                    empleado.nombre
+                                    }}</ion-select-option>
+                            </ion-select>
+                            <div style="padding: 1px 6px;">
+                                <div *ngIf="empleadoSeleccionado" style="display: flex;">
+                                    <i class="fas fa-briefcase" style="padding-right: 10px;"></i>
+                                    <div>{{empleadoSeleccionado.puesto}}</div>
+                                </div>
+                                <br>
+                                <div *ngIf="empleadoSeleccionado" style="display: flex;">
+                                    <i class="fas fa-info-circle" style="padding-right: 10px;"></i>
+                                    <div>{{empleadoSeleccionado.area}}</div>
+                                </div>
+                            </div>
+                            <ion-item>
+                                <ion-label style="font-size:12px;">Asunto</ion-label>
+                                <input class="form-control" type="text" placeholder="Asunto" aria-label="Asunto" [(ngModel)]="empleadoSeleccionado.asunto === '' ? ' ' : empleadoSeleccionado.asunto">
+                            </ion-item>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-top: 10px;">
+                        <div class="card-header">Visitantes</div>
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary" (click)="abrirVisitanteAgregar()"> Agregar
+                                Visitante</button>
+                            <ion-item>
+                                <ion-label>Presione aqui para agregar a los visitantes</ion-label>
+                            </ion-item>
+                            <div *ngIf="visitantesSeleccionado">
+                                <div *ngFor="let x of visitantesSeleccionado">
+                                    <div class="contenedor">
+                                        <div class="lista-imagen">
+                                            <!--<img src="{{env.HARVEST_URL}}{{x.foto}}" class="img-list"> -->
+                                        </div>
+                                        <div class="lista">
+                                            <h2>{{x.nombre}}</h2>
+                                            <p><i class="fas fa-briefcase"></i> {{x.empresa}}</p>
+                                            <!-- <p><ion-icon name="car-sport-outline"></ion-icon></p>
+                                <div style="font-size: 12px;" *ngFor="let y of x.vehiculos">- {{y.modelo}} ({{y.anio}}) [{{y.placas}}]</div> -->
+                                        </div>
+                                        <div class="lista-info">
+                                            <div style="font-size: 11px; white-space: nowrap; text-overflow: ellipsis;">
+                                                {{x.tipo}}
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <p>{{x.gafete_nombre}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div *ngFor="let y of x.vehiculos">
+                            {{y.modelo}}
+                        </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" *ngIf="vehiculos.length > 0">
+                        <div class="card-header">Vehiculo de entrada</div>
+                        <div class="card-body">
+                            <div *ngFor="let x of vehiculos">
+                                <div class="contenedor {{y.seleccionado == 1 ? 'seleccionado' : ''}}"
+                                    *ngFor="let y of x" (click)="selectCar(y)">
+                                    <div class="lista-imagen" style="font-size: 34px; padding: 0; padding-left: 5px;">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                    <div class="lista">
+                                        <h2>{{y.modelo}}</h2>
+                                        <p>{{y.placas}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mdb-tab>
+                <mdb-tab title=" Ver Visitantes">
+                    <div class="contenido" *ngIf="visitantes">
+                        <div *ngIf="visitantes.length > 0">
+                            <div class="arriba">
+                                <button type="button" class="btn btn-danger" slot="start"
+                                    (click)="cancelarVisitantes()">Cancelar</button>
+                                <button type="button" class="btn btn-primary" style="position: absolute; right: 0;"
+                                    slot="end" (click)="verVisitante()">Aceptar</button>
+                                <br>
+                                <div style="text-align: center;">
+                                    <span>Seleccione los visitantes</span>
+                                </div>
+                                <hr>
+                                <ion-item>
+                                    <ion-label>Buscar</ion-label>
+                                    <input class="form-control" type="text" placeholder="Buscar" aria-label="Buscar"
+                                        [(ngModel)]="search">
+
+                                </ion-item>
+                            </div>
+                            <div style="padding-top: 140px;">
+                                <div class="contenedor {{x.visto == 1 ? 'seleccionado' : ''}}"
+                                    *ngFor="let x of visitantes | filter: search"
+                                    (click)="x.visto == 0 ? (x.visto = 1) : (x.visto = 0)">
+                                    <div (click)="verVisitante()">
+                                        <div class="lista-imagen">
+                                            <!-- <img src="{{env.HARVEST_URL}}{{x.foto}}" class="img-list"> -->
+                                        </div>
+                                        <div class="lista">
+                                            <h2>{{x.nombre}}</h2>
+                                            <p><i class="fas fa-briefcase"></i> {{x.empresa}}</p>
+                                            <!-- <p><ion-icon name="car-sport-outline"></ion-icon></p>
+                                        <div style="font-size: 12px;" *ngFor="let y of x.vehiculos">- {{y.modelo}} ({{y.anio}}) [{{y.placas}}]</div> -->
+                                        </div>
+                                        <div class="lista-info">
+                                            <div style="font-size: 11px; white-space: nowrap; text-overflow: ellipsis;">
+                                                {{x.tipo}}</div>
+                                            <div style="text-align: center;">
+                                                <p>{{x.gafete_nombre}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <ion-button expand="full" color="primary" (click)="guardarEmpresa()">Aceptar</ion-button> -->
+                        </div>
+                    </div>
+
+                </mdb-tab>
+            </mdb-tabs>
+
+        </div>
+
+    </content>
+
+</body>
+
+</html>

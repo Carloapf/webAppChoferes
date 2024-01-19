@@ -31,7 +31,7 @@ export class AuthenticationService {
             OneSignal.getDeviceState(function(state: { userId: string; })
             {
                 DID = state.userId;
-                //console.log(DID)
+                console.log(DID)
             });
         });
     }
@@ -64,6 +64,41 @@ export class AuthenticationService {
         await this.storage.create();
         await this.presentLoading();
         this.api.login(formgrp.user, formgrp.pass, DID)
+        .pipe(
+            finalize(async () => 
+            {
+                await this.loader.dismiss();
+            })
+        )
+        .subscribe(r => 
+        {
+            //console.log(r);
+            if (r._estatus === 20) {
+                this.storage.set(TOKEN_KEY, r.data).then(() => {
+                    this.authenticationState.next(true);
+                    this.userInfo.next(r.data);
+                    this.user = r.data;
+                });
+            } else {
+                const toast = this.toast.create({
+                    message: 'El Usuario o la Contraseña son incorrectas',
+                    duration: 3000,
+                    position: 'bottom',
+                });
+                toast.then((t) => t.present());
+            }
+        }, 
+        (e) => 
+        {
+            //console.log(e);
+        });
+    }
+
+    async loginPatios(formgrp: any) 
+    {
+        await this.storage.create();
+        await this.presentLoading();
+        this.api.loginPatios(formgrp.user, formgrp.pass)
         .pipe(
             finalize(async () => 
             {

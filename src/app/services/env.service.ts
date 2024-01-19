@@ -8,6 +8,8 @@ export class EnvService {
 
   API_URL = 'http://localhost/duranApi/index.php/choferes/';
   API_URL_DIESEL = 'http://localhost/duranApi/index.php/diesel/';
+  API_URL_VISTANTES = 'http://localhost/duranApi/index.php/visitantes/';
+  API_URL_PATIO = 'http://localhost/duranApi/index.php/patio/';
   //API_URL_DIESEL = 'http://dfcmurua.duranfreight.net:81/duranApi/index.php/diesel/';
   // 'http://localhost:8083/API/index.php/api/'; // 'http://erpbajapk.dyndns.org/bajapk/API/index.php/api/';
   HARVEST_URL = 'http://localhost/duranApi/';

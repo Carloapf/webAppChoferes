@@ -1,0 +1,141 @@
+h1
+{
+    color: #000000;
+    text-align: center;
+    font-size: 19px;
+}
+.clickable
+{
+    color: #0000FF !important;
+    cursor: pointer;
+}
+select-search-box span.selected
+{
+    text-indent: 0; 
+    border: 0; 
+    border-right: none; 
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0;
+    padding-right: 5px; 
+    display: block; 
+    width: 100%;
+    position: initial;
+    height: 21px;
+}
+select-search-box span.selectArrow
+{
+    width: 10px;
+    border: 0; 
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0; 
+    text-align: center;
+    font-size: 10.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    color: #565656;
+    display: inline-block;
+    position: absolute;
+    float: none; 
+    height: 10px;
+    z-index: 1;
+    right: 3px;
+    top: 10px;
+}
+select-search-box div.selectBox
+{
+    position: absolute !important;
+    height: 100% !important;
+    left: 0;
+    opacity: 0
+}
+.ui.modal
+{
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    margin-top: 100px !important;
+}
+.ui.form
+{
+    
+}
+a.item
+{
+    white-space: normal;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+}
+.ion-close-circled.red
+{
+    color: #FF0000 !important;
+}
+.popup-container .popup
+{
+    width: 80% !important;
+    max-width: 80% !important;
+}
+.popup-body
+{
+    padding: 0;
+    overflow: initial;
+}
+.popup-body .ui.form
+{
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: inherit;
+}
+.btn-info 
+{
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+@media only screen and (max-width: 767px)
+{
+    .ui.modal>.content 
+    {
+        display: block;
+        padding: 0 !important;
+        margin: 0;
+    }
+}
+label{
+    font-weight: bold;
+}
+i{
+    margin-right: 10px;
+}
+.btn-blue{
+    color: #fff; /* el color del texto del botón */
+  background-color: #4b4deb;
+  border-color: #070707; /* el color del borde del botón */
+}
+.btn-blue:hover {
+    color: #0a0a0a; /* el color del texto cuando se pasa el cursor sobre el botón */
+    background-color: #ffff; /* el color de fondo cuando se pasa el cursor sobre el botón */
+    border-color: #4b4deb; /* el color del borde cuando se pasa el cursor sobre el botón */
+}
+.btn-orange{
+    color: #0c0202; /* el color del texto del botón */
+  background-color: #f88520;
+  border-color: #070707; /* el color del borde del botón */
+}
+.btn-orange:hover {
+    color: #0c0c0c; /* el color del texto cuando se pasa el cursor sobre el botón */
+    background-color: #ffff; /* el color de fondo cuando se pasa el cursor sobre el botón */
+    border-color: #f88520; /* el color del borde cuando se pasa el cursor sobre el botón */
+}
+.btn-green{
+    color: #0d0404; /* el color del texto del botón */
+  background-color: #3bc420;
+  border-color: #070707; /* el color del borde del botón */
+}
+.btn-green:hover {
+    color: #0f0e0e; /* el color del texto cuando se pasa el cursor sobre el botón */
+    background-color: #fff; /* el color de fondo cuando se pasa el cursor sobre el botón */
+    border-color: #3bc420; /* el color del borde cuando se pasa el cursor sobre el botón */
+}

@@ -1,0 +1,103 @@
+
+.form-group
+{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 95%;
+}
+.form-group input
+{
+    width: calc(100% - 77px);
+    float: left;
+    margin-right: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+}
+.btn-success
+{
+    width: 67px;
+}
+.itemiti.color1
+{
+    border: 5px solid #FFFF00;
+    color: #000000;
+}
+.itemiti.color2
+{
+    border: 5px solid #00C800;
+}
+.itemiti.color3,
+.itemiti.color4
+{
+    border: 5px solid #C80000;
+}
+.ribbon.color1
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, #FFFF00 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,#FFFF00 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,#FFFF00 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#FFFF00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: #000000;
+}
+.ribbon.color2
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, #00C800 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,#00C800 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,#00C800 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#00C800',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.ribbon.color3,
+.ribbon.color4
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(45deg, transparent 51%, #C80000 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, transparent 51%,#C80000 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, transparent 51%,#C80000 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#C80000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.button.color1
+{
+    background-color: #FFFF00;
+    color: #000000;
+}
+.button.color2
+{
+    background-color: #00C800;
+}
+.button.color3,
+.button.color4
+{
+    background-color: #C80000;
+}
+.ion-close-circled.red
+{
+    color: #FF0000 !important;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.ui.icon.button>i.icon, 
+.ui.icon.buttons .button>i.icon
+{
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    margin: 0 auto !important;
+}
+.ui.form .field .ui.input input
+{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.ui.icon.input button.ui.button
+{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.sello.button .icon:before
+{
+    line-height: 10px;
+}

@@ -1,0 +1,27 @@
+<div class="elemento">
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-danger me-2" type="button" style="margin-left: 10px;" (click)="dismiss()">Cancelar<i
+                class="fas fa-times"></i></a>
+        <span class="navbar-brand mb-0 h1">Contenedores</span>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+</div>
+      <div style="max-height: 400px; width: 98%; margin: 0 auto; overflow-x: scroll; margin-top: 10px;">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Driver Move</th>
+                      <th>Ruta</th>
+                      <th>Chofer</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let x of contenedores" (click)="seleccionarDriverMove(x)">
+                      <td>{{x.ItinerarioID}}</td>
+                      <td>{{x.ruta}}</td>
+                      <td>{{x.NombreChofer}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  

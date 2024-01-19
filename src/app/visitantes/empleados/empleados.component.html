@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Empleados</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <content>
+        <div class="tabs">
+            <div class="tab1 active" (click)="setSeleccionado(1)">E/S</div>
+            <div class="tab2" (click)="setSeleccionado(2)">Llaves</div>
+        </div>
+        <div [hidden]="seleccionado == 2">
+            <ion-item>
+                <!-- <ion-label>Buscar</ion-label> -->
+                <input class="form-control" type="text" placeholder="Buscar nombre" aria-label="Buscar nombre" [(ngModel)]="search">
+                <button type="button" class="btn btn-info btn-sm" (click)="buscarEmpleado()">Buscar</button>
+            </ion-item>
+            <div *ngIf="buscado">
+                <div *ngIf="empleado">
+                    <div class="contenedor">
+                        <div class="lista-imagen">
+                            <img src="assets/img/nopic.png" class="img-list" style="width: 50px;">
+                        </div>
+                        <div class="lista">
+                            <h2>{{empleado.nombre}}</h2>
+                            <p><i class="fas fa-address-card"></i> {{empleado.NoEmpleado}}</p>
+                            <p><i class="fas fa-briefcase"></i> {{empleado.area}}</p>
+                        </div>
+                        <div class="lista-info">
+                            <div style="text-align: center;">
+                                <p><i class="far fa-calendar"></i> {{empleado.entrada == null ? 'Entrada' :
+                                    'Salida'}}</p>
+                                <!-- <ion-icon id="chkicon{{x.completado == 0 ? '1' : '0'}}" name="{{x.completado == 0 ? 'checkmark-circle-outline' : 'checkmark-circle'}}" 
+                                (click)="completeVisit(x)"></ion-icon>  -->
+                                <p><i class="fas fa-check-square"></i> {{empleado.ahorita | date:'HH:mm aa'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ion-card *ngIf="!empleado.entrada">
+                        <div class="item-divider">Firma del colaborador</div>
+                        <canvas id="pad" #canvas width="350" height="200" style="touch-action: none;"></canvas>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-warning" type="button" (click)="clearSignature()">Limpiar</button>
+                        </div>
+                    </ion-card>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success btn-rounded" mdbRipple rippleColor="dark" (click)="registarEntradaSalida()">Aceptar</button>
+                    </div>
+                </div>
+                <div *ngIf="!empleado">
+                    <div class="ui negative message">
+                        <div style="text-align: center;">No se encontro al colaborador</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [hidden]="seleccionado == 1" style="height: 708px; overflow-y:auto;">
+            <div class="tabs2">
+                <div class="tab3 active" (click)="setSubseleccionado(3)">Lista del dia</div>
+                <div class="tab4" (click)="setSubseleccionado(4)">Agregar</div>
+            </div>
+            <div [hidden]="subseleccionado == 4">
+                <ion-card class="registros">
+                    <ion-card-header>
+                        <ion-card-title>Registros del dia</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-list>
+                            <ion-item *ngIf="!registros.length">
+                                <div class="ui negative message">
+                                    <div style="text-align: center;">No hay registros de visitantes</div>
+                                </div>
+                            </ion-item>
+                            <div *ngFor="let x of registros" class="registro">
+                                <div>Chofer: <b style="color: #000000">{{x.chofer}}</b></div>
+                                <div>Camion: <b style="color: #000000">{{x.camion}}</b></div>
+                                <div>Tipo: <b style="color: #000000">{{x.tipo}}</b></div>
+                            </div>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div [hidden]="subseleccionado == 3">
+                <ion-item>
+                    <ion-label>Nombre</ion-label>
+                    <ion-select placeholder="Seleccione" id="choferes" cancel-text="Cancelar" ok-text="Aceptar"
+                        [(ngModel)]="llave.ChoferID">
+                        <ion-select-option *ngFor="let x of choferes" [value]="x.id">{{ x.nombre }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Fecha</ion-label>
+                    <ion-input type="date" [(ngModel)]="llave.fecha"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Hora</ion-label>
+                    <ion-input type="time" [(ngModel)]="llave.hora"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Entrega/Recibe</ion-label>
+                    <ion-select placeholder="Seleccione" id="tipo" cancel-text="Cancelar" ok-text="Aceptar"
+                        [(ngModel)]="llave.tipo">
+                        <ion-select-option *ngFor="let x of tipo" [value]="x.id">{{ x.nombre }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Unidad</ion-label>
+                    <ion-select placeholder="Seleccione" id="camiones" cancel-text="Cancelar" ok-text="Aceptar"
+                        [(ngModel)]="llave.CamionID" (ngModelChange)="getInfoCamion()">
+                        <ion-select-option *ngFor="let x of camiones" [value]="x.id">{{ x.nombre }}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Marca: </ion-label>
+                    <ion-input type="text" [(ngModel)]="llave.marca" readonly></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Modelo: </ion-label>
+                    <ion-input type="text" [(ngModel)]="llave.modelo" readonly></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Comentarios: </ion-label>
+                    <ion-input type="text" [(ngModel)]="llave.comentario"></ion-input>
+                </ion-item>
+                <ion-card>
+                    <div class="item-divider">Firma</div>
+                    <canvas id="pad" #canvas width="350" height="200" style="touch-action: none;"></canvas>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-warning" type="button" (click)="clearSignature()">Limpiar</button>
+                    </div>
+                    
+                </ion-card>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" type="button" (click)="registarLlave()">Guardar</button>
+                </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+    </content>
+</body>
+
+</html>
+
+<ion-content>
+
+</ion-content>

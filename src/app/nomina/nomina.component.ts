@@ -4,6 +4,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { finalize } from 'rxjs/operators';
 import {Storage} from '@ionic/storage';
 import { ApiService } from '../services/api.service';
+import { LuDatePipe } from "../pipes/luDate.pipe";
+
 const TOKEN_KEY = 'auth-token';
 
 @Component({

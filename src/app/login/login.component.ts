@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     version: string;
     formgroup: FormGroup;
     versionActual: any;
+    select: any = 0;
     actualizar: boolean = false;
     constructor(
         private env: EnvService,
@@ -51,9 +52,20 @@ export class LoginComponent implements OnInit {
     }*/
     login(frm: any) 
     {
-        //console.log(frm);
-        this.auth.login(frm);
+        console.log(frm);
+        if(this.select==0){
+            this.auth.login(frm);
+            console.log(this.select);
+        }else{
+            this.auth.loginPatios(frm);
+            console.log(this.select);
+        }
+        
         this.formgroup.reset();
     }
+    onSelect(e: any) {
+        console.log(e.target.value);
+        this.select = e.target.value;
+        }
 
 }

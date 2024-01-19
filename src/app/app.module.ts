@@ -26,6 +26,23 @@ import { DieselViewPageModule } from "./diesel/diesel-view/diesel-view.module";
 import { DieselFormPageModule } from './diesel/diesel-form/diesel-form.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { VisitantesIndexComponentModule } from './visitantes/visitantes/visitantes-index/visitantes-index.module';
+import { RegistrosIndexComponentModule } from "./visitantes/registros/registros-index/registros-index.module";
+import { CatalogosIndexComponentModule } from "./visitantes/catalogos/catalogos-index/catalogos-index.module";
+import { EmpleadosComponentModule } from './visitantes/empleados/empleados.module';
+import { VisitantesCreateComponentModule } from "./visitantes/visitantes/visitantes-create/visitantes-create.module";
+import { VisitantesViewComponentModule } from "./visitantes/visitantes/visitantes-view/visitantes-view.module";
+
+import { InventarioComponentModule } from "./patios/inventario/inventario.module";
+import { ItinerariosIndexComponentModule } from "./patios/itinerarios/itinerarios-index/itinerarios-index.module";
+import { ItinerariosViewComponentModule } from "./patios/itinerarios/itinerarios-view/itinerarios-view.module";
+import { InspeccionSalidaComponentModule } from './patios/itinerarios/modals/inspeccion-salida/inspeccion-salida.module';
+import { FirmaComponentModule } from "./patios/itinerarios/modals/firma/firma.module";
+import { ItinerariosFormComponentModule } from './patios/itinerarios/itinerarios-form/itinerarios-form.module';
+import { FirmaFormComponentModule } from "./patios/itinerarios/modals/firma-form/firma-form.module";
+import { InspeccionComponentModule } from "./patios/itinerarios/modals/inspeccion/inspeccion.module";
+import { ContenedoresComponentModule } from "./patios/itinerarios/modals/contenedores/contenedores.module";
+
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
@@ -43,9 +60,18 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 
 import { FilterPipe } from './pipes/filter.pipe';
+import { DieselLoginComponent } from './diesel/diesel-login/diesel-login.component';
+import{ LuDatePipe } from './pipes/luDate.pipe';
+import { ToastrModule } from 'ngx-toastr';
+
+
+
+
+//import { FirmaFormComponent } from './patios/itinerarios/modals/firma-form/firma-form.component';
+
 
 @NgModule({
-  declarations: [AppComponent, FilterPipe,],
+  declarations: [AppComponent, FilterPipe, DieselLoginComponent, LuDatePipe, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -66,7 +92,24 @@ import { FilterPipe } from './pipes/filter.pipe';
     DieselIndexPageModule,
     DieselViewPageModule,
     DieselFormPageModule,
+    VisitantesIndexComponentModule,
+    RegistrosIndexComponentModule,
+    CatalogosIndexComponentModule,
+    EmpleadosComponentModule,
+    VisitantesCreateComponentModule,
+    VisitantesViewComponentModule,
+    InventarioComponentModule,
+    ItinerariosIndexComponentModule,
+    ItinerariosViewComponentModule,
+    InspeccionSalidaComponentModule,
+    FirmaComponentModule,
+    ItinerariosFormComponentModule,
+    FirmaFormComponentModule,
+    InspeccionComponentModule,
+    ContenedoresComponentModule,
+
     IonicStorageModule.forRoot(),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     MdbAccordionModule,
     MdbCarouselModule,
