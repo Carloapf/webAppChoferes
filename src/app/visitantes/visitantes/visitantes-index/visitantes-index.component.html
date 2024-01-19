@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Visitantes-index</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <content>
+        <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+            <span class="navbar-brand mb-0 h1 mx-auto">Visitantes</span>
+            <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+        </nav>
+        <div *ngIf="buscado" style="height: 708px; overflow: auto;">
+            <div class="ui negative message" *ngIf="!registros.length">
+                <div></div>
+                <div style="text-align: center;">
+                    <p>No hay registros de visitantes</p>
+                </div>
+            </div>
+            <div *ngIf="registros.length" style="margin-bottom: 80px;">
+                <ion-item>
+                    <ion-label>Buscar</ion-label>
+                    <input class="form-control" type="text" placeholder="Buscar" aria-label="Buscar"
+                        [(ngModel)]="search">
+                </ion-item>
+                <div class="contenedor" *ngFor="let x of registros | filter: search">
+                    <div class="lista-imagen" [routerLink]="['/visitantes-view', x.id]">
+                        <!--<img src="{{env.HARVEST_URL}}{{x.foto}}" class="img-list"> -->
+                    </div>
+                    <div class="lista" [routerLink]="['/visitantes-view', x.id]">
+                        <h2>{{x.nombre}}</h2>
+                        <p><i class="fas fa-briefcase"></i> {{x.compania}}</p>
+                        <p><i class="fas fa-car"></i> {{x.vehiculo}}</p>
+                        <p><i class="fas fa-address-card"></i> {{x.gafete}}</p>
+                    </div>
+                    <div class="lista-info">
+                        <div style="text-align: center;">
+                            <p><i class="far fa-clock"></i> {{x.entrada | date:'HH:mm aa'}}</p>
+                            <i id="chkicon{{x.completado == 0 ? '1' : '0'}}"
+                                class="{{x.completado == 0 ? 'far fa-check-circle' : 'fas fa-check-circle'}}"
+                                (click)="completeVisit(x)"></i>
+                            <p>
+                                <i class="fas fa-check-square" *ngIf="x.salida"></i>{{x.salida | date:'HH:mm aa'}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="d-grid gap-2" style="position: absolute; bottom: 0; width: 100%;">
+                <button type="button" class="btn btn-primary" [routerLink]="['/visitantes-create']">
+                    Agregar Visitante
+                </button>
+            </div>
+            
+        </div>
+    </content>
+</body>
+
+</html>
+
+<ion-content>
+
+</ion-content>

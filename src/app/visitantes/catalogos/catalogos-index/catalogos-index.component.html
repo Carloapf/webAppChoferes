@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Catalogos</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <span class="navbar-brand mb-0 h1 mx-auto">Catalogos</span>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+        
+
+    <div *ngIf="cargado" style="height:750px; overflow:auto;">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Empleados
+                        <br>
+                        Catalogo de empleados de su empresa
+                    </button>
+                </h2>
+
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body" style="height:750px; overflow:auto;">
+                        <div class="contenedor contenedor2" *ngFor="let x of empleados">
+                            <!-- <div class="lista-imagen">
+                                <img src="{{x.foto}}" class="img-list">
+                            </div> -->
+                            <div class="lista">
+                                <h2>{{x.nombre}}</h2>
+                                <p><i class="fas fa-info-circle"></i> {{x.puesto}}</p>
+                                <p><i class="fas fa-briefcase"></i> {{x.area}}</p>
+                                <p><i class="fas fa-phone"></i> {{x.telefono > 0 ? x.telefono : 'Sin telefono'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Empresas
+                        <br>
+                        Catalogo de las empresas que visitan su empresa
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="contenedor contenedor2" *ngFor="let x of empresas">
+                            <!-- <div class="lista-imagen">
+                                <img src="{{x.foto}}" class="img-list">
+                            </div> -->
+                            <div class="lista" style="width: 90%; display: flex;">
+                                <i class="fas fa-globe" style="padding-right: 10px;"></i><h2> {{x.nombre}}</h2>
+                            </div>
+                            <div class="lista-info">
+                                {{x.count}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        Tipo de visitantes
+                        <br>
+                        Administre los tipos de visitantes que acuden a su empresa
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <div class="contenedor contenedor2" *ngFor="let x of tipoVisitantes">
+                            <!-- <div class="lista-imagen">
+                            <img src="{{x.foto}}" class="img-list">
+                        </div>  -->
+                            <div class="lista" style="width: 100%; display: flex;">
+                                <i class="fas fa-user-circle" style="padding-right: 10px;"></i><h2>{{x.nombre}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        Gafetes/Pases
+                        <br>
+                        LLeve el control de gafetes o pases
+                    </button>
+                    <hr>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body" style="height:750px; overflow:auto;">
+                        <div class="contenedor contenedor2" *ngFor="let x of gafetes">
+                            <div class="lista-imagen">
+                                <!-- <img src="{{x.nombre}}" class="img-list"> -->
+                            </div>
+                            <div class="lista" style="width: 100%;">
+                                <div style="display: flex;">
+                                    <i class="fas fa-user-circle" style="padding-right: 10px;"></i><h2>{{x.nombre}}</h2>
+                                </div>
+                                <p>Disponibles: {{x.disponibles}}</p>
+                                <p>Ocupados: {{x.ocupados}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div class="contenedor">
+            <div class="lista-imagen">
+                <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <div class="lista">
+                <h2>Empleados</h2>
+                <p>Catalogo de empleados de su empresa</p>
+            </div>
+            <div class="lista-info">
+                <div style="text-align: center;">
+                    <ion-icon name="{{ver == 1 ? 'caret-up-outline' : 'caret-down-outline'}}"(click)="verCatalogo(1)"></ion-icon>
+                    <button type="button" class="btn btn-primary" (click)="verCatalogo(1)">Boton</button>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div *ngIf="ver == 1">
+            <div class="contenedor contenedor2" *ngFor="let x of empleados">
+                <!-- <div class="lista-imagen">
+                    <img src="{{x.foto}}" class="img-list">
+                </div> cierra
+                <div class="lista">
+                    <h2>{{x.nombre}}</h2>
+                    <p><ion-icon name="information-outline"></ion-icon> {{x.puesto}}</p>
+                    <p><ion-icon name="briefcase-outline"></ion-icon> {{x.area}}</p>
+                    <p><ion-icon name="call-outline"></ion-icon> {{x.telefono > 0 ? x.telefono : 'Sin telefono'}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="lista-imagen">
+                <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+            <div class="lista">
+                <h2>Empresas</h2>
+                <p>Catalogo de las empresas que visitan su empresa</p>
+            </div>
+            <div class="lista-info">
+                <div style="text-align: center;">
+                    <ion-icon name="{{ver == 2 ? 'caret-up-outline' : 'caret-down-outline'}}"(click)="verCatalogo(2)"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ver == 2">
+            <div class="contenedor contenedor2" *ngFor="let x of empresas">
+                <!-- <div class="lista-imagen">
+                    <img src="{{x.foto}}" class="img-list">
+                </div> cierra
+                <div class="lista" style="width: 90%;">
+                    <h2>{{x.nombre}}</h2>
+                </div>
+                <div class="lista-info">
+                    {{x.count}}
+                </div>
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="lista-imagen">
+                <ion-icon name="clipboard-outline"></ion-icon>
+            </div>
+            <div class="lista">
+                <h2>Tipo de visitantes</h2>
+                <p>Administre los tipos de visitantes que acuden a su empresa</p>
+            </div>
+            <div class="lista-info">
+                <div style="text-align: center;">
+                    <ion-icon name="{{ver == 3 ? 'caret-up-outline' : 'caret-down-outline'}}"(click)="verCatalogo(3)"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ver == 3">
+            <div class="contenedor contenedor2" *ngFor="let x of tipoVisitantes">
+                <!-- <div class="lista-imagen">
+                    <img src="{{x.foto}}" class="img-list">
+                </div>  cierra
+                <div class="lista" style="width: 100%;">
+                    <h2>{{x.nombre}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="lista-imagen">
+                <ion-icon name="card-outline"></ion-icon>
+            </div>
+            <div class="lista">
+                <h2>Gafetes/Pases</h2>
+                <p>LLeve el control de gafetes o pases</p>
+            </div>
+            <div class="lista-info">
+                <div style="text-align: center;">
+                    <ion-icon name="{{ver == 4 ? 'caret-up-outline' : 'caret-down-outline'}}"(click)="verCatalogo(4)"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="ver == 4">
+            <div class="contenedor contenedor2" *ngFor="let x of gafetes">
+                <div class="lista-imagen">
+                    <!-- <img src="{{x.nombre}}" class="img-list"> cierra
+                </div>
+                <div class="lista" style="width: 100%;">
+                    <h2>{{x.nombre}}</h2>
+                    <p>Disponibles: {{x.disponibles}}</p>
+                    <p>Ocupados: {{x.ocupados}}</p>
+                </div>
+            </div>
+        </div>
+    -->
+    </div>
+</body>
+
+</html>

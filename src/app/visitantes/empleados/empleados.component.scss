@@ -1,0 +1,100 @@
+ion-input.buscador
+{
+    text-indent: 10px;
+}
+div.contenedor
+{
+    border-bottom: 1px solid #CCCCCC;
+    padding: 5px;
+}
+div.contenedor:last-of-type
+{
+    margin-bottom: 25px;
+}
+div.lista-imagen
+{
+    width: 15%;
+    float: left;
+    padding: 5px;
+}
+div.lista
+{
+    width: 65%;
+    float: left;
+    padding: 5px;
+    overflow: hidden;
+}
+div.lista h2,
+div.lista p
+{
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+}
+div.lista-info h2,
+div.lista-info p
+{
+    margin: 0;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.lista h2
+{
+    font-size: 14px;
+}
+div.lista-info
+{
+    width: 20%;
+    float: left;
+    padding: 5px;
+}
+#chkicon1
+{
+    color: lightgrey;
+    font-size: 11vw;
+}
+.tabs > div,
+.tabs2 > div
+{
+    float: left;
+    width: 50%;
+    text-align: center;
+    line-height: 35px;
+    font-size: 20px;
+    border-bottom: 1px solid #C5C5C5;
+}
+.tabs2 > div
+{
+    font-size: 14px;
+}
+.tabs > div.active,
+.tabs2 > div.active
+{
+    border-bottom: 2px solid #000000;
+}
+.registros div.registro
+{
+    border-bottom: 1px solid #C5C5C5;
+}
+.registros div.registro:last-child
+{
+    border-bottom: 0;
+}
+div.contenedor::after,
+div.tabs::after,
+div.tabs2::after
+{
+    display: block;
+    content: '';
+    clear: both;
+}
+#pad
+{
+    background-color: #FFFFFF;
+    border: 2px solid #FF0000;
+    width: 100%;
+}

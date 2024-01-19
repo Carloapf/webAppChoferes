@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>vistantes-view</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-dark me-2" type="button" href="javascript:history.back();" style="margin-left: 10px;"><i
+                class="fas fa-angle-left" style="margin-left: 10px; margin-right: 10px;"></i></a>
+        <span class="navbar-brand mb-0 h1">Ver visitante</span>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+
+    <div *ngIf="ver" style="height: 708px; overflow: auto;">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col col-33">
+                        <!--<div style="background-image: url('{{data.foto ? data.foto : 'img/nopic.png'}}')"
+                            id="previewImage"></div>-->
+                            <img src="http://localhost:80/duranApi/{{data.foto ? data.foto : 'img/noid.png'}}" id="previewIDImage"
+                            fallback-src="img/noid.png"><br>
+                    </div>
+                    <div class="col col-33">
+                        <img src="http://localhost:80/duranApi/{{data.identificacion ? data.identificacion : 'img/noid.png'}}" id="previewIDImage"
+                            fallback-src="img/noid.png"><br>
+                    </div>
+                    <div class="col col-33">
+                        <img src="http://localhost:80/duranApi/{{data.identificacion2 ? data.identificacion2 : 'img/noid2.png'}}" id="previewIDImage"
+                            fallback-src="img/noid2.png"><br>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <ion-item>
+                    <i class="fas fa-user-circle" slot="start"></i>
+                    <!-- <div class="left-icon">
+                        <div><i class="ui icon address book outline"></i></div>
+                    </div> -->
+                    <div>
+                        <div><b>Visitante</b></div>
+                        <div>{{data.nombre}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-briefcase" slot="start"></i>
+                    <div>
+                        <div><b>Empresa</b></div>
+                        <div>{{data.compania}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-car" slot="start"></i>
+                    <div>
+                        <div><b>Vehículo</b></div>
+                        <div>{{data.vehiculo}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-users" slot="start"></i>
+                    <div>
+                        <div><b>Visitado</b></div>
+                        <div>{{data.empleado}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="far fa-comments" slot="start"></i>
+                    <div>
+                        <div><b>Asunto</b></div>
+                        <div>{{data.asunto}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-chevron-circle-up" slot="start"></i>
+                    <div>
+                        <div><b>Fecha de entrada</b></div>
+                        <div>{{(data.entrada | date:'large')+' a las '+(data.entrada | date: 'HH:mm aa')}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-chevron-circle-down" slot="start"></i>
+                    <div>
+                        <div><b>Fecha de salida</b></div>
+                        <div>{{data.salida ? ((data.salida | date:'large')+' a las '+(data.salida | date: 'HH:mm aa')) :
+                            "No se a marcado la hora de salida"}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-stopwatch" slot="start"></i>
+                    <div>
+                        <div><b>Duración</b></div>
+                        <div>{{data.duracion}}</div>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <i class="fas fa-atlas" slot="start"></i>
+                    <div>
+                        <div><b>Gáfete</b></div>
+                        <div>{{data.gafete}}</div>
+                    </div>
+                </ion-item>
+                <ion-card-header>
+                    <ion-card-title>Firma</ion-card-title>
+                    <ion-card-subtitle>
+                        <img src="http://localhost:80/duranApi/{{data.firma}}" style="height: 150px; max-height: 150px;">
+
+                        <div id='SignatureLabel'>
+                            Firma del visitante
+                        </div>
+                    </ion-card-subtitle>
+                </ion-card-header>
+                <br>
+                <br>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<!--<ion-content *ngIf="ver">
+    <ion-card>
+        <ion-card-header>
+
+        </ion-card-header>
+        <ion-item>
+            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+            <!-- <div class="left-icon">
+                <div><i class="ui icon address book outline"></i></div>
+            </div> cerrar comentario
+            <div>
+                <div><b>Visitante</b></div>
+                <div>{{data.nombre}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Empresa</b></div>
+                <div>{{data.compania}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="car-sport-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Vehículo</b></div>
+                <div>{{data.vehiculo}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="people-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Visitado</b></div>
+                <div>{{data.empleado}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Asunto</b></div>
+                <div>{{data.asunto}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="arrow-redo-circle-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Fecha de entrada</b></div>
+                <div>{{(data.entrada | date:'large')+' a las '+(data.entrada | date: 'HH:mm aa')}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="arrow-undo-circle-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Fecha de salida</b></div>
+                <div>{{data.salida ? ((data.salida | date:'large')+' a las '+(data.salida | date: 'HH:mm aa')) : "No se
+                    a marcado la hora de salida"}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="stopwatch-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Duración</b></div>
+                <div>{{data.duracion}}</div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="journal-outline" slot="start"></ion-icon>
+            <div>
+                <div><b>Gáfete</b></div>
+                <div>{{data.gafete}}</div>
+            </div>
+        </ion-item>
+        <ion-card-header>
+            <ion-card-title>Firma</ion-card-title>
+            <ion-card-subtitle>
+                <img src="{{data.firma}}" style="height: 150px; max-height: 150px;">
+
+                <div id='SignatureLabel'>
+                    Firma del visitante
+                </div>
+            </ion-card-subtitle>
+        </ion-card-header>
+    </ion-card>
+</ion-content> -->

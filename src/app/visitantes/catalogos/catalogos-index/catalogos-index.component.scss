@@ -1,0 +1,81 @@
+.img-list {
+    width: 100%;
+    max-width: 70px;
+    border: 1px solid grey;
+    border-radius: 100%;
+}
+div.contenedor
+{
+    border-bottom: 1px solid #CCCCCC;
+    padding: 5px;
+}
+div.contenedor:last-of-type
+{
+    margin-bottom: 25px;
+}
+div.lista-imagen
+{
+    width: 15%;
+    float: left;
+    padding: 5px;
+}
+div.lista
+{
+    width: 75%;
+    float: left;
+    padding: 5px;
+    overflow: hidden;
+}
+div.lista h2,
+div.lista p
+{
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+}
+div.lista-info h2,
+div.lista-info p
+{
+    margin: 0;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+div.lista h2
+{
+    font-size: 14px;
+}
+div.lista-info
+{
+    width: 10%;
+    float: left;
+    padding: 5px;
+}
+#chkicon1
+{
+    color: lightgrey;
+    font-size: 11vw;
+}
+div.contenedor ion-icon
+{
+    font-size: 28px;
+}
+div.contenedor2
+{
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+div.contenedor2 ion-icon
+{
+    font-size: 12px;
+}
+div.contenedor::after
+{
+    display: block;
+    content: '';
+    clear: both;
+}

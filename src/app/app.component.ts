@@ -107,11 +107,41 @@ export class AppComponent implements OnInit {
                 title: 'Vencimientos',
                 url: 'vencimientos',
                 icon: 'far fa-calendar'
-            },/*{
+            },{
                 title:'Diesel',
                 url: 'diesel',
                 icon: 'fas fa-gas-pump'
+            },{
+                title: 'Visitantes',
+                url: 'visitantes-index',
+                icon: 'fas fa-user-tie'
+            },{
+                title: 'Registros',
+                url: 'registros-index',
+                icon: 'fas fa-book'
+            },{
+                title: 'Catalogos',
+                url: 'catalogos-index',
+                icon: 'fas fa-book-open'
+            },{
+                title: 'Empleados',
+                url: 'empleados',
+                icon: 'fas fa-jedi'
+            },/*{
+                title: 'Patios Inventario',
+                url: 'patios-inventario',
+                icon: 'fas fa-truck-loading'
+            },
+            {
+                title: 'Itinerarios index',
+                url: 'itinerarios-index',
+                icon: 'fas fa-truck-loading'
+            },{
+                title: 'Itinerario form',
+                url: 'itinerarios-form',
+                icon: 'fab fa-wpforms'
             }*/
+            
         ];
     }
     logout() 

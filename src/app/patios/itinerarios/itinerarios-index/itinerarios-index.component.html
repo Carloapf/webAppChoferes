@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerario Index</title>
+</head>
+<body>
+    <content>
+        <div class="form-check form-switch" style="margin-left: 40px; margin-top: 35px;">
+            <input class="form-check-input" type="checkbox"  (change)="onSwitchChange()" style="padding-left: 40px;">
+            <label class="form-check-label" for="flexSwitchCheckDefault" style="margin-left: 10px;">Buscar por ContenedorID o Work OrdenID </label>
+        </div>
+        <div class="form-group ui from">
+            <div class="ui buttons" style="width: 100%; margin-bottom: 5px;">
+                <!--
+                <button class="ui button {{opcion == 1 ? 'positive' : ''}}" (click)="opcionSel(1)">Contenedor</button>
+                <div class="or"></div>
+                <button class="ui  {{opcion == 2 ? 'positive' : ''}} button"  (click)="opcionSel(2)">Work Order</button> -->  
+            </div>
+            <div class="field" *ngIf="switchValue == 1">
+                <input type="text" [(ngModel)]="contenedor" placeholder="Contenedor">
+                <div class="btn btn-success" (click)="getContenedor(contenedor)">Buscar</div>
+                <!-- <div class="ui fluid red button" ng-click="scanNow()" style="width: 100%; margin: 10px auto;">Escanear</div> -->
+            </div>
+            <div class="field" *ngIf="switchValue == 2">
+                <div class="ui icon input" style="width: 100%;">
+                    <input type="text" [(ngModel)]="WContenedorID" placeholder="Work Order">
+                    <button type="button" class="btn btn-info" (click)="buscarContenedor(WContenedorID)"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="contenedores">
+            <div *ngFor="let x of contenedores" [ngClass]="'color' + x.Status" class="itemiti">
+                <div class="ribbon color{{x.Status}}">ItinerarioID: {{x.ItinerarioID}}</div>
+                <div class="itemcont">
+                    <p style="color: grey; margin-left: 10px;">{{x.carga | luDate:'large'}}</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <b> <i class="fas fa-cog" style="padding-right: 8px;"></i>Work order: </b> {{x.WContenedorID}}</li>
+                        <li class="list-group-item">
+                            <b> <i class="fas fa-user-circle" style="padding-right: 8px;"></i>Cliente: </b> {{x.cliente }}</li>
+                        <li class="list-group-item">
+                            <b> <i class="far fa-map" style="padding-right: 8px;"></i>Ruta: </b> {{x.origen }} - {{x.destino }} </li>
+                        <li class="list-group-item">
+                            <b> <i class="fas fa-user" style="padding-right: 8px;"></i>Chofer: </b> {{x.NombreChofer}}</li>
+                        <li class="list-group-item">
+                            <b> <i class="fas fa-cubes" style="padding-right: 8px;"></i>Contenedor: </b> {{x.Contenedor}}</li>
+                        <li class="list-group-item">
+                            <b> <i class="fas fa-user-alt" style="padding-right: 8px;"></i>Placas Unidad: </b> {{x.placasunidad}}</li>
+                        <button type="button" class="btn btn-dark" [routerLink]="['/itinerarios-view', x.Contenedor]" (click)="irItineratio(x)">Detalles</button>
+                        
+                      </ul>
+                </div>
+            </div>
+            <br><br>
+        </div>
+        <div class="ui info message" *ngIf="!contenedores && flag" style="width: 95%; margin: 0 auto">
+            <!--<i class="close ion-close-circled red"></i>-->
+            <div class="center aligned header">
+                No se encontro el contenedor
+            </div>
+            <div class="content">
+                Ese contenedor no se encuentra en este patio o no tiene entrada registrada.
+            </div>
+        </div>
+    </content>
+</body>
+</html>

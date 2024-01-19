@@ -1,0 +1,26 @@
+
+<div class="elemento">
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-danger me-2" type="button" style="margin-left: 10px;" (click)="dismiss()">Cancelar<i
+                class="fas fa-times"></i></a>
+        <span class="navbar-brand mb-0 h1">Firma K9</span>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+</div>
+
+<content>
+    <div >
+        <div>
+            
+                <div style="text-align: center;">
+                    Firme dentro del recuadro rojo. Puede borrar dando click en limpiar, para confirmar, precione "Guardar". <br>
+                    <canvas id="pad" #canvas width="350" height="200" style="touch-action: none; border: 2px solid blue;"></canvas>
+                </div>
+                
+            <div class="buttons-wrapper">
+                <div class="btn btn-warning" (click)="clearCanvas()">Limpiar</div>
+                <div class="btn btn-success" (click)="saveCanvas()" style="float:right; width: auto">Guardar</div>
+            </div>
+        </div>
+    </div>
+</content>

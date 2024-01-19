@@ -1,0 +1,56 @@
+<div class="elemento">
+    <nav class="navbar bg-body-tertiary d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+        <a class="btn btn-info me-2" type="button" style="margin-left: 10px;" (click)="dismiss()">Terminar</a>
+        <span class="navbar-brand mb-0 h1">Inspección</span>
+        <div></div> <!-- Esto crea un espacio en blanco entre el botón y el título -->
+    </nav>
+</div>
+
+
+<div class="elemento2" style="height: 75vh; overflow: auto;">
+    <div class="nuevo-item" *ngFor="let x of ctpad">
+        <div class="row">
+            <div class="col-3 col-sm-3" style="padding-top: calc(1rem - 2px);">
+                <!--                        <ion-checkbox 
+                      ng-model="x.Entrada"
+                      ng-init="x.Entrada = x.Entrada == 1 ? true : false">
+                  </ion-checkbox>-->
+                <div class="" style="padding: 0; margin-top: 2px;" (click)="checkEntrada(x)">
+                    <input type="checkbox" [(ngModel)]="x.Entrada">
+                </div>
+            </div>
+            <div class="col-3 col-sm-3">
+                <div class="header">{{x.Nombre }}</div>
+            </div>
+            <div class="col-3 col-sm-3" *ngIf="!x.Entrada">
+                <a class="btn btn-{{x.FotoEntrada ? 'primary' : 'dark'}}" (click)="fotoRevisionEntrada(x)" role="button">
+                    <i class=" fas fa-image"></i>
+                </a>
+            </div>
+            <div class="col-3 col-sm-3" *ngIf="!x.Entrada">
+
+                <p>
+                    <a type="button" class="btn btn-{{x.ComentarioEntrada ? 'primary' : 'dark'}}"
+                        data-bs-toggle="collapse" href="#collapseExample{{x.ListadoID}}" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        <i class=" fas fa-clipboard"></i>
+                    </a>
+
+                </p>
+            </div>
+            <div class="collapse" id="collapseExample{{x.ListadoID}}">
+                <div class="card card-body">
+                    <label><i class="fas fa-pen"></i>Remark</label><br>
+                    <textarea [(ngModel)]="x.ComentarioEntrada" rows="3"></textarea>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!--        <ion-checkbox 
+      ng-repeat="x in ctpad" 
+      ng-model="x.Entrada"
+      ng-init="x.Entrada = x.Entrada == 1 ? true : false">
+      {{x.Nombre | camelCase}}
+  </ion-checkbox>-->

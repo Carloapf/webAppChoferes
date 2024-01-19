@@ -56,7 +56,7 @@ const routes: Routes = [
     path: 'vencimientos',
     loadChildren: () => import('./vencimientos/vencimientos.module').then(m => m.VencimientosPageModule)
   },
-  /* Diesel oculto
+  /* Diesel*/
   {
     path: 'diesel',
     loadChildren: () => import('./diesel/diesel-index/diesel-index.module').then(m => m.DieselIndexPageModule)
@@ -68,7 +68,47 @@ const routes: Routes = [
   {
     path: 'diesel-view/:id/diesel-form',
     loadChildren: () => import('./diesel/diesel-form/diesel-form.module').then(m => m.DieselFormPageModule)
-  }*/
+  },
+  /* Visitas */
+  {
+    path: 'visitantes-index',
+    loadChildren: () => import('./visitantes/visitantes/visitantes-index/visitantes-index.module').then(m => m.VisitantesIndexComponentModule)
+  },
+  {
+    path: 'registros-index',
+    loadChildren: () => import('./visitantes/registros/registros-index/registros-index.module').then( m => m.RegistrosIndexComponentModule)
+  },
+  {
+    path: 'catalogos-index',
+    loadChildren: () => import('./visitantes/catalogos/catalogos-index/catalogos-index.module').then( m => m.CatalogosIndexComponentModule)
+  },
+  {
+    path: 'visitantes-view/:id',
+    loadChildren: () => import('./visitantes/visitantes/visitantes-view/visitantes-view.module').then( m => m.VisitantesViewComponentModule)
+  },
+  {
+    path: 'visitantes-create',
+    loadChildren: () => import('./visitantes/visitantes/visitantes-create/visitantes-create.module').then( m => m.VisitantesCreateComponentModule)
+  },
+  {
+    path: 'empleados',
+    loadChildren: () => import('./visitantes/empleados/empleados.module').then( m => m.EmpleadosComponentModule)
+  },
+  //Patios
+  {
+    path: 'patios-inventario',
+    loadChildren: () => import('./patios/inventario/inventario.module').then( m => m.InventarioComponentModule)
+  },
+  {
+    path: 'itinerarios-index',
+    loadChildren: () => import('./patios/itinerarios/itinerarios-index/itinerarios-index.module').then( m => m.ItinerariosIndexComponentModule)
+  },{
+    path: 'itinerarios-view/:Contenedor',
+    loadChildren: () => import('./patios/itinerarios/itinerarios-view/itinerarios-view.module').then( m => m.ItinerariosViewComponentModule)
+  },{
+    path: 'itinerarios-form',
+    loadChildren: () => import('./patios/itinerarios/itinerarios-form/itinerarios-form.module').then( m => m.ItinerariosFormComponentModule)
+  }
 
 ];
 

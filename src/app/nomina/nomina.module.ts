@@ -7,15 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { NominaPageRoutingModule } from './nomina-routing.module';
 
 import { NominaComponent } from './nomina.component';
-import { LuDatePipe } from '../pipes/luDate.pipe';
+import { DieselFormPageModule } from "../diesel/diesel-form/diesel-form.module";
+//import { LuDatePipe } from '../pipes/luDate.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    NominaPageRoutingModule
-  ],
-  declarations: [NominaComponent, LuDatePipe]
+    declarations: [NominaComponent,],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        NominaPageRoutingModule,
+        DieselFormPageModule
+    ]
 })
 export class NominaPageModule {}

@@ -3,15 +3,17 @@
 
 <head>
     <style media="screen">
-        *, *:before, *:after {
+        *,
+        *:before,
+        *:after {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
 
         body {
-            background: rgb(255,2,11);
-            background: linear-gradient(180deg, rgba(255,2,11,0.8492647058823529) 0%, rgba(40,36,36,1) 67%);
+            background: rgb(255, 2, 11);
+            background: linear-gradient(180deg, rgba(255, 2, 11, 0.8492647058823529) 0%, rgba(40, 36, 36, 1) 67%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -117,6 +119,14 @@
             <button type="submit" class="margin" style="display: block; width: 100%;">Iniciar Sesión</button>
         </form>
     </div>
+    <!--<select class="form-select" aria-label="Default select example" [(ngModel)]="select" (change)="onSelect($event)">
+        <option selected>Open this select menu</option>
+        <option value="0">Choferes</option>
+        <option value="1">Patios</option>
+        
+
+    </select>-->
+
 </body>
 
 </html>

@@ -1,0 +1,64 @@
+div.imagenes
+{
+    width: 100%;
+    padding: 5px;
+}
+div.imagenes > div
+{
+    float: left;
+    width: 33%;
+    padding: 15px;
+}
+div.item-native
+{
+    padding: 0;
+}
+div.modal
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, 0.6);
+    z-index: 100000;
+}
+div.modal.esconder
+{
+    display: none;
+}
+ion-icon.add
+{
+    font-size: 30px; 
+    color: var(--ion-color-secondary);
+}
+div.modal div.contenido
+{
+    width: 65%;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    margin-top: 45%;
+    padding: 10px;
+}
+div.imagenes::after
+{
+    display: block;
+    content: '';
+    clear: both;
+}
+.elemento2{
+    height: 440px;
+    overflow-y: auto;
+}
+@media (max-width: 767.20px) {
+    .elemento {
+      padding-top: 50px; /* Cambiar el valor de padding para pantallas más pequeñas */
+    }
+    .elemento2{
+        overflow-y: auto;
+        height: 550px;
+    }
+}

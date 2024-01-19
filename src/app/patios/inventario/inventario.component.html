@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+
+</head>
+
+<body>
+    <content drag-content="false" overflow-scroll="false">
+        <div class="principal" style="margin-bottom: 10px">
+            <div class="ui negative message" *ngIf="!contenedores && buscado">
+                <div style="text-align: center;">
+                    No se encontraron contenedores en ese patio.
+                </div>
+
+            </div>
+            <div *ngIf="contenedores">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group"
+                    style="padding-bottom: 10px;">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+                        (click)="selected = 1">
+                    <label class="btn btn-outline-primary" for="btnradio1">Todos({{contenedores.length}})</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                        (click)="selected = 2">
+                    <label class="btn btn-outline-primary" for="btnradio2">Vacios({{info.vacios}})</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                        (click)="selected = 3">
+                    <label class="btn btn-outline-primary" for="btnradio3">Cargados({{info.cargados}})</label>
+                </div>
+                <div style="height:85vh; overflow:auto;">
+                    <div *ngFor="let x of contenedores">
+                        <div
+                            *ngIf="selected === 1 || (x.EstadoCarga === 0 && selected === 2) || (x.EstadoCarga === 1 && selected === 3)">
+
+                            <ul class="list-group" style="padding-bottom: 10px;">
+                                <li class="list-group-item"><b>Contenedor:</b> {{x.Contenedor}}</li>
+                                <li class="list-group-item"><b>Origen:</b> {{x.origen}}</li>
+                                <li class="list-group-item"><b>Placas del chasis:</b> {{x.PlacasChasis}}</li>
+                                <li class="list-group-item"><b>Tamaño:</b> {{x.Tamano}}</li>
+                                <li class="list-group-item"><b>Dias en patio:</b> {{x.dias}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </content>
+</body>
+
+</html>
